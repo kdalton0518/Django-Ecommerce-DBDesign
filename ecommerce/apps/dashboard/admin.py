@@ -4,6 +4,11 @@ from .models import User
 
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
+    """
+    The UserAdmin class inherits from Django's ModelAdmin class.
+    It represents the admin interface for the User model.
+    """
+
     fieldsets = (
         (None, {"fields": ("id", "username", "email", "password")}),
         ("Personal info", {"fields": ("first_name", "last_name")}),

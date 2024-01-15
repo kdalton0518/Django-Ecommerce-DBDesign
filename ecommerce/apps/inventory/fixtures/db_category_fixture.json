@@ -1,0 +1,492 @@
+[
+	{
+		"model": "inventory.category",
+		"fields": {
+			"name": "fashion",
+			"slug": "fashion",
+			"parent": null,
+			"is_active": true,
+			"lft": 1,
+			"rght": 70,
+			"tree_id": 1,
+			"level": 0
+		},
+		"pk": "467b7e7b-569a-4ba8-a1eb-8ec7a15f0c3b"
+	},
+	{
+		"model": "inventory.category",
+		"fields": {
+			"name": "woman",
+			"slug": "woman",
+			"parent": "467b7e7b-569a-4ba8-a1eb-8ec7a15f0c3b",
+			"is_active": true,
+			"lft": 2,
+			"rght": 69,
+			"tree_id": 1,
+			"level": 1
+		},
+		"pk": "75bcc77f-f05f-4ced-91c7-1d34cab0ee55"
+	},
+	{
+		"model": "inventory.category",
+		"fields": {
+			"name": "shoes",
+			"slug": "shoes",
+			"parent": "75bcc77f-f05f-4ced-91c7-1d34cab0ee55",
+			"is_active": true,
+			"lft": 3,
+			"rght": 68,
+			"tree_id": 1,
+			"level": 2
+		},
+		"pk": "becbd2d7-bbad-4490-b437-f47c0878d0a1"
+	},
+	{
+		"model": "inventory.category",
+		"fields": {
+			"name": "sport and fitness",
+			"slug": "sport-and-fitness",
+			"parent": "becbd2d7-bbad-4490-b437-f47c0878d0a1",
+			"is_active": true,
+			"lft": 60,
+			"rght": 61,
+			"tree_id": 1,
+			"level": 3
+		},
+		"pk": "40eb77b7-3e88-4fff-bd21-f36fb30572e1"
+	},
+	{
+		"model": "inventory.category",
+		"fields": {
+			"name": "general purpose",
+			"slug": "general-purpose",
+			"parent": "becbd2d7-bbad-4490-b437-f47c0878d0a1",
+			"is_active": true,
+			"lft": 28,
+			"rght": 29,
+			"tree_id": 1,
+			"level": 3
+		},
+		"pk": "48f72421-c94d-433d-8bde-5d150ebf14e8"
+	},
+	{
+		"model": "inventory.category",
+		"fields": {
+			"name": "flats",
+			"slug": "flats",
+			"parent": "becbd2d7-bbad-4490-b437-f47c0878d0a1",
+			"is_active": true,
+			"lft": 24,
+			"rght": 25,
+			"tree_id": 1,
+			"level": 3
+		},
+		"pk": "d2039086-7250-49fb-b5de-17bd76734a50"
+	},
+	{
+		"model": "inventory.category",
+		"fields": {
+			"name": "casual",
+			"slug": "casual",
+			"parent": "becbd2d7-bbad-4490-b437-f47c0878d0a1",
+			"is_active": true,
+			"lft": 10,
+			"rght": 11,
+			"tree_id": 1,
+			"level": 3
+		},
+		"pk": "c724188f-6b87-422a-8593-f90adf07b7b6"
+	},
+	{
+		"model": "inventory.category",
+		"fields": {
+			"name": "boots",
+			"slug": "boots",
+			"parent": "becbd2d7-bbad-4490-b437-f47c0878d0a1",
+			"is_active": true,
+			"lft": 8,
+			"rght": 9,
+			"tree_id": 1,
+			"level": 3
+		},
+		"pk": "81a02efe-8825-4886-bfe5-91a6d13dd1ba"
+	},
+	{
+		"model": "inventory.category",
+		"fields": {
+			"name": "heels",
+			"slug": "heels",
+			"parent": "becbd2d7-bbad-4490-b437-f47c0878d0a1",
+			"is_active": true,
+			"lft": 34,
+			"rght": 35,
+			"tree_id": 1,
+			"level": 3
+		},
+		"pk": "2eea2d02-96f1-4993-b819-10e2d035c0e1"
+	},
+	{
+		"model": "inventory.category",
+		"fields": {
+			"name": "wedges",
+			"slug": "wedges",
+			"parent": "becbd2d7-bbad-4490-b437-f47c0878d0a1",
+			"is_active": true,
+			"lft": 64,
+			"rght": 65,
+			"tree_id": 1,
+			"level": 3
+		},
+		"pk": "be462f90-52c8-444c-9320-98bf356b6f76"
+	},
+	{
+		"model": "inventory.category",
+		"fields": {
+			"name": "booties",
+			"slug": "booties",
+			"parent": "becbd2d7-bbad-4490-b437-f47c0878d0a1",
+			"is_active": true,
+			"lft": 6,
+			"rght": 7,
+			"tree_id": 1,
+			"level": 3
+		},
+		"pk": "04f8db49-bc2a-46e5-aff2-54f221b6554d"
+	},
+	{
+		"model": "inventory.category",
+		"fields": {
+			"name": "loafers",
+			"slug": "loafers",
+			"parent": "becbd2d7-bbad-4490-b437-f47c0878d0a1",
+			"is_active": true,
+			"lft": 40,
+			"rght": 41,
+			"tree_id": 1,
+			"level": 3
+		},
+		"pk": "5cb82c1d-0ffc-42cb-a13f-e3ccc966cba1"
+	},
+	{
+		"model": "inventory.category",
+		"fields": {
+			"name": "sandalls",
+			"slug": "sandalls",
+			"parent": "becbd2d7-bbad-4490-b437-f47c0878d0a1",
+			"is_active": true,
+			"lft": 54,
+			"rght": 55,
+			"tree_id": 1,
+			"level": 3
+		},
+		"pk": "71809e3d-19b6-43eb-9e45-25a6e666c30f"
+	},
+	{
+		"model": "inventory.category",
+		"fields": {
+			"name": "slip-ons",
+			"slug": "slip-ons",
+			"parent": "becbd2d7-bbad-4490-b437-f47c0878d0a1",
+			"is_active": true,
+			"lft": 56,
+			"rght": 57,
+			"tree_id": 1,
+			"level": 3
+		},
+		"pk": "aa9fb351-0f73-48e2-a1d6-44334524d731"
+	},
+	{
+		"model": "inventory.category",
+		"fields": {
+			"name": "oxfords",
+			"slug": "oxfords",
+			"parent": "becbd2d7-bbad-4490-b437-f47c0878d0a1",
+			"is_active": true,
+			"lft": 44,
+			"rght": 45,
+			"tree_id": 1,
+			"level": 3
+		},
+		"pk": "1c921a65-5997-4461-a47e-cad047f78a95"
+	},
+	{
+		"model": "inventory.category",
+		"fields": {
+			"name": "slippers",
+			"slug": "slippers",
+			"parent": "becbd2d7-bbad-4490-b437-f47c0878d0a1",
+			"is_active": true,
+			"lft": 58,
+			"rght": 59,
+			"tree_id": 1,
+			"level": 3
+		},
+		"pk": "17e40b33-b8d7-46de-9240-1eed2c830f5d"
+	},
+	{
+		"model": "inventory.category",
+		"fields": {
+			"name": "golf",
+			"slug": "golf",
+			"parent": "becbd2d7-bbad-4490-b437-f47c0878d0a1",
+			"is_active": true,
+			"lft": 30,
+			"rght": 31,
+			"tree_id": 1,
+			"level": 3
+		},
+		"pk": "2ec625bb-4e5d-4231-b1a8-fa7c4b9416c4"
+	},
+	{
+		"model": "inventory.category",
+		"fields": {
+			"name": "trainers",
+			"slug": "trainers",
+			"parent": "becbd2d7-bbad-4490-b437-f47c0878d0a1",
+			"is_active": true,
+			"lft": 62,
+			"rght": 63,
+			"tree_id": 1,
+			"level": 3
+		},
+		"pk": "4ed7f8fb-fe79-4bd1-a0f1-6ee0523914f7"
+	},
+	{
+		"model": "inventory.category",
+		"fields": {
+			"name": "running",
+			"slug": "running",
+			"parent": "becbd2d7-bbad-4490-b437-f47c0878d0a1",
+			"is_active": true,
+			"lft": 50,
+			"rght": 51,
+			"tree_id": 1,
+			"level": 3
+		},
+		"pk": "70fd228b-b8d0-4681-911d-83d7b2629d68"
+	},
+	{
+		"model": "inventory.category",
+		"fields": {
+			"name": "pumps",
+			"slug": "pumps",
+			"parent": "becbd2d7-bbad-4490-b437-f47c0878d0a1",
+			"is_active": true,
+			"lft": 48,
+			"rght": 49,
+			"tree_id": 1,
+			"level": 3
+		},
+		"pk": "16e13b62-b5b1-4155-9807-5a199249407e"
+	},
+	{
+		"model": "inventory.category",
+		"fields": {
+			"name": "patio",
+			"slug": "patio",
+			"parent": "becbd2d7-bbad-4490-b437-f47c0878d0a1",
+			"is_active": true,
+			"lft": 46,
+			"rght": 47,
+			"tree_id": 1,
+			"level": 3
+		},
+		"pk": "71871030-e913-46a9-9a5d-2de6d3501dc3"
+	},
+	{
+		"model": "inventory.category",
+		"fields": {
+			"name": "designer",
+			"slug": "designer",
+			"parent": "becbd2d7-bbad-4490-b437-f47c0878d0a1",
+			"is_active": true,
+			"lft": 20,
+			"rght": 21,
+			"tree_id": 1,
+			"level": 3
+		},
+		"pk": "d293e317-65ec-4692-91c7-96868fa1158a"
+	},
+	{
+		"model": "inventory.category",
+		"fields": {
+			"name": "contemporary",
+			"slug": "contemporary",
+			"parent": "becbd2d7-bbad-4490-b437-f47c0878d0a1",
+			"is_active": true,
+			"lft": 14,
+			"rght": 15,
+			"tree_id": 1,
+			"level": 3
+		},
+		"pk": "51b95c8d-a099-4a42-a543-d92cf7223666"
+	},
+	{
+		"model": "inventory.category",
+		"fields": {
+			"name": "comfort",
+			"slug": "comfort",
+			"parent": "becbd2d7-bbad-4490-b437-f47c0878d0a1",
+			"is_active": true,
+			"lft": 12,
+			"rght": 13,
+			"tree_id": 1,
+			"level": 3
+		},
+		"pk": "1684a92a-a40a-4521-9129-db07c322e499"
+	},
+	{
+		"model": "inventory.category",
+		"fields": {
+			"name": "cross-training",
+			"slug": "cross-training",
+			"parent": "becbd2d7-bbad-4490-b437-f47c0878d0a1",
+			"is_active": true,
+			"lft": 16,
+			"rght": 17,
+			"tree_id": 1,
+			"level": 3
+		},
+		"pk": "42da5b4a-3a51-4e72-a494-069397c73861"
+	},
+	{
+		"model": "inventory.category",
+		"fields": {
+			"name": "formal",
+			"slug": "formal",
+			"parent": "becbd2d7-bbad-4490-b437-f47c0878d0a1",
+			"is_active": true,
+			"lft": 26,
+			"rght": 27,
+			"tree_id": 1,
+			"level": 3
+		},
+		"pk": "188f0685-2c52-441f-a4c3-0271581b4457"
+	},
+	{
+		"model": "inventory.category",
+		"fields": {
+			"name": "safety",
+			"slug": "safety",
+			"parent": "becbd2d7-bbad-4490-b437-f47c0878d0a1",
+			"is_active": true,
+			"lft": 52,
+			"rght": 53,
+			"tree_id": 1,
+			"level": 3
+		},
+		"pk": "800bd7df-3d72-4526-be04-0eda40db9068"
+	},
+	{
+		"model": "inventory.category",
+		"fields": {
+			"name": "hiking",
+			"slug": "hiking",
+			"parent": "becbd2d7-bbad-4490-b437-f47c0878d0a1",
+			"is_active": true,
+			"lft": 36,
+			"rght": 37,
+			"tree_id": 1,
+			"level": 3
+		},
+		"pk": "f7b16cc3-ae48-4f89-b6c7-a2e6c8b2f262"
+	},
+	{
+		"model": "inventory.category",
+		"fields": {
+			"name": "eco-friendly",
+			"slug": "eco-friendly",
+			"parent": "becbd2d7-bbad-4490-b437-f47c0878d0a1",
+			"is_active": true,
+			"lft": 22,
+			"rght": 23,
+			"tree_id": 1,
+			"level": 3
+		},
+		"pk": "4ab22452-42ca-48d6-b253-385e72c0b2d8"
+	},
+	{
+		"model": "inventory.category",
+		"fields": {
+			"name": "cycling",
+			"slug": "cycling",
+			"parent": "becbd2d7-bbad-4490-b437-f47c0878d0a1",
+			"is_active": true,
+			"lft": 18,
+			"rght": 19,
+			"tree_id": 1,
+			"level": 3
+		},
+		"pk": "a1f3b4dc-cc7c-448d-b617-41bd299e5351"
+	},
+	{
+		"model": "inventory.category",
+		"fields": {
+			"name": "moccasins",
+			"slug": "moccasins",
+			"parent": "becbd2d7-bbad-4490-b437-f47c0878d0a1",
+			"is_active": true,
+			"lft": 42,
+			"rght": 43,
+			"tree_id": 1,
+			"level": 3
+		},
+		"pk": "b326f177-8415-4c8c-8895-6312f0d09d7a"
+	},
+	{
+		"model": "inventory.category",
+		"fields": {
+			"name": "kids",
+			"slug": "kids",
+			"parent": "becbd2d7-bbad-4490-b437-f47c0878d0a1",
+			"is_active": true,
+			"lft": 38,
+			"rght": 39,
+			"tree_id": 1,
+			"level": 3
+		},
+		"pk": "3a729bdc-a77f-4fb7-b5a3-910a149f4577"
+	},
+	{
+		"model": "inventory.category",
+		"fields": {
+			"name": "halloween",
+			"slug": "halloween",
+			"parent": "becbd2d7-bbad-4490-b437-f47c0878d0a1",
+			"is_active": true,
+			"lft": 32,
+			"rght": 33,
+			"tree_id": 1,
+			"level": 3
+		},
+		"pk": "d8f4c599-2e70-41bd-a3d1-94bc9137c4e6"
+	},
+	{
+		"model": "inventory.category",
+		"fields": {
+			"name": "winter",
+			"slug": "winter",
+			"parent": "becbd2d7-bbad-4490-b437-f47c0878d0a1",
+			"is_active": true,
+			"lft": 66,
+			"rght": 67,
+			"tree_id": 1,
+			"level": 3
+		},
+		"pk": "cbc2906e-3e54-40f5-9e67-6cd5e25c72ae"
+	},
+	{
+		"model": "inventory.category",
+		"fields": {
+			"name": "baseball",
+			"slug": "baseball",
+			"parent": "becbd2d7-bbad-4490-b437-f47c0878d0a1",
+			"is_active": true,
+			"lft": 4,
+			"rght": 5,
+			"tree_id": 1,
+			"level": 3
+		},
+		"pk": "0882963a-6c4f-4c23-9e47-a0209d8d6393"
+	}
+]

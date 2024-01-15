@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     "corsheaders",
     # Internal apps
     "ecommerce.apps.dashboard.apps.DashboardConfig",
+    "ecommerce.apps.inventory.apps.InventoryConfig",
 ]
 
 
