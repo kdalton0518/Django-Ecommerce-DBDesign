@@ -5,6 +5,19 @@ from mptt.models import MPTTModel, TreeForeignKey
 
 
 class Category(MPTTModel):
+    """
+    The Category class inherits from MPTTModel.
+    It represents a hierarchical category structure for products.
+
+    Attributes:
+        id (CharField): The primary key for the Category model. It's a CharField that gets its default value
+                        from the uuid.uuid4 function and is not editable.
+        name (CharField): A CharField that stores the category name. It is required and has a maximum length of 100 characters.
+        slug (SlugField): A SlugField that stores the URL-friendly version of the category name. It is required and has a maximum length of 100 characters.
+        is_active (BooleanField): A BooleanField that indicates whether the category is active. It is required and its default value is True.
+        parent (TreeForeignKey): A TreeForeignKey that represents the parent category of the current category. It is not required and can be null.
+    """
+
     id = models.CharField(
         primary_key=True, default=uuid.uuid4, editable=False, max_length=36
     )

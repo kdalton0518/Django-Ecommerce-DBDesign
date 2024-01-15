@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     # Internal apps
     "ecommerce.apps.dashboard.apps.DashboardConfig",
     "ecommerce.apps.inventory.apps.InventoryConfig",
+    "ecommerce.apps.demo.apps.DemoConfig",
 ]
 
 

@@ -48,10 +48,8 @@ class UserAdmin(admin.ModelAdmin):
         "last_login",
     )
 
-    # Save on top
     save_on_top = True
 
-    # Fields to be displayed in the models admin list view
     list_display = (
         "id",
         "username",
