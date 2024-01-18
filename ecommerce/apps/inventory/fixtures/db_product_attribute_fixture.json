@@ -1,0 +1,10 @@
+[
+    {
+        "model": "inventory.productattribute",
+        "pk": "1db208c0-8b13-4585-b634-c8d7fe7a0835",
+        "fields": {
+            "name": "men-shoe-size",
+            "description": "men shoe size"
+        }
+    }
+]
