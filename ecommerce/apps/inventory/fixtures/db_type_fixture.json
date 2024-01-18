@@ -1,0 +1,9 @@
+[
+	{
+		"model": "inventory.producttype",
+		"pk": "36377005-174b-4373-9cca-fe7670da2641",
+		"fields": {
+			"name": "shoes"
+		}
+	}
+]

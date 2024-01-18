@@ -7,9 +7,9 @@ from django.db.utils import IntegrityError
 @pytest.mark.parametrize(
     "id, name, slug, is_active",
     [
-        ("467b7e7b-569a-4ba8-a1eb-8ec7a15f0c3b", "fashion", "fashion", 1),
-        ("4ed7f8fb-fe79-4bd1-a0f1-6ee0523914f7", "trainers", "trainers", 1),
-        ("0882963a-6c4f-4c23-9e47-a0209d8d6393", "baseball", "baseball", 1),
+        ("160343b7-ea3d-4d82-85e5-7103baaf889e", "fashion", "fashion", 1),
+        ("9100a263-4504-42a5-a348-7ff179961488", "trainers", "trainers", 1),
+        ("a3089a38-6282-4e0c-bf24-b5807d2e7337", "baseball", "baseball", 1),
     ],
 )
 def test_inventory_category_dbfixture(db, db_fixture_setup, id, name, slug, is_active):
@@ -45,34 +45,34 @@ def test_inventory_db_category_insert_data(db, category_factory, name, slug, is_
     "id, web_id, name, slug, description, is_active, created_at, updated_at",
     [
         (
-            "ec9785f1-36c8-44ee-8dc2-db10bc0cf08f",
-            "1b82593c-bb31-4ae0-9c96-3800804b614f",
+            "770c3ba6-121f-4d2e-91ea-1c448361beb8",
+            "6cc7d508-8ebf-488a-a1fa-f80f8d9cc73f",
             "widstar running sneakers",
             "widstar-running-sneakers",
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin porta, eros vel sollicitudin lacinia, quam metus gravida elit, a elementum nisl neque sit amet orci. Nulla id lorem ac nunc cursus consequat vitae ut orci. In a velit eu justo eleifend tincidunt vel eu turpis. Praesent eu orci egestas, lobortis magna egestas, tincidunt augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Aenean vitae lectus eget tortor laoreet efficitur vel et leo. Maecenas volutpat eget ante id tempor. Etiam posuere ex urna, at aliquet risus tempor eu. Aenean a odio odio. Nunc consectetur lorem ante, interdum ultrices elit consectetur sit amet. Vestibulum rutrum interdum nulla. Cras vel mi a enim eleifend blandit. Curabitur ex dui, rutrum et odio sit amet, auctor euismod massa.",
             1,
-            "2023-09-04 22:14:18",
-            "2023-09-04 22:14:18",
+            "2021-09-04 22:14:18",
+            "2021-09-04 22:14:18",
         ),
         (
-            "4676fca1-8471-4273-bb19-5c9963d59cfb",
-            "a01708a5-1576-493d-92a2-519ab881d2ee",
+            "8848423c-2fde-4c64-9ced-60db33f35afa",
+            "4de854e0-3e0b-4c61-a12c-135457140fe9",
             "impact puse dance shoe",
             "impact-puse-dance-shoe",
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin porta, eros vel sollicitudin lacinia, quam metus gravida elit, a elementum nisl neque sit amet orci. Nulla id lorem ac nunc cursus consequat vitae ut orci. In a velit eu justo eleifend tincidunt vel eu turpis. Praesent eu orci egestas, lobortis magna egestas, tincidunt augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Aenean vitae lectus eget tortor laoreet efficitur vel et leo. Maecenas volutpat eget ante id tempor. Etiam posuere ex urna, at aliquet risus tempor eu. Aenean a odio odio. Nunc consectetur lorem ante, interdum ultrices elit consectetur sit amet. Vestibulum rutrum interdum nulla. Cras vel mi a enim eleifend blandit. Curabitur ex dui, rutrum et odio sit amet, auctor euismod massa.",
             1,
-            "2023-09-04 22:14:18",
-            "2023-09-04 22:14:18",
+            "2021-09-04 22:14:18",
+            "2021-09-04 22:14:18",
         ),
         (
-            "977a9e76-9560-4583-9575-15dc950fa412",
-            "8b7dfcd4-801c-4e07-ad10-706f8e6eeb71",
+            "2530d906-abce-4c2b-9f86-e446f3ab3954",
+            "98c315c1-c26c-4531-a1d8-6ad1910cf68a",
             "aerosoes loipowp sandals",
             "aerosoes-loipowp-sandals",
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin porta, eros vel sollicitudin lacinia, quam metus gravida elit, a elementum nisl neque sit amet orci. Nulla id lorem ac nunc cursus consequat vitae ut orci. In a velit eu justo eleifend tincidunt vel eu turpis. Praesent eu orci egestas, lobortis magna egestas, tincidunt augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Aenean vitae lectus eget tortor laoreet efficitur vel et leo. Maecenas volutpat eget ante id tempor. Etiam posuere ex urna, at aliquet risus tempor eu. Aenean a odio odio. Nunc consectetur lorem ante, interdum ultrices elit consectetur sit amet. Vestibulum rutrum interdum nulla. Cras vel mi a enim eleifend blandit. Curabitur ex dui, rutrum et odio sit amet, auctor euismod massa.",
             1,
-            "2023-09-04 22:14:18",
-            "2023-09-04 22:14:18",
+            "2021-09-04 22:14:18",
+            "2021-09-04 22:14:18",
         ),
     ],
 )
@@ -121,13 +121,13 @@ def test_inventory_product_insert_data(db, product_factory, category_factory):
 
     product = product_factory.create(
         category=(
-            "467b7e7b-569a-4ba8-a1eb-8ec7a15f0c3b",
-            "4ed7f8fb-fe79-4bd1-a0f1-6ee0523914f7",
+            "160343b7-ea3d-4d82-85e5-7103baaf889e",
+            "2cd01d6c-c413-4bd7-905f-3acac2b691ab",
         )
     )
 
     all_categories_count = product.category.all().count()
 
-    assert "467b7e7b-569a-4ba8-a1eb-8ec7a15f0c3b" == product.category.all()[0].id
-    assert "4ed7f8fb-fe79-4bd1-a0f1-6ee0523914f7" == product.category.all()[1].id
+    assert "160343b7-ea3d-4d82-85e5-7103baaf889e" == product.category.all()[0].id
+    assert "2cd01d6c-c413-4bd7-905f-3acac2b691ab" == product.category.all()[1].id
     assert all_categories_count == 2

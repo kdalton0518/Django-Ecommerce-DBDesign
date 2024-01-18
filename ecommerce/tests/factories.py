@@ -54,8 +54,8 @@ class ProductFactory(factory.django.DjangoModelFactory):
     name = factory.Sequence(lambda n: f"prod_name_{n}")
     description = faker.text()
     is_active = True
-    created_at = "2023-09-04 22:14:18.279092"
-    updated_at = "2023-09-04 22:14:18.279092"
+    created_at = "2021-09-04 22:14:18.279092"
+    updated_at = "2021-09-04 22:14:18.279092"
 
     @factory.post_generation
     def category(self, create, extracted, **kwargs):
