@@ -3,7 +3,7 @@
         "model": "inventory.brand",
         "pk": "6f47e384-112e-4d19-9c33-b6f838c025f8",
         "fields": {
-            "name": "361"
+            "name": 361.0
         }
     },
     {
@@ -3972,7 +3972,7 @@
         "model": "inventory.brand",
         "pk": "b6a7722e-3391-4406-8a4b-0b4f1e8fe902",
         "fields": {
-            "name": "infinity"
+            "name": Infinity
         }
     },
     {
