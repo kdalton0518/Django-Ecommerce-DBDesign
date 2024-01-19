@@ -322,3 +322,140 @@ def test_inventory_db_brand_uniqueness_integrity(db, brand_factory):
     brand_factory.create(name="not_unique")
     with pytest.raises(IntegrityError):
         brand_factory.create(name="not_unique")
+
+
+@pytest.mark.dbfixture
+@pytest.mark.parametrize(
+    "id, product_inventory, image, alt_text, is_feature, created_at, updated_at",
+    [
+        (
+            "8271f523-8750-4c89-bf53-5e954796e593",
+            "e6ef18d6-5bf8-424c-bdf5-69a315c57d65",
+            "images/default.png",
+            "a default image solid color",
+            True,
+            "2021-09-04 22:14:18",
+            "2021-09-04 22:14:18",
+        ),
+        (
+            "b07d5281-2ec9-4329-b209-094e3a220be6",
+            "a7117e52-7ed2-42c0-ae7f-b3e5e8b4abe2",
+            "images/default.png",
+            "a default image solid color",
+            True,
+            "2021-09-04 22:14:18",
+            "2021-09-04 22:14:18",
+        ),
+        (
+            "5dc152d7-e035-4f08-a015-6366a9cf5eea",
+            "f1180ad0-435c-4445-ab56-33b21f029dc2",
+            "images/default.png",
+            "a default image solid color",
+            True,
+            "2021-09-04 22:14:18",
+            "2021-09-04 22:14:18",
+        ),
+    ],
+)
+def test_inventory_media_dbfixture(
+    db,
+    db_fixture_setup,
+    id,
+    product_inventory,
+    image,
+    alt_text,
+    is_feature,
+    created_at,
+    updated_at,
+):
+    """
+    Test to verify the Media model data loaded from the fixture.
+    """
+    result = models.Media.objects.get(id=id)
+    result_created_at = result.created_at.strftime("%Y-%m-%d %H:%M:%S")
+    result_updated_at = result.updated_at.strftime("%Y-%m-%d %H:%M:%S")
+
+    assert result.product_inventory.id == product_inventory
+    assert result.image == image
+    assert result.alt_text == alt_text
+    assert result.is_feature == is_feature
+    assert result_created_at == created_at
+    assert result_updated_at == updated_at
+
+
+@pytest.mark.parametrize(
+    "product_inventory__sku",
+    [
+        ("56ca5f64-93db-4517-a380-9adac4a9d11c"),
+        ("bd8cead1-8f2a-4dc4-81a2-c6415fdb993a"),
+        ("98c33e3d-2211-4374-9fd6-c09025e13cc6"),
+    ],
+)
+def test_inventory_media_insert_data(db, media_factory, product_inventory__sku):
+    new_media = media_factory.create(product_inventory__sku=product_inventory__sku)
+
+    assert new_media.product_inventory.sku == product_inventory__sku
+    assert new_media.image == "images/default.png"
+    assert new_media.alt_text == "a default image solid color"
+    assert new_media.is_feature == 1
+
+
+@pytest.mark.dbfixture
+@pytest.mark.parametrize(
+    "id, product_inventory, last_checked, units, units_sold",
+    [
+        (
+            "08ccc412-b69d-45df-af66-3d18d3bd8a8e",
+            "e6ef18d6-5bf8-424c-bdf5-69a315c57d65",
+            "2021-09-04 22:14:18",
+            135,
+            0,
+        ),
+        (
+            "0374b5c2-d6f4-41ed-a35f-15bb5d265b85",
+            "a7117e52-7ed2-42c0-ae7f-b3e5e8b4abe2",
+            "2021-09-04 22:14:18",
+            188,
+            0,
+        ),
+        (
+            "97c95e94-8b03-4b55-8247-194d0728b245",
+            "f1180ad0-435c-4445-ab56-33b21f029dc2",
+            "2021-09-04 22:14:18",
+            2,
+            0,
+        ),
+    ],
+)
+def test_inventory_db_stock_dataset(
+    db,
+    db_fixture_setup,
+    id,
+    product_inventory,
+    last_checked,
+    units,
+    units_sold,
+):
+    result = models.Stock.objects.get(id=id)
+    result_last_checked = result.last_checked.strftime("%Y-%m-%d %H:%M:%S")
+
+    assert result.product_inventory.id == product_inventory
+    assert result_last_checked == last_checked
+    assert result.units == units
+    assert result.units_sold == units_sold
+
+
+@pytest.mark.parametrize(
+    "product_inventory__sku",
+    [
+        ("dc3caef3-95cf-468e-a4c3-d20f5209b0eb"),
+        ("9f525d9c-5531-42d7-a947-f6c155209103"),
+        ("4410f9a6-a738-4eaf-968a-05cd3bc2927b"),
+    ],
+)
+def test_inventory_db_stock_insert_data(db, stock_factory, product_inventory__sku):
+    new_stock = stock_factory.create(product_inventory__sku=product_inventory__sku)
+
+    assert new_stock.product_inventory.sku == product_inventory__sku
+    assert new_stock.units == 2
+    assert new_stock.units_sold == 100

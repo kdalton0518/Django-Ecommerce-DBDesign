@@ -131,3 +131,45 @@ class ProductInventoryFactory(factory.django.DjangoModelFactory):
     store_price = 92
     sale_price = 46
     weight = 987
+
+
+@register
+class MediaFactory(factory.django.DjangoModelFactory):
+    """
+    The MediaFactory class inherits from DjangoModelFactory.
+    It is used to create test instances of the Media model for testing purposes.
+
+    Attributes:
+        product_inventory (SubFactory): A SubFactory that creates a ProductInventory instance for the Media instance.
+        image (str): A string that represents the image file path. It is set to "images/default.png".
+        alt_text (str): A string that represents the alternative text for the image. It is set to "a default image solid color".
+        is_feature (Boolean): A boolean that indicates whether the image is the default image for the product. It is set to True.
+    """
+
+    class Meta:
+        model = models.Media
+
+    product_inventory = factory.SubFactory(ProductInventoryFactory)
+    image = "images/default.png"
+    alt_text = "a default image solid color"
+    is_feature = True
+
+
+@register
+class StockFactory(factory.django.DjangoModelFactory):
+    """
+    The StockFactory class inherits from DjangoModelFactory.
+    It is used to create test instances of the Stock model for testing purposes.
+
+    Attributes:
+        product_inventory (SubFactory): A SubFactory that creates a ProductInventory instance for the Stock instance.
+        units (int): An integer that represents the number of units in stock. It is set to 2.
+        units_sold (int): An integer that represents the number of units sold. It is set to 100.
+    """
+
+    class Meta:
+        model = models.Stock
+
+    product_inventory = factory.SubFactory(ProductInventoryFactory)
+    units = 2
+    units_sold = 100

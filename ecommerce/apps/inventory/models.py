@@ -328,3 +328,115 @@ class ProductInventory(models.Model):
 
     def __str__(self):
         return self.product.name
+
+
+class Media(models.Model):
+    """
+    The Media class represents the media associated with a product inventory.
+
+    Attributes:
+        id (CharField): The primary key for the Media model. It's a CharField that gets its default value
+                        from the uuid.uuid4 function and is not editable.
+        product_inventory (ForeignKey): A ForeignKey that links to a ProductInventory instance.
+        image (ImageField): An ImageField that stores the image of the product. It is required and has a default image.
+        alt_text (CharField): A CharField that stores the alternative text for the image. It is required and has a maximum length of 255 characters.
+        is_feature (BooleanField): A BooleanField that indicates whether the image is the default image for the product.
+        created_at (DateTimeField): A DateTimeField that stores the date and time the media was created. It is automatically set when the media is created.
+        updated_at (DateTimeField): A DateTimeField that stores the date and time the media was last updated. It is automatically set when the media is updated.
+
+    Meta:
+        verbose_name (str): A string that provides a human-readable name for the Media model.
+        verbose_name_plural (str): A string that provides a human-readable plural name for the Media model.
+    """
+
+    id = models.CharField(
+        primary_key=True, default=uuid.uuid4, editable=False, max_length=36
+    )
+    product_inventory = models.ForeignKey(
+        ProductInventory,
+        on_delete=models.PROTECT,
+        related_name="media_product_inventory",
+    )
+    image = models.ImageField(
+        unique=False,
+        null=False,
+        blank=False,
+        verbose_name=_("Product Image"),
+        upload_to="images/",
+        default="images/default.png",
+        help_text=_("format: required, default-default.png"),
+    )
+    alt_text = models.CharField(
+        max_length=255,
+        unique=False,
+        null=False,
+        blank=False,
+        verbose_name=_("Alternative Text"),
+        help_text=_("format: required, max-255"),
+    )
+    is_feature = models.BooleanField(
+        default=False,
+        verbose_name=_("Product Default Image"),
+        help_text=_("format: default=false, true=default image"),
+    )
+    created_at = models.DateTimeField(
+        auto_now_add=True,
+        editable=False,
+        verbose_name=_("Product Visibility"),
+        help_text=_("format: Y-m-d H:M:S"),
+    )
+    updated_at = models.DateTimeField(
+        auto_now=True,
+        verbose_name=_("Date Sub-Product Created"),
+        help_text=_("format: Y-m-d H:M:S"),
+    )
+
+    class Meta:
+        verbose_name = _("Product Image")
+        verbose_name_plural = _("Product Images")
+
+
+class Stock(models.Model):
+    """
+    The Stock class represents the stock of a product inventory.
+
+    Attributes:
+        id (CharField): The primary key for the Stock model. It's a CharField that gets its default value
+                        from the uuid.uuid4 function and is not editable.
+        product_inventory (OneToOneField): A OneToOneField that links to a ProductInventory instance.
+        last_checked (DateTimeField): A DateTimeField that stores the date and time the stock was last checked. It can be null and blank.
+        units (IntegerField): An IntegerField that stores the number of units in stock. It is required and has a default value of 0.
+        units_sold (IntegerField): An IntegerField that stores the number of units sold. It is required and has a default value of 0.
+    """
+
+    id = models.CharField(
+        primary_key=True, default=uuid.uuid4, editable=False, max_length=36
+    )
+    product_inventory = models.OneToOneField(
+        ProductInventory,
+        related_name="product_inventory",
+        on_delete=models.PROTECT,
+    )
+    last_checked = models.DateTimeField(
+        unique=False,
+        null=True,
+        blank=True,
+        verbose_name=_("Inventory Stock Check Date"),
+        help_text=_("format: Y-m-d H:M:S, null-true, blank-true"),
+    )
+    units = models.IntegerField(
+        default=0,
+        unique=False,
+        null=False,
+        blank=False,
+        verbose_name=_("Units/Qty Of Stock"),
+        help_text=_("format: required, default-0"),
+    )
+    units_sold = models.IntegerField(
+        default=0,
+        unique=False,
+        null=False,
+        blank=False,
+        verbose_name=_("Units Sold to Date"),
+        help_text=_("format: required, default-0"),
+    )
