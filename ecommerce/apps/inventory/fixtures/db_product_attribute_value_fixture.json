@@ -4,7 +4,7 @@
         "pk": "6c595804-d31d-4c6f-b15c-dd52161bdf21",
         "fields": {
             "product_attribute": "1db208c0-8b13-4585-b634-c8d7fe7a0835",
-            "attribute_value": "10"
+            "attribute_value": 10.0
         }
     }
 ]
