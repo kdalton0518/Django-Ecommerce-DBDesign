@@ -210,6 +210,72 @@ class Brand(models.Model):
     )
 
 
+class ProductAttribute(models.Model):
+    """
+    The ProductAttribute class represents the attributes of a product.
+
+    Attributes:
+        id (CharField): The primary key for the ProductAttribute model. It's a CharField that gets its default value
+                        from the uuid.uuid4 function and is not editable.
+        name (CharField): A CharField that stores the name of the product attribute. It is required, unique, and has a maximum length of 255 characters.
+        description (TextField): A TextField that stores the description of the product attribute. It is required.
+    """
+
+    id = models.CharField(
+        primary_key=True, default=uuid.uuid4, editable=False, max_length=36
+    )
+    name = models.CharField(
+        max_length=255,
+        unique=True,
+        null=False,
+        blank=False,
+        verbose_name=_("Product Attribute Name"),
+        help_text=_("format: required, unique, max-255"),
+    )
+    description = models.TextField(
+        unique=False,
+        null=False,
+        blank=False,
+        verbose_name=_("Product Attribute Description"),
+        help_text=_("format: required"),
+    )
+
+    def __str__(self):
+        return self.name
+
+
+class ProductAttributeValue(models.Model):
+    """
+    The ProductAttributeValue class represents the value of a product attribute.
+
+    Attributes:
+        id (CharField): The primary key for the ProductAttributeValue model. It's a CharField that gets its default value
+                        from the uuid.uuid4 function and is not editable.
+        product_attribute (ForeignKey): A ForeignKey that links to a ProductAttribute instance.
+        attribute_value (CharField): A CharField that stores the value of the product attribute. It is required and has a maximum length of 255 characters.
+    """
+
+    id = models.CharField(
+        primary_key=True, default=uuid.uuid4, editable=False, max_length=36
+    )
+    product_attribute = models.ForeignKey(
+        ProductAttribute,
+        related_name="product_attribute",
+        on_delete=models.PROTECT,
+    )
+    attribute_value = models.CharField(
+        max_length=255,
+        unique=False,
+        null=False,
+        blank=False,
+        verbose_name=_("Attribute Value"),
+        help_text=_("format: required, max-255"),
+    )
+
+    def __str__(self):
+        return f"{self.product_attribute.name} : {self.attribute_value}"
+
+
 class ProductInventory(models.Model):
     """
     The ProductInventory class represents a product's inventory details.
@@ -222,6 +288,7 @@ class ProductInventory(models.Model):
         product_type (ForeignKey): A ForeignKey that links to the ProductType model. It represents the type of the product.
         product (ForeignKey): A ForeignKey that links to the Product model. It represents the product itself.
         brand (ForeignKey): A ForeignKey that links to the Brand model. It represents the brand of the product.
+        attribute_values (ManyToManyField): A ManyToManyField that represents the product attributes of the product.
         is_active (BooleanField): A BooleanField that indicates whether the product is active. It is required and its default value is True.
         retail_price (DecimalField): A DecimalField that stores the recommended retail price of the product. It is required and has a maximum value of 999.99.
         store_price (DecimalField): A DecimalField that stores the regular store price of the product. It is required and has a maximum value of 999.99.
@@ -261,6 +328,11 @@ class ProductInventory(models.Model):
         Product, related_name="product", on_delete=models.PROTECT
     )
     brand = models.ForeignKey(Brand, related_name="brand", on_delete=models.PROTECT)
+    attribute_values = models.ManyToManyField(
+        ProductAttributeValue,
+        related_name="product_attribute_values",
+        through="ProductAttributeValues",
+    )
     is_active = models.BooleanField(
         default=True,
         verbose_name=_("Product Visibility"),
@@ -440,3 +512,35 @@ class Stock(models.Model):
         verbose_name=_("Units Sold to Date"),
         help_text=_("format: required, default-0"),
     )
+
+
+class ProductAttributeValues(models.Model):
+    """
+    The ProductAttributeValues class represents the relationship between product attributes and product inventory.
+
+    Attributes:
+        id (CharField): The primary key for the ProductAttributeValues model. It's a CharField that gets its default value
+                        from the uuid.uuid4 function and is not editable.
+        attributevalues (ForeignKey): A ForeignKey that links to a ProductAttributeValue instance.
+        productinventory (ForeignKey): A ForeignKey that links to a ProductInventory instance.
+
+    Meta:
+        unique_together: A tuple that ensures the combination of attributevalues and productinventory is unique.
+    """
+
+    id = models.CharField(
+        primary_key=True, default=uuid.uuid4, editable=False, max_length=36
+    )
+    attributevalues = models.ForeignKey(
+        "ProductAttributeValue",
+        related_name="attributevaluess",
+        on_delete=models.PROTECT,
+    )
+    productinventory = models.ForeignKey(
+        ProductInventory,
+        related_name="productattributevaluess",
+        on_delete=models.PROTECT,
+    )
+
+    class Meta:
+        unique_together = (("attributevalues", "productinventory"),)
