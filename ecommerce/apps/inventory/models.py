@@ -92,10 +92,9 @@ class Product(models.Model):
     )
     web_id = models.CharField(
         max_length=36,
+        default=uuid.uuid4,
         verbose_name="Product Website ID",
         help_text=_("format: required, max length 36 characters"),
-        null=False,
-        blank=False,
         unique=True,
     )
     name = models.CharField(
@@ -183,6 +182,11 @@ class ProductType(models.Model):
         help_text=_("format: required, unique, max-255"),
     )
 
+    class Meta:
+        verbose_name = "Product Type"
+        verbose_name_plural = "Product Types"
+        ordering = ["name"]
+
     def __str__(self):
         return self.name
 
@@ -208,6 +212,14 @@ class Brand(models.Model):
         verbose_name=_("Brand Name"),
         help_text=_("format: required, unique, max-255"),
     )
+
+    class Meta:
+        verbose_name = "Brand"
+        verbose_name_plural = "Brands"
+        ordering = ["name"]
+
+    def __str__(self):
+        return self.name
 
 
 class ProductAttribute(models.Model):
@@ -240,6 +252,14 @@ class ProductAttribute(models.Model):
         help_text=_("format: required"),
     )
 
+    class Meta:
+        verbose_name = "Product Attribute"
+        verbose_name_plural = "Product Attributes"
+        ordering = ["name"]
+
+    def __str__(self):
+        return self.name
+
     def __str__(self):
         return self.name
 
@@ -271,6 +291,10 @@ class ProductAttributeValue(models.Model):
         verbose_name=_("Attribute Value"),
         help_text=_("format: required, max-255"),
     )
+
+    class Meta:
+        verbose_name = "Product Attribute Value"
+        verbose_name_plural = "Product Attribute Values"
 
     def __str__(self):
         return f"{self.product_attribute.name} : {self.attribute_value}"
@@ -339,13 +363,12 @@ class ProductInventory(models.Model):
         help_text=_("format: true=product visible"),
     )
     retail_price = models.DecimalField(
-        max_digits=5,
+        max_digits=10,
         decimal_places=2,
         unique=False,
         null=False,
         blank=False,
         verbose_name=_("Recommended Retail Price"),
-        help_text=_("format: maximum price 999.99"),
         error_messages={
             "name": {
                 "max_length": _("the price must be between 0 and 999.99."),
@@ -353,13 +376,12 @@ class ProductInventory(models.Model):
         },
     )
     store_price = models.DecimalField(
-        max_digits=5,
+        max_digits=10,
         decimal_places=2,
         unique=False,
         null=False,
         blank=False,
         verbose_name=_("Regular Store Price"),
-        help_text=_("format: maximum price 999.99"),
         error_messages={
             "name": {
                 "max_length": _("the price must be between 0 and 999.99."),
@@ -367,13 +389,12 @@ class ProductInventory(models.Model):
         },
     )
     sale_price = models.DecimalField(
-        max_digits=5,
+        max_digits=10,
         decimal_places=2,
         unique=False,
         null=False,
         blank=False,
         verbose_name=_("Sale Price"),
-        help_text=_("format: maximum price 999.99"),
         error_messages={
             "name": {
                 "max_length": _("the price must be between 0 and 999.99."),
@@ -397,6 +418,10 @@ class ProductInventory(models.Model):
         verbose_name=_("Date Sub-Product Updated"),
         help_text=_("format: Y-m-d H:M:S"),
     )
+
+    class Meta:
+        verbose_name = "Product Inventory"
+        verbose_name_plural = "Product Inventories"
 
     def __str__(self):
         return self.product.name
@@ -513,6 +538,13 @@ class Stock(models.Model):
         help_text=_("format: required, default-0"),
     )
 
+    class Meta:
+        verbose_name = "Stock"
+        verbose_name_plural = "Stocks"
+
+    def __str__(self):
+        return self.product.name
+
 
 class ProductAttributeValues(models.Model):
     """
@@ -544,3 +576,7 @@ class ProductAttributeValues(models.Model):
 
     class Meta:
         unique_together = (("attributevalues", "productinventory"),)
+
+    class Meta:
+        verbose_name = "Product Attribute Values"
+        verbose_name_plural = "Product Attribute Valuess"
