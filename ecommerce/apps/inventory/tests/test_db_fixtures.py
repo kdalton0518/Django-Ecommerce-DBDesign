@@ -31,7 +31,7 @@ def test_inventory_category_dbfixture(db, db_fixture_setup, id, name, slug, is_a
         ("baseball", "baseball", 1),
     ],
 )
-def test_inventory_db_category_insert_data(db, category_factory, name, slug, is_active):
+def test_inventory_category_insert_data(db, category_factory, name, slug, is_active):
     """
     Test to verify the Category model data inserted using the factory.
     """
@@ -282,7 +282,7 @@ def test_inventory_product_inventory_insert_data(
     assert new_product.weight == 987
 
 
-def test_inventory_db_producttype_insert_data(db, product_type_factory):
+def test_inventory_producttype_insert_data(db, product_type_factory):
     """
     Test to verify the ProductType model data inserted using the factory.
     """
@@ -290,7 +290,7 @@ def test_inventory_db_producttype_insert_data(db, product_type_factory):
     assert new_type.name == "demo_type"
 
 
-def test_inventory_db_producttype_uniqueness_integrity(db, product_type_factory):
+def test_inventory_producttype_uniqueness_integrity(db, product_type_factory):
     """
     Test to verify the ProductType model data uniqueness integrity.
     """
@@ -307,7 +307,7 @@ def test_inventory_db_producttype_uniqueness_integrity(db, product_type_factory)
         ("demo_brand_3"),
     ],
 )
-def test_inventory_db_brand_insert_data(db, brand_factory, name):
+def test_inventory_brand_insert_data(db, brand_factory, name):
     """
     Test to verify the Brand model data inserted using the factory.
     """
@@ -315,7 +315,7 @@ def test_inventory_db_brand_insert_data(db, brand_factory, name):
     assert new_brand.name == name
 
 
-def test_inventory_db_brand_uniqueness_integrity(db, brand_factory):
+def test_inventory_brand_uniqueness_integrity(db, brand_factory):
     """
     Test to verify the Brand model data uniqueness integrity.
     """
@@ -392,6 +392,9 @@ def test_inventory_media_dbfixture(
     ],
 )
 def test_inventory_media_insert_data(db, media_factory, product_inventory__sku):
+    """
+    Test to verify the Media model data inserted using the factory.
+    """
     new_media = media_factory.create(product_inventory__sku=product_inventory__sku)
 
     assert new_media.product_inventory.sku == product_inventory__sku
@@ -427,7 +430,7 @@ def test_inventory_media_insert_data(db, media_factory, product_inventory__sku):
         ),
     ],
 )
-def test_inventory_db_stock_dataset(
+def test_inventory_stock_dbfixture(
     db,
     db_fixture_setup,
     id,
@@ -436,6 +439,9 @@ def test_inventory_db_stock_dataset(
     units,
     units_sold,
 ):
+    """
+    Test to verify the Stock model data loaded from the fixture.
+    """
     result = models.Stock.objects.get(id=id)
     result_last_checked = result.last_checked.strftime("%Y-%m-%d %H:%M:%S")
 
@@ -453,9 +459,125 @@ def test_inventory_db_stock_dataset(
         ("4410f9a6-a738-4eaf-968a-05cd3bc2927b"),
     ],
 )
-def test_inventory_db_stock_insert_data(db, stock_factory, product_inventory__sku):
+def test_inventory_stock_insert_data(db, stock_factory, product_inventory__sku):
+    """
+    Test to verify the Stock model data inserted using the factory.
+    """
     new_stock = stock_factory.create(product_inventory__sku=product_inventory__sku)
 
     assert new_stock.product_inventory.sku == product_inventory__sku
     assert new_stock.units == 2
     assert new_stock.units_sold == 100
+
+
+@pytest.mark.dbfixture
+@pytest.mark.parametrize(
+    "id, name, description",
+    [
+        ("1db208c0-8b13-4585-b634-c8d7fe7a0835", "men-shoe-size", "men shoe size"),
+    ],
+)
+def test_inventory_product_attribute_dbfixture(
+    db, db_fixture_setup, id, name, description
+):
+    """
+    Test to verify the ProductAttribute model data loaded from the fixture.
+    """
+    result = models.ProductAttribute.objects.get(id=id)
+    assert result.name == name
+    assert result.description == description
+
+
+@pytest.mark.parametrize(
+    "name, description",
+    [
+        ("attribute_name_0", "description_0"),
+        ("attribute_name_1", "description_1"),
+        ("attribute_name_2", "description_2"),
+    ],
+)
+def test_inventory_product_attrubite_insert_data(
+    db, product_attribute_factory, name, description
+):
+    """
+    Test to verify the ProductAttribute model data inserted using the factory.
+    """
+    new_attribute = product_attribute_factory.create(name=name, description=description)
+    assert new_attribute.name == name
+    assert new_attribute.description == description
+
+
+def test_inventory_product_attrubite_uniqueness_integrity(
+    db, product_attribute_factory
+):
+    """
+    Test to verify the ProductAttribute model data uniqueness integrity.
+    """
+    product_attribute_factory.create(name="not_unique")
+    with pytest.raises(IntegrityError):
+        product_attribute_factory.create(name="not_unique")
+
+
+@pytest.mark.dbfixture
+@pytest.mark.parametrize(
+    "id, product_attribute, attribute_value",
+    [
+        (
+            "6c595804-d31d-4c6f-b15c-dd52161bdf21",
+            "1db208c0-8b13-4585-b634-c8d7fe7a0835",
+            10,
+        ),
+    ],
+)
+def test_inventory_product_attribute_value_dbfixture(
+    db, db_fixture_setup, id, product_attribute, attribute_value
+):
+    """
+    Test to verify the ProductAttributeValue model data loaded from the fixture.
+    """
+    result = models.ProductAttributeValue.objects.get(
+        id="6c595804-d31d-4c6f-b15c-dd52161bdf21"
+    )
+    assert result.product_attribute.id == "1db208c0-8b13-4585-b634-c8d7fe7a0835"
+    assert result.attribute_value == "10.0"
+
+
+@pytest.mark.parametrize(
+    "attribute_value, product_attribute__name",
+    [
+        ("new_value_0", "new_value_0"),
+        ("new_value_1", "new_value_1"),
+        ("new_value_2", "new_value_2"),
+    ],
+)
+def test_inventory_product_attribute_value_insert_data(
+    db, product_attribute_value_factory, attribute_value, product_attribute__name
+):
+    """
+    Test to verify the ProductAttributeValue model data inserted using the factory.
+    """
+    new_attribute_value = product_attribute_value_factory.create(
+        attribute_value=attribute_value, product_attribute__name=product_attribute__name
+    )
+    assert new_attribute_value.attribute_value == attribute_value
+    assert new_attribute_value.product_attribute.name == product_attribute__name
+
+
+@pytest.mark.parametrize(
+    ("sku"),
+    [
+        ("42f47e9f-5fee-4e68-8022-c7edcb5248a0"),
+        ("b5851817-43d5-422e-b7b6-588006963981"),
+        ("eb48def7-84ae-4448-8049-3b896c722114"),
+    ],
+)
+def test_inventory_insert_inventory_product_values(
+    db, product_with_attribute_values_factory, sku
+):
+    """
+    Test to verify the ProductInventory model data inserted using the factory.
+    """
+    new_inv_attribute = product_with_attribute_values_factory(sku=sku)
+    result = models.ProductInventory.objects.get(sku=sku)
+    count = result.attribute_values.all().count()
+    assert count == 2

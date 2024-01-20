@@ -5,6 +5,9 @@ from ecommerce.apps.inventory.models import (
     ProductType,
     Brand,
     ProductInventory,
+    ProductAttribute,
+    ProductAttributeValue,
+    ProductAttributeValues,
 )
 
 
@@ -99,3 +102,41 @@ class ProductInventoryAdmin(admin.ModelAdmin):
         "weight",
     )
     autocomplete_fields = ("product",)
+
+
+@admin.register(ProductAttribute)
+class ProductAttributeAdmin(admin.ModelAdmin):
+    """
+    The ProductAttributeAdmin class inherits from Django's ModelAdmin class.
+    It represents the admin interface for the ProductAttribute model.
+    """
+
+    list_display = ("id", "name")
+    list_filter = ("name",)
+    search_fields = ("name", "description")
+
+
+@admin.register(ProductAttributeValue)
+class ProductAttributeValueAdmin(admin.ModelAdmin):
+    """
+    The ProductAttributeValueAdmin class inherits from Django's ModelAdmin class.
+    It represents the admin interface for the ProductAttributeValue model.
+    """
+
+    list_display = ("id", "product_attribute", "attribute_value")
+    list_filter = ("product_attribute", "attribute_value")
+    search_fields = ("product_attribute", "attribute_value")
+    autocomplete_fields = ["product_attribute"]
+
+
+@admin.register(ProductAttributeValues)
+class ProductAttributeValuesAdmin(admin.ModelAdmin):
+    """
+    The ProductAttributeValuesAdmin class inherits from Django's ModelAdmin class.
+    It represents the admin interface for the ProductAttributeValues model.
+    """
+
+    list_display = ("id", "attributevalues", "productinventory")
+    list_filter = ("attributevalues", "productinventory")
+    search_fields = ("attributevalues", "productinventory")
+    autocomplete_fields = ("attributevalues", "productinventory")
