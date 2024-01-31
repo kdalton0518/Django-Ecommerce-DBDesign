@@ -14,14 +14,21 @@ def db_fixture_setup(django_db_setup, django_db_blocker):
         django_db_blocker (fixture): A pytest-django fixture that provides a context manager for blocking database access.
     """
     with django_db_blocker.unblock():
+        call_command("makemigrations")
+        call_command("migrate")
+
+        # Load fixtures with potential dependencies
         call_command("loaddata", "db_admin_fixture.json")
-        call_command("loaddata", "db_category_fixture.json")
-        call_command("loaddata", "db_product_fixture.json")
         call_command("loaddata", "db_type_fixture.json")
         call_command("loaddata", "db_brand_fixture.json")
-        call_command("loaddata", "db_product_inventory_fixture.json")
-        call_command("loaddata", "db_media_fixture.json")
-        call_command("loaddata", "db_stock_fixture.json")
         call_command("loaddata", "db_product_attribute_fixture.json")
         call_command("loaddata", "db_product_attribute_value_fixture.json")
-        call_command("loaddata", "db_product_attribute_values_fixture.json")
+        call_command("loaddata", "db_category_fixture.json")
+
+        # Load product-related fixtures
+        call_command("loaddata", "db_product_fixture.json")
+        call_command("loaddata", "db_product_inventory_fixture.json")
+
+        # Load remaining fixtures
+        call_command("loaddata", "db_media_fixture.json")
+        call_command("loaddata", "db_stock_fixture.json")

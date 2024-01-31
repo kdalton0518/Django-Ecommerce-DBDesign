@@ -1,5 +1,6 @@
 from django.core.management import call_command
 from django.core.management.base import BaseCommand
+from django.db import IntegrityError
 
 
 class Command(BaseCommand):
@@ -17,16 +18,44 @@ class Command(BaseCommand):
         It is called when the command is run.
         """
 
-        call_command("makemigrations")
-        call_command("migrate")
-        call_command("loaddata", "db_admin_fixture.json")
-        call_command("loaddata", "db_category_fixture.json")
-        call_command("loaddata", "db_product_fixture.json")
-        call_command("loaddata", "db_type_fixture.json")
-        call_command("loaddata", "db_brand_fixture.json")
-        call_command("loaddata", "db_product_inventory_fixture.json")
-        call_command("loaddata", "db_media_fixture.json")
-        call_command("loaddata", "db_stock_fixture.json")
-        call_command("loaddata", "db_product_attribute_fixture.json")
-        call_command("loaddata", "db_product_attribute_value_fixture.json")
-        call_command("loaddata", "db_product_attribute_values_fixture.json")
+        try:
+            # Create and apply migrations
+            call_command("makemigrations")
+            call_command("migrate")
+
+            # Load fixtures with potential dependencies
+            self.load_fixture("db_admin_fixture.json")
+            self.load_fixture("db_type_fixture.json")
+            self.load_fixture("db_brand_fixture.json")
+            self.load_fixture("db_product_attribute_fixture.json")
+            self.load_fixture("db_product_attribute_value_fixture.json")
+            self.load_fixture("db_category_fixture.json")
+
+            # Load product-related fixtures
+            self.load_fixture("db_product_fixture.json")
+            self.load_fixture("db_product_inventory_fixture.json")
+
+            # Load remaining fixtures
+            self.load_fixture("db_media_fixture.json")
+            self.load_fixture("db_stock_fixture.json")
+
+            self.stdout.write(self.style.SUCCESS("Successfully loaded all fixtures."))
+
+        except IntegrityError as e:
+            self.stderr.write(self.style.ERROR(f"IntegrityError: {e}"))
+            self.stderr.write(self.style.ERROR("Fix the issue and try again."))
+
+    def load_fixture(self, fixture_name):
+        """
+        Load a single data fixture.
+
+        Args:
+            fixture_name (str): The name of the fixture file to load.
+        """
+        try:
+            call_command("loaddata", fixture_name)
+            self.stdout.write(
+                self.style.SUCCESS(f"Successfully loaded {fixture_name}.")
+            )
+        except Exception as e:
+            self.stderr.write(self.style.ERROR(f"Error loading {fixture_name}: {e}"))

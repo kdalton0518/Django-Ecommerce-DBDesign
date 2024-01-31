@@ -22,8 +22,8 @@ class CategoryFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = models.Category
 
-    name = factory.Sequence(lambda n: f"cat_name_{n}")
-    slug = factory.Sequence(lambda n: f"cat_name_{n}")
+    name = factory.Sequence(lambda n: f"Test Category {n}")
+    slug = factory.Sequence(lambda n: f"test-category-{n}")
 
 
 @register
@@ -50,8 +50,8 @@ class ProductFactory(factory.django.DjangoModelFactory):
         skip_postgeneration_save = True
 
     web_id = factory.LazyFunction(uuid.uuid4)
-    slug = factory.Sequence(lambda n: f"prod_name_{n}")
-    name = factory.Sequence(lambda n: f"prod_name_{n}")
+    slug = factory.Sequence(lambda n: f"Test Product {n}")
+    name = factory.Sequence(lambda n: f"test_product_{n}")
     description = faker.text()
     is_active = True
     created_at = "2021-09-04 22:14:18.279092"
@@ -80,7 +80,7 @@ class ProductTypeFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = models.ProductType
 
-    name = factory.Sequence(lambda n: "type_%d" % n)
+    name = factory.Sequence(lambda n: f"Test Product Type {n}")
 
 
 @register
@@ -96,7 +96,7 @@ class BrandFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = models.Brand
 
-    name = factory.Sequence(lambda n: "brand_%d" % n)
+    name = factory.Sequence(lambda n: f"Test Brand {n}")
 
 
 @register
@@ -171,8 +171,8 @@ class StockFactory(factory.django.DjangoModelFactory):
         model = models.Stock
 
     product_inventory = factory.SubFactory(ProductInventoryFactory)
-    units = 2
-    units_sold = 100
+    units = 135
+    units_sold = 45
 
 
 @register
@@ -189,8 +189,8 @@ class ProductAttributeFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = models.ProductAttribute
 
-    name = factory.Sequence(lambda n: f"attribute_name_{n}")
-    description = factory.Sequence(lambda n: f"description_{n}")
+    name = factory.Sequence(lambda n: f"Test Product Attribute {n}")
+    description = factory.Sequence(lambda n: f"Test Product Attribute {n} Description")
 
 
 @register
@@ -208,46 +208,4 @@ class ProductAttributeValueFactory(factory.django.DjangoModelFactory):
         model = models.ProductAttributeValue
 
     product_attribute = factory.SubFactory(ProductAttributeFactory)
-    attribute_value = factory.Sequence(lambda n: f"attribute_value_{n}")
-
-
-@register
-class ProductAttributeValuesFactory(factory.django.DjangoModelFactory):
-    """
-    The ProductAttributeValuesFactory class inherits from DjangoModelFactory.
-    It is used to create test instances of the ProductAttributeValues model for testing purposes.
-
-    Attributes:
-        attributevalues (SubFactory): A SubFactory that creates a ProductAttributeValue instance for the ProductAttributeValues instance.
-        productinventory (SubFactory): A SubFactory that creates a ProductInventory instance for the ProductAttributeValues instance.
-    """
-
-    class Meta:
-        model = models.ProductAttributeValues
-
-    attributevalues = factory.SubFactory(ProductAttributeValueFactory)
-    productinventory = factory.SubFactory(ProductInventoryFactory)
-
-
-@register
-class ProductWithAttributeValuesFactory(ProductInventoryFactory):
-    """
-    The ProductWithAttributeValuesFactory class inherits from ProductInventoryFactory.
-    It is used to create test instances of the ProductInventory model with related ProductAttributeValues instances for testing purposes.
-
-    Attributes:
-        attributevalues1 (RelatedFactory): A RelatedFactory that creates a ProductAttributeValues instance related to the ProductInventory instance.
-        attributevalues2 (RelatedFactory): A RelatedFactory that creates another ProductAttributeValues instance related to the ProductInventory instance.
-    """
-
-    class Meta:
-        skip_postgeneration_save = True
-
-    attributevalues1 = factory.RelatedFactory(
-        ProductAttributeValuesFactory,
-        factory_related_name="productinventory",
-    )
-    attributevalues2 = factory.RelatedFactory(
-        ProductAttributeValuesFactory,
-        factory_related_name="productinventory",
-    )
+    attribute_value = factory.Sequence(lambda n: f"Test Product Attribute Value {n}")
