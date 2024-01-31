@@ -355,7 +355,6 @@ class ProductInventory(models.Model):
     attribute_values = models.ManyToManyField(
         ProductAttributeValue,
         related_name="product_attribute_values",
-        through="ProductAttributeValues",
     )
     is_active = models.BooleanField(
         default=True,
@@ -544,39 +543,3 @@ class Stock(models.Model):
 
     def __str__(self):
         return self.product.name
-
-
-class ProductAttributeValues(models.Model):
-    """
-    The ProductAttributeValues class represents the relationship between product attributes and product inventory.
-
-    Attributes:
-        id (CharField): The primary key for the ProductAttributeValues model. It's a CharField that gets its default value
-                        from the uuid.uuid4 function and is not editable.
-        attributevalues (ForeignKey): A ForeignKey that links to a ProductAttributeValue instance.
-        productinventory (ForeignKey): A ForeignKey that links to a ProductInventory instance.
-
-    Meta:
-        unique_together: A tuple that ensures the combination of attributevalues and productinventory is unique.
-    """
-
-    id = models.CharField(
-        primary_key=True, default=uuid.uuid4, editable=False, max_length=36
-    )
-    attributevalues = models.ForeignKey(
-        "ProductAttributeValue",
-        related_name="attributevaluess",
-        on_delete=models.PROTECT,
-    )
-    productinventory = models.ForeignKey(
-        ProductInventory,
-        related_name="productattributevaluess",
-        on_delete=models.PROTECT,
-    )
-
-    class Meta:
-        unique_together = (("attributevalues", "productinventory"),)
-
-    class Meta:
-        verbose_name = "Product Attribute Values"
-        verbose_name_plural = "Product Attribute Valuess"

@@ -7,7 +7,7 @@ from ecommerce.apps.inventory.models import (
     ProductInventory,
     ProductAttribute,
     ProductAttributeValue,
-    ProductAttributeValues,
+    Media,
 )
 
 
@@ -129,14 +129,14 @@ class ProductAttributeValueAdmin(admin.ModelAdmin):
     autocomplete_fields = ["product_attribute"]
 
 
-@admin.register(ProductAttributeValues)
-class ProductAttributeValuesAdmin(admin.ModelAdmin):
+@admin.register(Media)
+class MediaAdmin(admin.ModelAdmin):
     """
-    The ProductAttributeValuesAdmin class inherits from Django's ModelAdmin class.
-    It represents the admin interface for the ProductAttributeValues model.
+    The MediaAdmin class inherits from Django's ModelAdmin class.
+    It represents the admin interface for the Media model.
     """
 
-    list_display = ("id", "attributevalues", "productinventory")
-    list_filter = ("attributevalues", "productinventory")
-    search_fields = ("attributevalues", "productinventory")
-    autocomplete_fields = ("attributevalues", "productinventory")
+    list_display = ("id", "product_inventory", "image", "alt_text")
+    list_filter = ["product_inventory"]
+    search_fields = ["product_inventory"]
+    autocomplete_fields = ["product_inventory"]
