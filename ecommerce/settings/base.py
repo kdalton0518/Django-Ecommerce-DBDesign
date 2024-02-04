@@ -31,10 +31,13 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # Third party apps
     "corsheaders",
+    "django_extensions",
+    "django_bootstrap5",
     # Internal apps
     "ecommerce.apps.dashboard.apps.DashboardConfig",
     "ecommerce.apps.inventory.apps.InventoryConfig",
     "ecommerce.apps.management.apps.ManagementConfig",
+    "ecommerce.apps.demo.apps.DemoConfig",
 ]
 
 
@@ -63,7 +66,7 @@ ROOT_URLCONF = "ecommerce.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR.parent / "templates"],
+        "DIRS": [BASE_DIR / "templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [

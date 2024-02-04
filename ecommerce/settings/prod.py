@@ -1,7 +1,3 @@
-# Import os
-import os
-
-
 # Import base settings
 from ecommerce.settings.base import *
 
@@ -14,16 +10,14 @@ DEBUG = False
 ALLOWED_HOSTS = [".vercel.app"]
 
 
-# Database
+# PostgreSQL database settings
 DATABASES = {
     "default": {
-        "ENGINE": "djongo",
-        "NAME": "ecommerce_db",
-        "ENFORCE_SCHEMA": False,
-        "CLIENT": {
-            "host": os.environ["MONGO_DB_URI"],
-            "username": os.environ["MONGO_DB_USERNAME"],
-            "password": os.environ["MONGO_DB_PASSWORD"],
-        },
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "ecommerce",
+        "USER": "postgres",
+        "PASSWORD": "postgres",
+        "HOST": "localhost",
+        "PORT": "5432",
     }
 }
