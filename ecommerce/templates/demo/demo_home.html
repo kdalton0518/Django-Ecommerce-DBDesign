@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load django_bootstrap5 %}
+{% bootstrap_javascript %}
+{% bootstrap_css %}
+{% block body %}
+    <div class="mt-5">
+        <h1 class="text-center fw-bold">Welcome to Demo Home Page ✌️</h1>
+    </div>
+    <div class="mt-5">
+        <div class="d-flex flex-row justify-content-evenly">
+            <a href="{% url "demo_parent_categories" %}"
+               class="text-decoration-none text-white w-25">
+                <button class="btn btn-primary w-100 py-2">Parent Categories</button>
+            </a>
+        </div>
+    </div>
+{% endblock body %}

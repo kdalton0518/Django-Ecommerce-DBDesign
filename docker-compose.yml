@@ -1,0 +1,13 @@
+version: "3.11"
+
+services:
+  pgdb:
+    container_name: pgdb_ecommerce
+    image: postgres
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: ecommerce

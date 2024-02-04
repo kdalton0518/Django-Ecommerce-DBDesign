@@ -1,0 +1,55 @@
+{% load django_bootstrap5 %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>
+            {% block title %}
+                Real Estate
+            {% endblock title %}
+        </title>
+        <meta name="author"
+              content="Rebuild By Rohit Ingole - Portland State University Capstone Spring 2015 Team G">
+        <meta name="description" content="Real Estate Decisions">
+        <meta name="keywords" content="realestate">
+        <script src="https://kit.fontawesome.com/dd875d50e8.js"
+                crossorigin="anonymous"></script>
+        {% bootstrap_css %}
+        {% block style %}
+        {% endblock style %}
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="{% url "home" %}">Django Ecommerce</a>
+                <button class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#navbarColor01"
+                        aria-controls="navbarColor01"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarColor01">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="{% url 'demo_home' %}">Demo</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container">
+            {% block body %}
+                <div class="mt-5">
+                    <h1 class="text-center fw-bold">Welcome Django Ecommerce Project by DataRohit ✌️</h1>
+                </div>
+            {% endblock body %}
+        </div>
+        {% bootstrap_javascript %}
+        {% block scripts %}
+        {% endblock scripts %}
+    </body>
+</html>
