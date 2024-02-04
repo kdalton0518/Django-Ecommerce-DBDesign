@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+{% load django_bootstrap5 %}
+{% bootstrap_javascript %}
+{% bootstrap_css %}
+{% block body %}
+    <div class="mt-5">
+        <h1 class="text-center fw-bold">{{ product.name }} Detail Page ✌️</h1>
+    </div>
+    <div class="mt-5">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Product Name</th>
+                    <th scope="col">Slug</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Brand</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.slug }}</td>
+                    <td>
+                        <a href="{% url "demo_product_type_products" product_type_id=product_inventory.product_type.id %}">
+                        {{ product_inventory.product_type.name }}</a>
+                    </td>
+                    <td>
+                        <a href="{% url "demo_brand_products" brand_id=product_inventory.brand.id %}">{{ product_inventory.brand.name }}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ product.description }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Categories</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for category in categories %}
+                        {% if forloop.counter0|divisibleby:4 %}<tr>{% endif %}
+                            <td>
+                                <a href="{% url 'demo_sub_categories_products' category_slug=category.slug %}">{{ category.name }}</a>
+                            </td>
+                            {% if forloop.counter|divisibleby:4 or forloop.last %}</tr>{% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">
+                            Units
+                            <th scope="col">Units Sold</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{ stock.units }}</td>
+                            <td>{{ stock.units_sold }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Retail Price</th>
+                            <th scope="col">Store Price</th>
+                            <th scope="col">Sale Price</th>
+                            <th scope="col">Weight</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{ product_inventory.retail_price }}</td>
+                            <td>{{ product_inventory.store_price }}</td>
+                            <td>{{ product_inventory.sale_price }}</td>
+                            <td>{{ product_inventory.weight }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Attribute Name</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for attribute_value in attribute_values %}
+                            <tr>
+                                <td>{{ attribute_value.product_attribute.name }}</td>
+                                <td>{{ attribute_value.product_attribute.description }}</td>
+                                <td>{{ attribute_value.attribute_value }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Image</th>
+                            <th scope="col">Alt Text</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{ media.image }}</td>
+                            <td>{{ media.alt_text }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        {% endblock body %}
