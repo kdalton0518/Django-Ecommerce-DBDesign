@@ -58,3 +58,46 @@ class ProductDocument(Document):
             "created_at",
             "updated_at",
         ]
+
+
+@registry.register_document
+class ProductTypeDocument(Document):
+    class Index:
+        name = "product_types"
+        settings = {"number_of_shards": 1, "number_of_replicas": 0}
+
+    class Django:
+        model = ProductType
+        fields = [
+            "id",
+            "name",
+        ]
+
+
+@registry.register_document
+class BrandDocument(Document):
+    class Index:
+        name = "brands"
+        settings = {"number_of_shards": 1, "number_of_replicas": 0}
+
+    class Django:
+        model = Brand
+        fields = [
+            "id",
+            "name",
+        ]
+
+
+@registry.register_document
+class ProductAttributeDocument(Document):
+    class Index:
+        name = "product_attributes"
+        settings = {"number_of_shards": 1, "number_of_replicas": 0}
+
+    class Django:
+        model = ProductAttribute
+        fields = [
+            "id",
+            "name",
+            "description",
+        ]
