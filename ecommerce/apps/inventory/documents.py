@@ -27,3 +27,34 @@ class CategoryDocument(Document):
             "slug",
             "is_active",
         ]
+
+
+@registry.register_document
+class ProductDocument(Document):
+    category = fields.ListField(
+        fields.ObjectField(
+            properties={
+                "id": fields.KeywordField(),
+                "name": fields.TextField(),
+                "slug": fields.KeywordField(),
+                "is_active": fields.BooleanField(),
+            }
+        )
+    )
+
+    class Index:
+        name = "products"
+        settings = {"number_of_shards": 1, "number_of_replicas": 0}
+
+    class Django:
+        model = Product
+        fields = [
+            "id",
+            "web_id",
+            "name",
+            "slug",
+            "description",
+            "is_active",
+            "created_at",
+            "updated_at",
+        ]
