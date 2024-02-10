@@ -6,14 +6,7 @@ from .models import *
 
 @registry.register_document
 class CategoryDocument(Document):
-    parent = fields.ObjectField(
-        properties={
-            "id": fields.KeywordField(),
-            "name": fields.TextField(),
-            "slug": fields.KeywordField(),
-            "is_active": fields.BooleanField(),
-        }
-    )
+    parent = fields.KeywordField()
 
     class Index:
         name = "categories"
@@ -28,19 +21,13 @@ class CategoryDocument(Document):
             "is_active",
         ]
 
+    def prepare_parent(self, instance):
+        return str(instance.parent.id) if instance.parent else None
+
 
 @registry.register_document
 class ProductDocument(Document):
-    category = fields.ListField(
-        fields.ObjectField(
-            properties={
-                "id": fields.KeywordField(),
-                "name": fields.TextField(),
-                "slug": fields.KeywordField(),
-                "is_active": fields.BooleanField(),
-            }
-        )
-    )
+    category = fields.ListField(fields.KeywordField())
 
     class Index:
         name = "products"
@@ -58,6 +45,9 @@ class ProductDocument(Document):
             "created_at",
             "updated_at",
         ]
+
+    def prepare_category(self, instance):
+        return [str(category.id) for category in instance.category.all()]
 
 
 @registry.register_document
