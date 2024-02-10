@@ -19,7 +19,7 @@ class User(AbstractUser):
     """
 
     id = models.CharField(
-        primary_key=True, default=uuid.uuid4, editable=False, max_length=36
+        primary_key=True, default=uuid.uuid4, editable=False, max_length=256
     )
     username = models.CharField(
         unique=True,

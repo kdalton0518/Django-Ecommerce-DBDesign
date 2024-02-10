@@ -19,7 +19,7 @@ class Category(MPTTModel):
     """
 
     id = models.CharField(
-        primary_key=True, default=uuid.uuid4, editable=False, max_length=36
+        primary_key=True, default=uuid.uuid4, editable=False, max_length=256
     )
     name = models.CharField(
         max_length=100,
@@ -88,10 +88,10 @@ class Product(models.Model):
     """
 
     id = models.CharField(
-        primary_key=True, default=uuid.uuid4, editable=False, max_length=36
+        primary_key=True, default=uuid.uuid4, editable=False, max_length=256
     )
     web_id = models.CharField(
-        max_length=36,
+        max_length=256,
         default=uuid.uuid4,
         verbose_name="Product Website ID",
         help_text=_("format: required, max length 36 characters"),
@@ -171,7 +171,7 @@ class ProductType(models.Model):
     """
 
     id = models.CharField(
-        primary_key=True, default=uuid.uuid4, editable=False, max_length=36
+        primary_key=True, default=uuid.uuid4, editable=False, max_length=256
     )
     name = models.CharField(
         max_length=255,
@@ -202,7 +202,7 @@ class Brand(models.Model):
     """
 
     id = models.CharField(
-        primary_key=True, default=uuid.uuid4, editable=False, max_length=36
+        primary_key=True, default=uuid.uuid4, editable=False, max_length=256
     )
     name = models.CharField(
         max_length=255,
@@ -234,7 +234,7 @@ class ProductAttribute(models.Model):
     """
 
     id = models.CharField(
-        primary_key=True, default=uuid.uuid4, editable=False, max_length=36
+        primary_key=True, default=uuid.uuid4, editable=False, max_length=256
     )
     name = models.CharField(
         max_length=255,
@@ -276,7 +276,7 @@ class ProductAttributeValue(models.Model):
     """
 
     id = models.CharField(
-        primary_key=True, default=uuid.uuid4, editable=False, max_length=36
+        primary_key=True, default=uuid.uuid4, editable=False, max_length=256
     )
     product_attribute = models.ForeignKey(
         ProductAttribute,
@@ -323,12 +323,12 @@ class ProductInventory(models.Model):
     """
 
     id = models.CharField(
-        primary_key=True, default=uuid.uuid4, editable=False, max_length=36
+        primary_key=True, default=uuid.uuid4, editable=False, max_length=256
     )
     sku = models.CharField(
         default=uuid.uuid4,
         editable=False,
-        max_length=36,
+        max_length=256,
         verbose_name="Product Stock Keeping Unit",
         help_text=_("format: required, max length 36 characters"),
         null=False,
@@ -338,7 +338,7 @@ class ProductInventory(models.Model):
     upc = models.CharField(
         default=uuid.uuid4,
         editable=False,
-        max_length=36,
+        max_length=256,
         verbose_name="Product Universal Product Code",
         help_text=_("format: required, max length 36 characters"),
         null=False,
@@ -446,7 +446,7 @@ class Media(models.Model):
     """
 
     id = models.CharField(
-        primary_key=True, default=uuid.uuid4, editable=False, max_length=36
+        primary_key=True, default=uuid.uuid4, editable=False, max_length=256
     )
     product_inventory = models.ForeignKey(
         ProductInventory,
@@ -506,7 +506,7 @@ class Stock(models.Model):
     """
 
     id = models.CharField(
-        primary_key=True, default=uuid.uuid4, editable=False, max_length=36
+        primary_key=True, default=uuid.uuid4, editable=False, max_length=256
     )
     product_inventory = models.OneToOneField(
         ProductInventory,
