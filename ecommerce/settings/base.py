@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     "corsheaders",
     "django_extensions",
     "django_bootstrap5",
+    "django_elasticsearch_dsl",
     # Internal apps
     "ecommerce.apps.dashboard.apps.DashboardConfig",
     "ecommerce.apps.inventory.apps.InventoryConfig",
@@ -128,3 +129,12 @@ AUTH_PASSWORD_VALIDATORS = [
         "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
 ]
+
+
+# Elastic search configuration
+ELASTICSEARCH_DSL = {
+    "default": {
+        "hosts": ["http://localhost:9200", "http://localhost:9300"],
+        "http_auth": ("admin", "admin"),
+    }
+}
