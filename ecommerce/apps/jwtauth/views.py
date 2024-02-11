@@ -42,6 +42,7 @@ class TokenObtainPairView(DefaultTokenObtainPairView):
                 ),
             ),
         },
+        tags=["JWT Authentication"],
     )
     def post(self, request, *args, **kwargs):
         return super().post(request, *args, **kwargs)
@@ -81,6 +82,7 @@ class TokenRefreshView(DefaultTokenRefreshView):
                 ),
             ),
         },
+        tags=["JWT Authentication"],
     )
     def post(self, request, *args, **kwargs):
         return super().post(request, *args, **kwargs)
@@ -115,6 +117,7 @@ class TokenVerifyView(DefaultTokenVerifyView):
                 ),
             ),
         },
+        tags=["JWT Authentication"],
     )
     def post(self, request, *args, **kwargs):
         return super().post(request, *args, **kwargs)
