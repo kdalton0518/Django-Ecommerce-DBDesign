@@ -111,6 +111,7 @@ class DemoSubCategoriesProductsView(View):
                 "product__brand__name",
             )
             .order_by("name")
+            .distinct()
         )
 
         items_per_page = 20
@@ -142,18 +143,30 @@ class DemoProductDetailView(View):
         Handles GET requests, fetches details of a product from the database and renders the page.
         """
         product = inventory_models.Product.objects.get(slug=product_slug)
-        product_inventory = inventory_models.ProductInventory.objects.get(
+        product_inventory = inventory_models.ProductInventory.objects.filter(
             product=product
         )
-        stock = inventory_models.Stock.objects.get(product_inventory=product_inventory)
-        media = inventory_models.Media.objects.get(product_inventory=product_inventory)
 
+        product_inventory_stock_media_map = []
+        for pi in product_inventory:
+            stock = inventory_models.Stock.objects.get(product_inventory=pi)
+            media = inventory_models.Media.objects.filter(product_inventory=pi)
+
+            product_inventory_stock_media_map.append(
+                {
+                    "product_inventory": pi,
+                    "stock": stock,
+                    "media": media,
+                    "attribute_values": pi.attribute_values.all(),
+                }
+            )
+
+        self.context["brand"] = product_inventory.first().brand
         self.context["product"] = product
-        self.context["product_inventory"] = product_inventory
-        self.context["stock"] = stock
+        self.context["product_inventory_stock_media_map"] = (
+            product_inventory_stock_media_map
+        )
         self.context["categories"] = product.category.all()
-        self.context["attribute_values"] = product_inventory.attribute_values.all()
-        self.context["media"] = media
 
         return render(request, self.template_name, self.context)
 
@@ -203,12 +216,13 @@ class DemoProductTypeProductsView(View):
         products_list = (
             inventory_models.ProductInventory.objects.filter(product_type=product_type)
             .values(
-                "id",
+                "product__id",
                 "product__name",
                 "product__slug",
                 "brand__name",
             )
             .order_by("product__name")
+            .distinct()
         )
 
         items_per_page = 20
@@ -274,12 +288,13 @@ class DemoBrandProductsView(View):
         products_list = (
             inventory_models.ProductInventory.objects.filter(brand=brand)
             .values(
-                "id",
+                "product__id",
                 "product__name",
                 "product__slug",
                 "product_type__name",
             )
             .order_by("product__name")
+            .distinct()
         )
 
         items_per_page = 20

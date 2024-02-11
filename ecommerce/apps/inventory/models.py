@@ -540,6 +540,3 @@ class Stock(models.Model):
     class Meta:
         verbose_name = "Stock"
         verbose_name_plural = "Stocks"
-
-    def __str__(self):
-        return self.product.name
