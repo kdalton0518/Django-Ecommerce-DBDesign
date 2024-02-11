@@ -2,6 +2,7 @@
 import dotenv
 import os
 from pathlib import Path
+import datetime
 
 
 # Load environment variables
@@ -34,11 +35,15 @@ INSTALLED_APPS = [
     "django_extensions",
     "django_bootstrap5",
     "django_elasticsearch_dsl",
+    "rest_framework",
+    "drf_yasg",
     # Internal apps
     "ecommerce.apps.dashboard.apps.DashboardConfig",
     "ecommerce.apps.inventory.apps.InventoryConfig",
     "ecommerce.apps.management.apps.ManagementConfig",
     "ecommerce.apps.demo.apps.DemoConfig",
+    "ecommerce.apps.jwtauth.apps.JwtauthConfig",
+    "ecommerce.apps.restapi.apps.RestapiConfig",
 ]
 
 
@@ -137,4 +142,29 @@ ELASTICSEARCH_DSL = {
         "hosts": ["http://localhost:9200", "http://localhost:9300"],
         "http_auth": ("admin", "admin"),
     }
+}
+
+
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    ],
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.IsAuthenticatedOrReadOnly"
+    ],
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
+    "PAGE_SIZE": 10,
+    "DEFAULT_THROTTLE_CLASSES": [
+        "rest_framework.throttling.AnonRateThrottle",
+        "rest_framework.throttling.UserRateThrottle",
+    ],
+    # "DEFAULT_THROTTLE_RATES": {"anon": "10/hour", "user": "100/hour"},
+}
+
+SIMPLE_JWT = {
+    "AUTH_HEADER_TYPES": [
+        "Bearer",
+    ],
+    "ACCESS_TOKEN_LIFETIME": datetime.timedelta(minutes=30),
+    "REFRESH_TOKEN_LIFETIME": datetime.timedelta(minutes=60),
 }

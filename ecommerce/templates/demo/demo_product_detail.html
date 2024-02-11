@@ -6,125 +6,236 @@
     <div class="mt-5">
         <h1 class="text-center fw-bold">{{ product.name }} Detail Page ✌️</h1>
     </div>
-    <div class="mt-5">
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th scope="col">Product Name</th>
-                    <th scope="col">Slug</th>
-                    <th scope="col">Type</th>
-                    <th scope="col">Brand</th>
-                </tr>
-            </thead>
+    <div class="mt-3 container">
+        <table class="table">
             <tbody>
-                <tr>
-                    <td>{{ product.name }}</td>
-                    <td>{{ product.slug }}</td>
-                    <td>
-                        <a href="{% url "demo_product_type_products" product_type_id=product_inventory.product_type.id %}">
-                        {{ product_inventory.product_type.name }}</a>
+                <tr style="border: transparent;">
+                    <td colspan="2">
+                        <table class="table table-striped table-bordered mb-0">
+                            <thead>
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Web ID</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{{ product.id }}</td>
+                                    <td>{{ product.web_id }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </td>
-                    <td>
-                        <a href="{% url "demo_brand_products" brand_id=product_inventory.brand.id %}">{{ product_inventory.brand.name }}
+                </tr>
+                <tr style="border: transparent;">
+                    <td colspan="2">
+                        <table class="table table-striped table-bordered mb-0">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Slug</th>
+                                    <th scope="col">Brand</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{{ product.name }}</td>
+                                    <td>{{ product.slug }}</td>
+                                    <td>
+                                        <a href="{% url "demo_brand_products" brand_id=brand.id %}">{{ brand }}</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr style="border: transparent;">
+                    <td colspan="2">
+                        <table class="table table-striped table-bordered mb-0">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{{ product.description }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr style="border: transparent;">
+                    <td colspan="2">
+                        <table class="table table-striped table-bordered mb-0">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Category</th>
+                                    <th scope="col"></th>
+                                    <th scope="col"></th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for category in categories %}
+                                    {% if forloop.counter0|divisibleby:4 %}<tr>{% endif %}
+                                        <td>
+                                            <a href="{% url 'demo_sub_categories_products' category_slug=category.slug %}">{{ category.name }}</a>
+                                        </td>
+                                        {% if forloop.counter|divisibleby:4 or forloop.last %}</tr>{% endif %}
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr style="border: transparent;">
+                    <td colspan=2>
+                        <table class="table table-striped table-bordered mb-0">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Created At</th>
+                                    <th scope="col">Updated At</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{{ product.created_at }}</td>
+                                    <td>{{ product.updated_at }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <hr />
+    <div class="mt-5">
+        <h1 class="text-center fw-bold">Inventory Details 🛒</h1>
+    </div>
+    <div class="mt-3 container">
+        {% for inventory in product_inventory_stock_media_map %}
+            <h4 class="text-left fw-bold mt-5">Inventory ID: {{ inventory.product_inventory.id }}</h4>
+            <table class="table">
+                <tbody>
+                    <tr style="border: transparent;">
+                        <td colspan="2">
+                            <table class="table table-striped table-bordered mb-0">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">SKU</th>
+                                        <th scope="col">UPC</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>{{ inventory.product_inventory.sku }}</td>
+                                        <td>{{ inventory.product_inventory.upc }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr style="border: transparent;">
+                        <td colspan="2">
+                            <table class="table table-striped table-bordered mb-0">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Attribute</th>
+                                        <th scope="col">Description</th>
+                                        <th scope="col">Value</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for attr in inventory.attribute_values %}
+                                        <tr>
+                                            <td>{{ attr.product_attribute.name }}</td>
+                                            <td>{{ attr.product_attribute.description }}</td>
+                                            <td>{{ attr.attribute_value }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr style="border: transparent;">
+                        <td colspan="2">
+                            <table class="table table-striped table-bordered mb-0">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Retail Price</th>
+                                        <th scope="col">Store Price</th>
+                                        <th scope="col">Sale Price</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>{{ inventory.product_inventory.retail_price }} USD</td>
+                                        <td>{{ inventory.product_inventory.store_price }} USD</td>
+                                        <td>{{ inventory.product_inventory.sale_price }} USD</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr style="border: transparent;">
+                        <td colspan=2>
+                            <table class="table table-striped table-bordered mb-0">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Created At</th>
+                                        <th scope="col">Updated At</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>{{ inventory.product_inventory.created_at }}</td>
+                                        <td>{{ inventory.product_inventory.updated_at }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr style="border: transparent;">
+                        <td colspan=2>
+                            <table class="table table-striped table-bordered mb-0">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Units</th>
+                                        <th scope="col">Units Sold</th>
+                                        <th scope="col">Last Checked</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>{{ inventory.stock.units }}</td>
+                                        <td>{{ inventory.stock.units_sold }}</td>
+                                        <td>{{ inventory.stock.last_checked }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr style="border: transparent;">
+                        <td colspan=2>
+                            <table class="table table-striped table-bordered mb-0">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Image</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for media in inventory.media %}
+                                        <tr>
+                                            <td>{{ media.image }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
                         </td>
                     </tr>
                 </tbody>
             </table>
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>{{ product.description }}</td>
-                    </tr>
-                </tbody>
-            </table>
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">Categories</th>
-                        <th scope="col"></th>
-                        <th scope="col"></th>
-                        <th scope="col"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for category in categories %}
-                        {% if forloop.counter0|divisibleby:4 %}<tr>{% endif %}
-                            <td>
-                                <a href="{% url 'demo_sub_categories_products' category_slug=category.slug %}">{{ category.name }}</a>
-                            </td>
-                            {% if forloop.counter|divisibleby:4 or forloop.last %}</tr>{% endif %}
-                    {% endfor %}
-                </tbody>
-            </table>
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">
-                            Units
-                            <th scope="col">Units Sold</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>{{ stock.units }}</td>
-                            <td>{{ stock.units_sold }}</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th scope="col">Retail Price</th>
-                            <th scope="col">Store Price</th>
-                            <th scope="col">Sale Price</th>
-                            <th scope="col">Weight</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>{{ product_inventory.retail_price }}</td>
-                            <td>{{ product_inventory.store_price }}</td>
-                            <td>{{ product_inventory.sale_price }}</td>
-                            <td>{{ product_inventory.weight }}</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th scope="col">Attribute Name</th>
-                            <th scope="col">Description</th>
-                            <th scope="col">Value</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for attribute_value in attribute_values %}
-                            <tr>
-                                <td>{{ attribute_value.product_attribute.name }}</td>
-                                <td>{{ attribute_value.product_attribute.description }}</td>
-                                <td>{{ attribute_value.attribute_value }}</td>
-                            </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th scope="col">Image</th>
-                            <th scope="col">Alt Text</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>{{ media.image }}</td>
-                            <td>{{ media.alt_text }}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        {% endblock body %}
+        {% endfor %}
+    </div>
+{% endblock body %}
