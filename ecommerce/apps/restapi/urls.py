@@ -3,5 +3,5 @@ from . import views
 
 
 urlpatterns = [
-    path("", views.RestAPIHome.as_view(), name="restapi__home"),
+    path("", views.RestAPIHome.as_view(), name="restapi_home"),
 ]
