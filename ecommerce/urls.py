@@ -13,7 +13,7 @@ schema_view = get_schema_view(
         default_version="v1",
         description="A Django E-commerce REST API",
         contact=openapi.Contact(email="rohit.vilas.ingole@gmail.com"),
-        license=openapi.License(name="MIT License"),
+        license=openapi.License(name="GPL-3.0 license"),
     ),
     public=True,
     permission_classes=(permissions.AllowAny,),
