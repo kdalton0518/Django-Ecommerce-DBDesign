@@ -5,18 +5,53 @@ from . import views
 urlpatterns = [
     path("", views.RestAPIHome.as_view(), name="restapi_home"),
     path(
-        "parent_categories/list/",
-        views.RestAPIParentCategories.as_view({"get": "list"}),
-        name="restapi_parent_categories_list",
+        "categories/",
+        views.RestAPICategories.as_view({"get": "list"}),
+        name="restapi_categories_list",
     ),
     path(
-        "parent_categories/sub_categories/list/",
-        views.RestAPISubCategories.as_view({"get": "list"}),
-        name="restapi_sub_categories_list",
+        "categories/<str:id>/",
+        views.RestAPICategories.as_view({"get": "retrieve"}),
+        name="restapi_categories_retrieve",
     ),
     path(
-        "parent_categories/sub_categories/products/list/",
-        views.RestAPISubCategoriesProducts.as_view({"get": "list"}),
-        name="restapi_sub_categories_products_list",
+        "product_types/",
+        views.RestAPIProductTypes.as_view({"get": "list"}),
+        name="restapi_product_types_list",
+    ),
+    path(
+        "product_types/<str:id>/",
+        views.RestAPIProductTypes.as_view({"get": "retrieve"}),
+        name="restapi_product_types_retrieve",
+    ),
+    path(
+        "brands/",
+        views.RestAPIBrands.as_view({"get": "list"}),
+        name="restapi_brands_list",
+    ),
+    path(
+        "brands/<str:id>/",
+        views.RestAPIBrands.as_view({"get": "retrieve"}),
+        name="restapi_brands_retrieve",
+    ),
+    path(
+        "products/",
+        views.RestAPIProducts.as_view({"get": "list"}),
+        name="restapi_products_list",
+    ),
+    path(
+        "products/<str:id>/",
+        views.RestAPIProducts.as_view({"get": "retrieve"}),
+        name="restapi_products_retrieve",
+    ),
+    path(
+        "product_inventory/",
+        views.RestAPIProductInventory.as_view({"get": "list"}),
+        name="restapi_product_inventory_list",
+    ),
+    path(
+        "product_inventory/<str:id>/",
+        views.RestAPIProductInventory.as_view({"get": "retrieve"}),
+        name="restapi_product_inventory_retrieve",
     ),
 ]
