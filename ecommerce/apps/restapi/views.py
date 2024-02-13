@@ -118,7 +118,7 @@ class RestAPICategories(
         Override the list method to paginate the queryset manually.
         """
 
-        page = request.query_params.get("page")
+        page = request.query_params.get("page", 1)
         parent_name = request.query_params.get("parent_name")
 
         if page is not None:
@@ -196,6 +196,84 @@ class RestAPICategories(
                 {"detail": "Category not found."},
                 status=status.HTTP_404_NOT_FOUND,
             )
+
+
+class RestAPICategoriesProducts(viewsets.GenericViewSet, mixins.ListModelMixin):
+    """
+    This viewset automatically provides `list` action for the products under a category.
+    """
+
+    queryset = Product.objects.all()
+    pagination_class = pagination.PageNumberPagination
+
+    @swagger_auto_schema(
+        operation_id="restapi_categories_products_list",
+        operation_description="List of Products under a Category",
+        manual_parameters=[
+            openapi.Parameter(
+                name="page",
+                default=1,
+                in_=openapi.IN_QUERY,
+                type=openapi.TYPE_INTEGER,
+                description="Page number for the paginated response",
+                required=True,
+            )
+        ],
+        responses={
+            status.HTTP_200_OK: openapi.Response(
+                description="Products under a Category",
+                schema=CategorySerializer(many=True),
+            ),
+            status.HTTP_400_BAD_REQUEST: openapi.Response(
+                description="Page not found",
+                schema=openapi.Schema(
+                    type=openapi.TYPE_OBJECT,
+                    properties={
+                        "detail": openapi.Schema(
+                            type=openapi.TYPE_STRING,
+                            description="Invalid page.",
+                        ),
+                    },
+                ),
+            ),
+            status.HTTP_404_NOT_FOUND: openapi.Response(
+                description="Category not found",
+                schema=openapi.Schema(
+                    type=openapi.TYPE_OBJECT,
+                    properties={
+                        "detail": openapi.Schema(
+                            type=openapi.TYPE_STRING,
+                            description="Category not found.",
+                        ),
+                    },
+                ),
+            ),
+        },
+        tags=["Categories"],
+    )
+    def list(self, request, id=None):
+        """
+        Override the list method to paginate the queryset manually.
+        """
+
+        page = request.query_params.get("page", 1)
+        category_id = id
+
+        if page is not None:
+            queryset = self.queryset.filter(category__id=category_id)
+
+            if not queryset.exists():
+                return Response(
+                    {"detail": "Category not found."},
+                    status=status.HTTP_404_NOT_FOUND,
+                )
+
+            page = self.paginate_queryset(queryset)
+            serializer = ProductListSerializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+
+        serializer = ProductListSerializer(self.queryset, many=True)
+        return Response(serializer.data)
 
 
 class RestAPIProductTypes(
@@ -312,6 +390,84 @@ class RestAPIProductTypes(
             )
 
 
+class RestAPIProductTypesProducts(viewsets.GenericViewSet, mixins.ListModelMixin):
+    """
+    This viewset automatically provides `list` action for the products under a product type.
+    """
+
+    queryset = ProductInventory.objects.all()
+    pagination_class = pagination.PageNumberPagination
+
+    @swagger_auto_schema(
+        operation_id="restapi_product_types_products_list",
+        operation_description="List of Products under a Product Type",
+        manual_parameters=[
+            openapi.Parameter(
+                name="page",
+                default=1,
+                in_=openapi.IN_QUERY,
+                type=openapi.TYPE_INTEGER,
+                description="Page number for the paginated response",
+                required=True,
+            )
+        ],
+        responses={
+            status.HTTP_200_OK: openapi.Response(
+                description="Products under a Product Type",
+                schema=ProductListSerializer(many=True),
+            ),
+            status.HTTP_400_BAD_REQUEST: openapi.Response(
+                description="Page not found",
+                schema=openapi.Schema(
+                    type=openapi.TYPE_OBJECT,
+                    properties={
+                        "detail": openapi.Schema(
+                            type=openapi.TYPE_STRING,
+                            description="Invalid page.",
+                        ),
+                    },
+                ),
+            ),
+            status.HTTP_404_NOT_FOUND: openapi.Response(
+                description="Product Type not found",
+                schema=openapi.Schema(
+                    type=openapi.TYPE_OBJECT,
+                    properties={
+                        "detail": openapi.Schema(
+                            type=openapi.TYPE_STRING,
+                            description="Product Type not found.",
+                        ),
+                    },
+                ),
+            ),
+        },
+        tags=["ProductType"],
+    )
+    def list(self, request, id=None):
+        """
+        Override the list method to paginate the queryset manually.
+        """
+
+        page = request.query_params.get("page", 1)
+        product_type_id = id
+
+        if page is not None:
+            queryset = self.queryset.filter(product_type__id=product_type_id)
+
+            if not queryset.exists():
+                return Response(
+                    {"detail": "Product Type not found."},
+                    status=status.HTTP_404_NOT_FOUND,
+                )
+
+            page = self.paginate_queryset(queryset)
+            serializer = ProductInventoryProductSerializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+
+        serializer = ProductInventoryProductSerializer(self.queryset, many=True)
+        return Response(serializer.data)
+
+
 class RestAPIBrands(
     viewsets.GenericViewSet, mixins.ListModelMixin, mixins.RetrieveModelMixin
 ):
@@ -424,6 +580,84 @@ class RestAPIBrands(
                 {"detail": "Brand not found."},
                 status=status.HTTP_404_NOT_FOUND,
             )
+
+
+class RestAPIBrandsProducts(viewsets.GenericViewSet, mixins.ListModelMixin):
+    """
+    This viewset automatically provides `list` action for the products under a brand.
+    """
+
+    queryset = ProductInventory.objects.all()
+    pagination_class = pagination.PageNumberPagination
+
+    @swagger_auto_schema(
+        operation_id="restapi_brands_products_list",
+        operation_description="List of Products under a Brand",
+        manual_parameters=[
+            openapi.Parameter(
+                name="page",
+                default=1,
+                in_=openapi.IN_QUERY,
+                type=openapi.TYPE_INTEGER,
+                description="Page number for the paginated response",
+                required=True,
+            )
+        ],
+        responses={
+            status.HTTP_200_OK: openapi.Response(
+                description="Products under a Brand",
+                schema=ProductListSerializer(many=True),
+            ),
+            status.HTTP_400_BAD_REQUEST: openapi.Response(
+                description="Page not found",
+                schema=openapi.Schema(
+                    type=openapi.TYPE_OBJECT,
+                    properties={
+                        "detail": openapi.Schema(
+                            type=openapi.TYPE_STRING,
+                            description="Invalid page.",
+                        ),
+                    },
+                ),
+            ),
+            status.HTTP_404_NOT_FOUND: openapi.Response(
+                description="Brand not found",
+                schema=openapi.Schema(
+                    type=openapi.TYPE_OBJECT,
+                    properties={
+                        "detail": openapi.Schema(
+                            type=openapi.TYPE_STRING,
+                            description="Brand not found.",
+                        ),
+                    },
+                ),
+            ),
+        },
+        tags=["Brands"],
+    )
+    def list(self, request, id=None):
+        """
+        Override the list method to paginate the queryset manually.
+        """
+
+        page = request.query_params.get("page", 1)
+        brand_id = id
+
+        if page is not None:
+            queryset = self.queryset.filter(brand__id=brand_id)
+
+            if not queryset.exists():
+                return Response(
+                    {"detail": "Brand not found."},
+                    status=status.HTTP_404_NOT_FOUND,
+                )
+
+            page = self.paginate_queryset(queryset)
+            serializer = ProductInventoryProductSerializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+
+        serializer = ProductInventoryProductSerializer(self.queryset, many=True)
+        return Response(serializer.data)
 
 
 class RestAPIProducts(

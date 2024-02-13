@@ -98,6 +98,18 @@ class ProductInventoryListSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
+class ProductInventoryProductSerializer(serializers.ModelSerializer):
+    """
+    Serializer for the ProductInventory model.
+    """
+
+    product = SimpleProductSerializer()
+
+    class Meta:
+        model = ProductInventory
+        fields = "__all__"
+
+
 class ProductAttributeSerializer(serializers.ModelSerializer):
     """
     Serializer for the ProductAttribute model.

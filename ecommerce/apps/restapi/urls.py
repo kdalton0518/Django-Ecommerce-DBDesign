@@ -15,6 +15,11 @@ urlpatterns = [
         name="restapi_categories_retrieve",
     ),
     path(
+        "categories/<str:id>/products/",
+        views.RestAPICategoriesProducts.as_view({"get": "list"}),
+        name="restapi_categories_products_list",
+    ),
+    path(
         "product_types/",
         views.RestAPIProductTypes.as_view({"get": "list"}),
         name="restapi_product_types_list",
@@ -25,6 +30,11 @@ urlpatterns = [
         name="restapi_product_types_retrieve",
     ),
     path(
+        "product_types/<str:id>/products/",
+        views.RestAPIProductTypesProducts.as_view({"get": "list"}),
+        name="restapi_product_types_products_list",
+    ),
+    path(
         "brands/",
         views.RestAPIBrands.as_view({"get": "list"}),
         name="restapi_brands_list",
@@ -33,6 +43,11 @@ urlpatterns = [
         "brands/<str:id>/",
         views.RestAPIBrands.as_view({"get": "retrieve"}),
         name="restapi_brands_retrieve",
+    ),
+    path(
+        "brands/<str:id>/products",
+        views.RestAPIBrandsProducts.as_view({"get": "list"}),
+        name="restapi_brands_products_list",
     ),
     path(
         "products/",
