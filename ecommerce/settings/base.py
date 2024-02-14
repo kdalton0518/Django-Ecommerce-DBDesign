@@ -14,7 +14,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get("SECRET_KEY")
+SECRET_KEY = os.environ.get("5xy#)2=e^fe%!ilv+o&6h&t&ar=@uc9_^#q8gc7y5kl@(#u)q)")
 
 
 # Set the auth user model
