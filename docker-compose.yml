@@ -1,20 +1,20 @@
 version: "3.11"
 
 services:
-  web:
-    container_name: web_ecommerce
-    build:
-      context: .
-      dockerfile: Dockerfile
-    restart: always
-    command: python manage.py runserver 0.0.0.0:8000
-    volumes:
-      - .:/usr/src/app
-    ports:
-      - 8000:8000
-    depends_on:
-      - pgdb
-      - esearch
+  # web:
+  #   container_name: web_ecommerce
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #   restart: always
+  #   command: python manage.py runserver 0.0.0.0:8000
+  #   volumes:
+  #     - .:/usr/src/app
+  #   ports:
+  #     - 8000:8000
+  #   depends_on:
+  #     - pgdb
+  #     - esearch
 
   pgdb:
     container_name: pgdb_ecommerce

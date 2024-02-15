@@ -13,7 +13,7 @@ DATABASES = {
         "NAME": "ecommerce",
         "USER": "postgres",
         "PASSWORD": "postgres",
-        "HOST": "pgdb",
+        "HOST": "localhost",
         "PORT": "5432",
     }
 }

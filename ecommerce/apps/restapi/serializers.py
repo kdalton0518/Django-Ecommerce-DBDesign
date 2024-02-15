@@ -93,9 +93,20 @@ class ProductInventoryListSerializer(serializers.ModelSerializer):
     Serializer for the ProductInventory model.
     """
 
+    media = serializers.SerializerMethodField()
+    stock = serializers.SerializerMethodField()
+
     class Meta:
         model = ProductInventory
         fields = "__all__"
+
+    def get_media(self, obj):
+        return Media.objects.filter(product_inventory=obj).values("id", "image")
+
+    def get_stock(self, obj):
+        return Stock.objects.filter(product_inventory=obj).values(
+            "id", "units", "units_sold", "last_checked"
+        )
 
 
 class ProductInventoryProductSerializer(serializers.ModelSerializer):
@@ -151,7 +162,19 @@ class ProductInventoryRetrieveSerializer(serializers.ModelSerializer):
     product = SimpleProductSerializer()
     brand = BrandSerializer()
     attribute_values = ProductAttributeValueSerializer(many=True)
+    media = serializers.SerializerMethodField()
+    stock = serializers.SerializerMethodField()
 
     class Meta:
         model = ProductInventory
         fields = "__all__"
+
+    def get_media(self, obj):
+        return Media.objects.filter(product_inventory=obj).values(
+            "id", "image", "alt_text", "is_feature"
+        )
+
+    def get_stock(self, obj):
+        return Stock.objects.filter(product_inventory=obj).values(
+            "id", "units", "units_sold", "last_checked"
+        )
