@@ -114,6 +114,21 @@ class ProductInventoryDocument(Document):
     product = fields.KeywordField()
     brand = fields.KeywordField()
     attribute_values = fields.ListField(fields.KeywordField())
+    media = fields.NestedField(
+        properties={
+            "id": fields.KeywordField(),
+            "image": fields.FileField(),
+            "is_feature": fields.BooleanField(),
+        }
+    )
+    stock = fields.NestedField(
+        properties={
+            "id": fields.KeywordField(),
+            "last_checked": fields.DateField(),
+            "units": fields.IntegerField(),
+            "units_sold": fields.IntegerField(),
+        }
+    )
 
     class Index:
         name = "product_inventories"
@@ -144,6 +159,27 @@ class ProductInventoryDocument(Document):
 
     def prepare_attribute_values(self, instance):
         return [str(value.id) for value in instance.attribute_values.all()]
+
+    def prepare_media(self, instance):
+        return [
+            {
+                "id": str(media.id),
+                "image": media.image.url if media.image else None,
+                "is_feature": media.is_feature if media.is_feature else False,
+            }
+            for media in Media.objects.filter(product_inventory=instance)
+        ]
+
+    def prepare_stock(self, instance):
+        return [
+            {
+                "id": str(stock.id),
+                "last_checked": stock.last_checked,
+                "units": stock.units,
+                "units_sold": stock.units_sold,
+            }
+            for stock in Stock.objects.filter(product_inventory=instance)
+        ]
 
 
 @registry.register_document
