@@ -1,20 +1,21 @@
 version: "3.11"
 
 services:
-  # web:
-  #   container_name: web_ecommerce
-  #   build:
-  #     context: .
-  #     dockerfile: Dockerfile
-  #   restart: always
-  #   command: python manage.py runserver 0.0.0.0:8000
-  #   volumes:
-  #     - .:/usr/src/app
-  #   ports:
-  #     - 8000:8000
-  #   depends_on:
-  #     - pgdb
-  #     - esearch
+  web:
+    container_name: web_ecommerce
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - 8000:8000
+    depends_on:
+      - pgdb
+      - esearch
+      - redis
 
   pgdb:
     container_name: pgdb_ecommerce
@@ -46,4 +47,11 @@ services:
       - 9300:9300
     environment:
       discovery.type: single-node
-      xpack.security.enabled: false 
+      xpack.security.enabled: false
+
+  redis:
+    container_name: redis_ecommerce
+    image: redis:alpine
+    restart: always
+    ports:
+      - 6379:6379
