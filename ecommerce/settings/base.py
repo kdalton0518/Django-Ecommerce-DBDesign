@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "ecommerce.apps.inventory.apps.InventoryConfig",
     "ecommerce.apps.management.apps.ManagementConfig",
     "ecommerce.apps.demo.apps.DemoConfig",
+    "ecommerce.apps.promotion.apps.PromotionConfig",
     "ecommerce.apps.jwtauth.apps.JwtauthConfig",
     "ecommerce.apps.restapi.apps.RestapiConfig",
 ]
@@ -139,7 +140,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Elastic search configuration
 ELASTICSEARCH_DSL = {
     "default": {
-        "hosts": ["http://localhost:9200", "http://localhost:9300"],
+        "hosts": ["http://esearch:9200", "http://esearch:9300"],
         "http_auth": ("admin", "admin"),
     }
 }

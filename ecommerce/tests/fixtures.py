@@ -25,6 +25,11 @@ def db_fixture_setup(django_db_setup, django_db_blocker):
         call_command("loaddata", "db_product_attribute_value_fixture.json")
         call_command("loaddata", "db_category_fixture.json")
 
+        # Load promotion-related fixtures
+        call_command("loaddata", "db_promotion_type_fixture.json")
+        call_command("loaddata", "db_coupon_fixture.json")
+        call_command("loaddata", "db_promotion_fixture.json")
+
         # Load product-related fixtures
         call_command("loaddata", "db_product_fixture.json")
         call_command("loaddata", "db_product_inventory_fixture.json")

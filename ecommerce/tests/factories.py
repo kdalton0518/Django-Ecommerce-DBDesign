@@ -114,7 +114,6 @@ class ProductInventoryFactory(factory.django.DjangoModelFactory):
         is_active (Boolean): A boolean that indicates whether the product inventory is active. It is always set to 1.
         retail_price (Decimal): A decimal representing the retail price of the product.
         store_price (Decimal): A decimal representing the store price of the product.
-        sale_price (Decimal): A decimal representing the sale price of the product.
         weight (Float): A float representing the weight of the product.
     """
 
@@ -129,7 +128,6 @@ class ProductInventoryFactory(factory.django.DjangoModelFactory):
     is_active = 1
     retail_price = 97
     store_price = 92
-    sale_price = 46
     weight = 987
 
 

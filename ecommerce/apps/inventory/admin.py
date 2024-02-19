@@ -7,7 +7,6 @@ from ecommerce.apps.inventory.models import (
     ProductInventory,
     ProductAttribute,
     ProductAttributeValue,
-    Media,
 )
 
 
@@ -20,12 +19,18 @@ class CategoryAdmin(admin.ModelAdmin):
 
     list_display = (
         "name",
+        "parent",
+    )
+    fields = (
+        "id",
+        "name",
         "slug",
         "parent",
     )
     list_filter = ("parent",)
     search_fields = ("name",)
     prepopulated_fields = {"slug": ("name",)}
+    readonly_fields = ("id",)
 
 
 @admin.register(Product)
@@ -36,15 +41,30 @@ class ProductAdmin(admin.ModelAdmin):
     """
 
     list_display = (
+        "name",
+        "is_active",
+    )
+    fields = (
+        "id",
         "web_id",
         "name",
         "slug",
+        "description",
         "is_active",
+        "category",
+        "created_at",
+        "updated_at",
     )
     list_filter = ("is_active",)
     search_fields = ("name", "description")
     autocomplete_fields = ("category",)
     prepopulated_fields = {"slug": ("name",)}
+    readonly_fields = (
+        "id",
+        "web_id",
+        "created_at",
+        "updated_at",
+    )
 
 
 @admin.register(ProductType)
@@ -54,11 +74,13 @@ class ProductTypeAdmin(admin.ModelAdmin):
     It represents the admin interface for the ProductType model.
     """
 
-    list_display = (
+    list_display = ("name",)
+    fields = (
         "id",
         "name",
     )
     search_fields = ("name",)
+    readonly_fields = ("id",)
 
 
 @admin.register(Brand)
@@ -68,11 +90,13 @@ class BrandAdmin(admin.ModelAdmin):
     It represents the admin interface for the Brand model.
     """
 
-    list_display = (
+    list_display = ("name",)
+    fields = (
         "id",
         "name",
     )
     search_fields = ("name",)
+    readonly_fields = ("id",)
 
 
 @admin.register(ProductInventory)
@@ -87,21 +111,44 @@ class ProductInventoryAdmin(admin.ModelAdmin):
         "product",
         "brand",
         "is_active",
+        "is_on_sale",
+        "is_digital",
+    )
+    fields = (
+        "id",
+        "sku",
+        "upc",
+        "product_type",
+        "product",
+        "brand",
+        "attribute_values",
+        "is_active",
         "retail_price",
         "store_price",
-        "sale_price",
         "weight",
+        "promotions",
+        "promotion_price",
+        "price_override",
+        "is_on_sale",
+        "is_digital",
+        "created_at",
+        "updated_at",
     )
     list_filter = ("is_active",)
     search_fields = (
         "product_type__name, product__name",
         "brand__name",
-        "retail_price",
-        "store_price",
-        "sale_price",
-        "weight",
+        "is_on_sale",
+        "is_digital",
     )
     autocomplete_fields = ("product",)
+    readonly_fields = (
+        "id",
+        "sku",
+        "upc",
+        "created_at",
+        "updated_at",
+    )
 
 
 @admin.register(ProductAttribute)
@@ -111,9 +158,11 @@ class ProductAttributeAdmin(admin.ModelAdmin):
     It represents the admin interface for the ProductAttribute model.
     """
 
-    list_display = ("id", "name")
+    list_display = ("name",)
+    fields = ("id", "name", "description")
     list_filter = ("name",)
     search_fields = ("name", "description")
+    readonly_fields = ("id",)
 
 
 @admin.register(ProductAttributeValue)
@@ -123,20 +172,9 @@ class ProductAttributeValueAdmin(admin.ModelAdmin):
     It represents the admin interface for the ProductAttributeValue model.
     """
 
-    list_display = ("id", "product_attribute", "attribute_value")
+    list_display = ("product_attribute", "attribute_value")
+    fields = ("id", "product_attribute", "attribute_value")
     list_filter = ("product_attribute", "attribute_value")
     search_fields = ("product_attribute", "attribute_value")
     autocomplete_fields = ["product_attribute"]
-
-
-@admin.register(Media)
-class MediaAdmin(admin.ModelAdmin):
-    """
-    The MediaAdmin class inherits from Django's ModelAdmin class.
-    It represents the admin interface for the Media model.
-    """
-
-    list_display = ("id", "product_inventory", "image", "alt_text")
-    list_filter = ["product_inventory"]
-    search_fields = ["product_inventory"]
-    autocomplete_fields = ["product_inventory"]
+    readonly_fields = ("id",)

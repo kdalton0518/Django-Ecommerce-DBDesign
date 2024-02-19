@@ -15,6 +15,7 @@ class CategoryDocument(Document):
     class Django:
         model = Category
         fields = [
+            "id",
             "name",
             "slug",
             "is_active",
@@ -35,6 +36,7 @@ class ProductDocument(Document):
     class Django:
         model = Product
         fields = [
+            "id",
             "web_id",
             "name",
             "slug",
@@ -57,6 +59,7 @@ class ProductTypeDocument(Document):
     class Django:
         model = ProductType
         fields = [
+            "id",
             "name",
         ]
 
@@ -70,6 +73,7 @@ class BrandDocument(Document):
     class Django:
         model = Brand
         fields = [
+            "id",
             "name",
         ]
 
@@ -83,6 +87,7 @@ class ProductAttributeDocument(Document):
     class Django:
         model = ProductAttribute
         fields = [
+            "id",
             "name",
             "description",
         ]
@@ -99,6 +104,7 @@ class ProductAttributeValue(Document):
     class Django:
         model = ProductAttributeValue
         fields = [
+            "id",
             "attribute_value",
         ]
 
@@ -114,6 +120,7 @@ class ProductInventoryDocument(Document):
     product = fields.KeywordField()
     brand = fields.KeywordField()
     attribute_values = fields.ListField(fields.KeywordField())
+    promotions = fields.ListField(fields.KeywordField())
     media = fields.NestedField(
         properties={
             "id": fields.KeywordField(),
@@ -137,13 +144,17 @@ class ProductInventoryDocument(Document):
     class Django:
         model = ProductInventory
         fields = [
+            "id",
             "sku",
             "upc",
             "is_active",
             "retail_price",
             "store_price",
-            "sale_price",
             "weight",
+            "promotion_price",
+            "price_override",
+            "is_on_sale",
+            "is_digital",
             "created_at",
             "updated_at",
         ]
@@ -159,6 +170,9 @@ class ProductInventoryDocument(Document):
 
     def prepare_attribute_values(self, instance):
         return [str(value.id) for value in instance.attribute_values.all()]
+
+    def prepare_promotions(self, instance):
+        return [str(promotion.id) for promotion in instance.promotions.all()]
 
     def prepare_media(self, instance):
         return [
@@ -194,6 +208,7 @@ class MediaDocument(Document):
     class Django:
         model = Media
         fields = [
+            "id",
             "alt_text",
             "is_feature",
             "created_at",
@@ -220,6 +235,7 @@ class StockDocument(Document):
     class Django:
         model = Stock
         fields = [
+            "id",
             "last_checked",
             "units",
             "units_sold",

@@ -2,6 +2,9 @@ import uuid
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from mptt.models import MPTTModel, TreeForeignKey, TreeManyToManyField
+from decimal import Decimal
+from django.core.validators import MinValueValidator, MaxValueValidator
+from ecommerce.apps.promotion.models import Promotion
 
 
 class Category(MPTTModel):
@@ -19,7 +22,11 @@ class Category(MPTTModel):
     """
 
     id = models.CharField(
-        primary_key=True, default=uuid.uuid4, editable=False, max_length=256
+        primary_key=True,
+        default=uuid.uuid4,
+        editable=False,
+        max_length=256,
+        validators=[MaxValueValidator(256)],
     )
     name = models.CharField(
         max_length=100,
@@ -28,6 +35,7 @@ class Category(MPTTModel):
         null=False,
         blank=False,
         unique=False,
+        validators=[MaxValueValidator(100)],
     )
     slug = models.SlugField(
         max_length=100,
@@ -38,6 +46,7 @@ class Category(MPTTModel):
         null=False,
         blank=False,
         unique=False,
+        validators=[MaxValueValidator(100)],
     )
     is_active = models.BooleanField(
         default=True,
@@ -88,7 +97,11 @@ class Product(models.Model):
     """
 
     id = models.CharField(
-        primary_key=True, default=uuid.uuid4, editable=False, max_length=256
+        primary_key=True,
+        default=uuid.uuid4,
+        editable=False,
+        max_length=256,
+        validators=[MaxValueValidator(256)],
     )
     web_id = models.CharField(
         max_length=256,
@@ -96,6 +109,7 @@ class Product(models.Model):
         verbose_name="Product Website ID",
         help_text=_("format: required, max length 36 characters"),
         unique=True,
+        validators=[MaxValueValidator(256)],
     )
     name = models.CharField(
         max_length=100,
@@ -104,6 +118,7 @@ class Product(models.Model):
         null=False,
         blank=False,
         unique=False,
+        validators=[MaxValueValidator(100)],
     )
     slug = models.SlugField(
         max_length=100,
@@ -114,6 +129,7 @@ class Product(models.Model):
         null=False,
         blank=False,
         unique=False,
+        validators=[MaxValueValidator(100)],
     )
     description = models.TextField(
         verbose_name="Product Description",
@@ -171,7 +187,11 @@ class ProductType(models.Model):
     """
 
     id = models.CharField(
-        primary_key=True, default=uuid.uuid4, editable=False, max_length=256
+        primary_key=True,
+        default=uuid.uuid4,
+        editable=False,
+        max_length=256,
+        validators=[MaxValueValidator(256)],
     )
     name = models.CharField(
         max_length=255,
@@ -180,6 +200,7 @@ class ProductType(models.Model):
         blank=False,
         verbose_name=_("Type of Product"),
         help_text=_("format: required, unique, max-255"),
+        validators=[MaxValueValidator(255)],
     )
 
     class Meta:
@@ -202,7 +223,11 @@ class Brand(models.Model):
     """
 
     id = models.CharField(
-        primary_key=True, default=uuid.uuid4, editable=False, max_length=256
+        primary_key=True,
+        default=uuid.uuid4,
+        editable=False,
+        max_length=256,
+        validators=[MaxValueValidator(256)],
     )
     name = models.CharField(
         max_length=255,
@@ -211,6 +236,7 @@ class Brand(models.Model):
         blank=False,
         verbose_name=_("Brand Name"),
         help_text=_("format: required, unique, max-255"),
+        validators=[MaxValueValidator(255)],
     )
 
     class Meta:
@@ -234,7 +260,11 @@ class ProductAttribute(models.Model):
     """
 
     id = models.CharField(
-        primary_key=True, default=uuid.uuid4, editable=False, max_length=256
+        primary_key=True,
+        default=uuid.uuid4,
+        editable=False,
+        max_length=256,
+        validators=[MaxValueValidator(256)],
     )
     name = models.CharField(
         max_length=255,
@@ -243,6 +273,7 @@ class ProductAttribute(models.Model):
         blank=False,
         verbose_name=_("Product Attribute Name"),
         help_text=_("format: required, unique, max-255"),
+        validators=[MaxValueValidator(255)],
     )
     description = models.TextField(
         unique=False,
@@ -276,7 +307,11 @@ class ProductAttributeValue(models.Model):
     """
 
     id = models.CharField(
-        primary_key=True, default=uuid.uuid4, editable=False, max_length=256
+        primary_key=True,
+        default=uuid.uuid4,
+        editable=False,
+        max_length=256,
+        validators=[MaxValueValidator(256)],
     )
     product_attribute = models.ForeignKey(
         ProductAttribute,
@@ -290,6 +325,7 @@ class ProductAttributeValue(models.Model):
         blank=False,
         verbose_name=_("Attribute Value"),
         help_text=_("format: required, max-255"),
+        validators=[MaxValueValidator(255)],
     )
 
     class Meta:
@@ -313,17 +349,25 @@ class ProductInventory(models.Model):
         product (ForeignKey): A ForeignKey that links to the Product model. It represents the product itself.
         brand (ForeignKey): A ForeignKey that links to the Brand model. It represents the brand of the product.
         attribute_values (ManyToManyField): A ManyToManyField that represents the product attributes of the product.
+        promotions (ManyToManyField): A ManyToManyField that represents the promotions of the product. It is not required and can be null.
+        promotion_price (DecimalField): A DecimalField that stores the promotion price of the product. It is not required and can be null. It has a maximum value of 9999.99.
+        price_override (BooleanField): A BooleanField that indicates whether the price of the product has been overridden. It is required and its default value is False.
         is_active (BooleanField): A BooleanField that indicates whether the product is active. It is required and its default value is True.
-        retail_price (DecimalField): A DecimalField that stores the recommended retail price of the product. It is required and has a maximum value of 999.99.
-        store_price (DecimalField): A DecimalField that stores the regular store price of the product. It is required and has a maximum value of 999.99.
-        sale_price (DecimalField): A DecimalField that stores the sale price of the product. It is required and has a maximum value of 999.99.
+        retail_price (DecimalField): A DecimalField that stores the recommended retail price of the product. It is required and has a maximum value of 9999.99.
+        store_price (DecimalField): A DecimalField that stores the regular store price of the product. It is required and has a maximum value of 9999.99.
+        is_on_sale (BooleanField): A BooleanField that indicates whether the product is on sale. It is required and its default value is False.
+        is_digital (BooleanField): A BooleanField that indicates whether the product is digital. It is required and its default value is False.
         weight (FloatField): A FloatField that stores the weight of the product. It is required.
         created_at (DateTimeField): A DateTimeField that stores the date and time when the product inventory was created. It is not editable.
         updated_at (DateTimeField): A DateTimeField that stores the date and time when the product inventory was last updated.
     """
 
     id = models.CharField(
-        primary_key=True, default=uuid.uuid4, editable=False, max_length=256
+        primary_key=True,
+        default=uuid.uuid4,
+        editable=False,
+        max_length=256,
+        validators=[MaxValueValidator(256)],
     )
     sku = models.CharField(
         default=uuid.uuid4,
@@ -334,6 +378,7 @@ class ProductInventory(models.Model):
         null=False,
         blank=False,
         unique=True,
+        validators=[MaxValueValidator(256)],
     )
     upc = models.CharField(
         default=uuid.uuid4,
@@ -344,6 +389,7 @@ class ProductInventory(models.Model):
         null=False,
         blank=False,
         unique=True,
+        validators=[MaxValueValidator(256)],
     )
     product_type = models.ForeignKey(
         ProductType, related_name="product_type", on_delete=models.PROTECT
@@ -356,49 +402,65 @@ class ProductInventory(models.Model):
         ProductAttributeValue,
         related_name="product_attribute_values",
     )
+    promotions = models.ManyToManyField(
+        Promotion,
+        related_name="product_promotions",
+    )
+    promotion_price = models.DecimalField(
+        max_digits=6,
+        decimal_places=2,
+        unique=False,
+        null=False,
+        blank=False,
+        verbose_name=_("Promotion Price"),
+        validators=[
+            MinValueValidator(Decimal(0.01)),
+            MaxValueValidator(Decimal(9999.99)),
+        ],
+    )
+    price_override = models.BooleanField(
+        null=False,
+        blank=False,
+        default=False,
+        verbose_name=_("Price Override"),
+    )
     is_active = models.BooleanField(
         default=True,
         verbose_name=_("Product Visibility"),
         help_text=_("format: true=product visible"),
     )
     retail_price = models.DecimalField(
-        max_digits=10,
+        max_digits=6,
         decimal_places=2,
         unique=False,
         null=False,
         blank=False,
         verbose_name=_("Recommended Retail Price"),
-        error_messages={
-            "name": {
-                "max_length": _("the price must be between 0 and 999.99."),
-            },
-        },
+        validators=[
+            MinValueValidator(Decimal(0.01)),
+            MaxValueValidator(Decimal(9999.99)),
+        ],
     )
     store_price = models.DecimalField(
-        max_digits=10,
+        max_digits=6,
         decimal_places=2,
         unique=False,
         null=False,
         blank=False,
         verbose_name=_("Regular Store Price"),
-        error_messages={
-            "name": {
-                "max_length": _("the price must be between 0 and 999.99."),
-            },
-        },
+        validators=[
+            MinValueValidator(Decimal(0.01)),
+            MaxValueValidator(Decimal(9999.99)),
+        ],
     )
-    sale_price = models.DecimalField(
-        max_digits=10,
-        decimal_places=2,
-        unique=False,
+    is_on_sale = models.BooleanField(
         null=False,
         blank=False,
-        verbose_name=_("Sale Price"),
-        error_messages={
-            "name": {
-                "max_length": _("the price must be between 0 and 999.99."),
-            },
-        },
+        default=False,
+        verbose_name=_("Product On Sale"),
+    )
+    is_digital = models.BooleanField(
+        null=False, blank=False, default=False, verbose_name=_("Product Digital")
     )
     weight = models.FloatField(
         unique=False,
@@ -446,7 +508,11 @@ class Media(models.Model):
     """
 
     id = models.CharField(
-        primary_key=True, default=uuid.uuid4, editable=False, max_length=256
+        primary_key=True,
+        default=uuid.uuid4,
+        editable=False,
+        max_length=256,
+        validators=[MaxValueValidator(256)],
     )
     product_inventory = models.ForeignKey(
         ProductInventory,
@@ -469,6 +535,7 @@ class Media(models.Model):
         blank=False,
         verbose_name=_("Alternative Text"),
         help_text=_("format: required, max-255"),
+        validators=[MaxValueValidator(255)],
     )
     is_feature = models.BooleanField(
         default=False,
@@ -506,11 +573,15 @@ class Stock(models.Model):
     """
 
     id = models.CharField(
-        primary_key=True, default=uuid.uuid4, editable=False, max_length=256
+        primary_key=True,
+        default=uuid.uuid4,
+        editable=False,
+        max_length=256,
+        validators=[MaxValueValidator(256)],
     )
     product_inventory = models.OneToOneField(
         ProductInventory,
-        related_name="product_inventory",
+        related_name="stock_product_inventory",
         on_delete=models.PROTECT,
     )
     last_checked = models.DateTimeField(

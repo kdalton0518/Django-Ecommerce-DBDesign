@@ -31,6 +31,11 @@ class Command(BaseCommand):
             self.load_fixture("db_product_attribute_value_fixture.json")
             self.load_fixture("db_category_fixture.json")
 
+            # Load promotion-related fixtures
+            self.load_fixture("db_promotion_type_fixture.json")
+            self.load_fixture("db_coupon_fixture.json")
+            self.load_fixture("db_promotion_fixture.json")
+
             # Load product-related fixtures
             self.load_fixture("db_product_fixture.json")
             self.load_fixture("db_product_inventory_fixture.json")

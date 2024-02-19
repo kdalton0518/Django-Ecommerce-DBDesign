@@ -189,7 +189,7 @@ def test_inventory_product_insert_data(db, product_factory, category_factory):
 
 @pytest.mark.dbfixture
 @pytest.mark.parametrize(
-    "id, sku, upc, product_type, product, brand, is_active, retail_price, store_price, sale_price, weight, create_at, updated_at",
+    "id, sku, upc, product_type, product, brand, is_active, retail_price, store_price, weight, create_at, updated_at",
     [
         (
             "81d9e0e0-b2e0-433e-a3c5-ed4053a33f2c",
@@ -201,7 +201,6 @@ def test_inventory_product_insert_data(db, product_factory, category_factory):
             1,
             97,
             92,
-            46,
             987,
             "2021-09-04 22:14:18",
             "2021-09-04 22:14:18",
@@ -216,7 +215,6 @@ def test_inventory_product_insert_data(db, product_factory, category_factory):
             1,
             97,
             92,
-            46,
             987,
             "2021-09-04 22:14:18",
             "2021-09-04 22:14:18",
@@ -231,7 +229,6 @@ def test_inventory_product_insert_data(db, product_factory, category_factory):
             1,
             97,
             92,
-            46,
             987,
             "2021-09-04 22:14:18",
             "2021-09-04 22:14:18",
@@ -246,7 +243,6 @@ def test_inventory_product_insert_data(db, product_factory, category_factory):
             1,
             97,
             92,
-            46,
             987,
             "2021-09-04 22:14:18",
             "2021-09-04 22:14:18",
@@ -261,7 +257,6 @@ def test_inventory_product_insert_data(db, product_factory, category_factory):
             1,
             97,
             92,
-            46,
             987,
             "2021-09-04 22:14:18",
             "2021-09-04 22:14:18",
@@ -280,7 +275,6 @@ def test_inventory_product_inventory_dbfixture(
     is_active,
     retail_price,
     store_price,
-    sale_price,
     weight,
     create_at,
     updated_at,
@@ -301,7 +295,6 @@ def test_inventory_product_inventory_dbfixture(
     assert result.is_active == is_active
     assert result.retail_price == retail_price
     assert result.store_price == store_price
-    assert result.sale_price == sale_price
     assert result.weight == weight
     assert result_created_at == create_at
     assert result_updated_at == updated_at
@@ -376,7 +369,6 @@ def test_inventory_product_inventory_insert_data(
     assert new_product.is_active == 1
     assert new_product.retail_price == 97
     assert new_product.store_price == 92
-    assert new_product.sale_price == 46
     assert new_product.weight == 987
 
 
@@ -672,7 +664,7 @@ def test_inventory_product_attribute_dbfixture(
         ("Test Product Attribute 5", "Test Product Attribute 5 Description"),
     ],
 )
-def test_inventory_product_attrubite_insert_data(
+def test_inventory_product_attribute_insert_data(
     db, product_attribute_factory, name, description
 ):
     """
@@ -685,7 +677,7 @@ def test_inventory_product_attrubite_insert_data(
     assert new_attribute.description == description
 
 
-def test_inventory_product_attrubite_uniqueness_integrity(
+def test_inventory_product_attribute_uniqueness_integrity(
     db, product_attribute_factory
 ):
     """
