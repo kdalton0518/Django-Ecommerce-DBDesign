@@ -1,21 +1,6 @@
 version: "3.11"
 
 services:
-  # web:
-  #   container_name: web_ecommerce
-  #   build:
-  #     context: .
-  #     dockerfile: Dockerfile
-  #   restart: always
-  #   command: python manage.py runserver 0.0.0.0:8000
-  #   volumes:
-  #     - .:/usr/src/app
-  #   ports:
-  #     - 8000:8000
-  #   depends_on:
-  #     - pgdb
-  #     - esearch
-
   pgdb:
     container_name: pgdb_ecommerce
     image: postgres
@@ -46,4 +31,59 @@ services:
       - 9300:9300
     environment:
       discovery.type: single-node
-      xpack.security.enabled: false 
+      xpack.security.enabled: false
+
+  redis:
+    container_name: redis_ecommerce
+    image: redis:alpine
+    restart: always
+    ports:
+      - 6379:6379
+  
+  # celery:
+  #   container_name: celery_ecommerce
+  #   restart: always
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #   command: celery -A ecommerce worker -l info
+  #   volumes:
+  #     - .:/usr/src/app
+  #   environment:
+  #     - DEBUG=1
+  #     - CELEERY_BROKER_URL=redis://redis:6379/0
+  #     - CELERY_RESULT_BACKEND=redis://redis:6379/0
+  #   depends_on:
+  #     - redis
+  
+  # celery-beat:
+  #   container_name: celery_beat_ecommerce
+  #   restart: always
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #   command: celery -A ecommerce beat -l info
+  #   volumes:
+  #     - .:/usr/src/app
+  #   depends_on:
+  #     - redis
+  #     - celery
+  
+  # flower:
+  #   container_name: flower_ecommerce
+  #   image: mher/flower
+  #   restart: always
+  #   environment:
+  #     - CELEERY_BROKER_URL=redis://redis:6379/0
+  #     - CELERY_RESULT_BACKEND=redis://redis:6379/0
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #   command: flower -A ecommerce --port=5555
+  #   volumes:
+  #     - .:/usr/src/app
+  #   ports:
+  #     - 5555:5555
+  #   depends_on:
+  #     - redis
+  #     - celery

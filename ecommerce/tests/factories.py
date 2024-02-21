@@ -2,7 +2,9 @@ import uuid
 import factory
 from faker import Faker
 from pytest_factoryboy import register
-from ecommerce.apps.inventory import models
+from ecommerce.apps.inventory import models as inventory_models
+from ecommerce.apps.promotion import models as promotion_models
+from datetime import datetime
 
 
 faker = Faker()
@@ -20,7 +22,7 @@ class CategoryFactory(factory.django.DjangoModelFactory):
     """
 
     class Meta:
-        model = models.Category
+        model = inventory_models.Category
 
     name = factory.Sequence(lambda n: f"Test Category {n}")
     slug = factory.Sequence(lambda n: f"test-category-{n}")
@@ -46,12 +48,14 @@ class ProductFactory(factory.django.DjangoModelFactory):
     """
 
     class Meta:
-        model = models.Product
+        model = inventory_models.Product
         skip_postgeneration_save = True
 
-    web_id = factory.LazyFunction(uuid.uuid4)
-    slug = factory.Sequence(lambda n: f"Test Product {n}")
-    name = factory.Sequence(lambda n: f"test_product_{n}")
+    web_id = factory.sequence(
+        lambda n: f"WEBID-{str(uuid.uuid4()).split('-')[0]}{str(uuid.uuid4()).split('-')[1]}".upper()
+    )
+    name = factory.Sequence(lambda n: f"Test Product {n}")
+    slug = factory.Sequence(lambda n: f"test_product_{n}")
     description = faker.text()
     is_active = True
     created_at = "2021-09-04 22:14:18.279092"
@@ -78,7 +82,7 @@ class ProductTypeFactory(factory.django.DjangoModelFactory):
     """
 
     class Meta:
-        model = models.ProductType
+        model = inventory_models.ProductType
 
     name = factory.Sequence(lambda n: f"Test Product Type {n}")
 
@@ -94,7 +98,7 @@ class BrandFactory(factory.django.DjangoModelFactory):
     """
 
     class Meta:
-        model = models.Brand
+        model = inventory_models.Brand
 
     name = factory.Sequence(lambda n: f"Test Brand {n}")
 
@@ -114,22 +118,25 @@ class ProductInventoryFactory(factory.django.DjangoModelFactory):
         is_active (Boolean): A boolean that indicates whether the product inventory is active. It is always set to 1.
         retail_price (Decimal): A decimal representing the retail price of the product.
         store_price (Decimal): A decimal representing the store price of the product.
-        sale_price (Decimal): A decimal representing the sale price of the product.
         weight (Float): A float representing the weight of the product.
     """
 
     class Meta:
-        model = models.ProductInventory
+        model = inventory_models.ProductInventory
 
-    sku = factory.LazyFunction(uuid.uuid4)
-    upc = factory.LazyFunction(uuid.uuid4)
+    sku = factory.Sequence(
+        lambda n: f"SKU-{str(uuid.uuid4()).split('-')[0]}{str(uuid.uuid4()).split('-')[1]}".upper()
+    )
+    upc = factory.Sequence(
+        lambda n: f"UPC-{str(uuid.uuid4()).split('-')[0]}{str(uuid.uuid4()).split('-')[1]}".upper()
+    )
     product_type = factory.SubFactory(ProductTypeFactory)
     product = factory.SubFactory(ProductFactory)
     brand = factory.SubFactory(BrandFactory)
     is_active = 1
     retail_price = 97
     store_price = 92
-    sale_price = 46
+    promotion_price = 55.2
     weight = 987
 
 
@@ -147,7 +154,7 @@ class MediaFactory(factory.django.DjangoModelFactory):
     """
 
     class Meta:
-        model = models.Media
+        model = inventory_models.Media
 
     product_inventory = factory.SubFactory(ProductInventoryFactory)
     image = "images/default.png"
@@ -168,7 +175,7 @@ class StockFactory(factory.django.DjangoModelFactory):
     """
 
     class Meta:
-        model = models.Stock
+        model = inventory_models.Stock
 
     product_inventory = factory.SubFactory(ProductInventoryFactory)
     units = 135
@@ -187,7 +194,7 @@ class ProductAttributeFactory(factory.django.DjangoModelFactory):
     """
 
     class Meta:
-        model = models.ProductAttribute
+        model = inventory_models.ProductAttribute
 
     name = factory.Sequence(lambda n: f"Test Product Attribute {n}")
     description = factory.Sequence(lambda n: f"Test Product Attribute {n} Description")
@@ -205,7 +212,69 @@ class ProductAttributeValueFactory(factory.django.DjangoModelFactory):
     """
 
     class Meta:
-        model = models.ProductAttributeValue
+        model = inventory_models.ProductAttributeValue
 
     product_attribute = factory.SubFactory(ProductAttributeFactory)
     attribute_value = factory.Sequence(lambda n: f"Test Product Attribute Value {n}")
+
+
+@register
+class PromotionTypeFactory(factory.django.DjangoModelFactory):
+    """
+    The PromotionType class inherits from DjangoModelFactory.
+    It is used to create test instances of the PromotionType model for testing purposes.
+
+    Attributes:
+        name (Sequence): A Sequence that generates a unique name for each PromotionType instance.
+    """
+
+    class Meta:
+        model = promotion_models.PromotionType
+
+    name = factory.Sequence(lambda n: f"Test Promotion Type {n}")
+
+
+@register
+class CouponFactory(factory.django.DjangoModelFactory):
+    """
+    The CouponFactory class inherits from DjangoModelFactory.
+    It is used to create test instances of the Coupon model for testing purposes.
+
+    Attributes:
+        name (Sequence): A Sequence that generates a unique name for each Coupon instance.
+        code (Sequence): A Sequence that generates a unique code for each Coupon instance.
+        description (Sequence): A Sequence that generates a unique description for each Coupon instance.
+    """
+
+    class Meta:
+        model = promotion_models.Coupon
+
+    name = factory.Sequence(lambda n: f"Test Coupon {n}")
+    code = factory.Sequence(lambda n: f"TESTCOUPON-{n}")
+    description = factory.Sequence(lambda n: f"Test Coupon {n} Description")
+
+
+@register
+class PromotionFactory(factory.django.DjangoModelFactory):
+    """
+    The PromotionFactory class inherits from DjangoModelFactory.
+    It is used to create test instances of the Promotion model for testing purposes.
+
+    Attributes:
+        promotion_type (SubFactory): A SubFactory that creates a PromotionType instance for the Promotion instance.
+        coupon (SubFactory): A SubFactory that creates a Coupon instance for the Promotion instance.
+        name (Sequence): A Sequence that generates a unique name for each Promotion instance.
+        description (Sequence): A Sequence that generates a unique description for each Promotion instance.
+        promotion_start (DateTime): A string representing the date and time the promotion starts.
+        promotion_end (DateTime): A string representing the date and time the promotion ends.
+    """
+
+    class Meta:
+        model = promotion_models.Promotion
+
+    promotion_type = factory.SubFactory(PromotionTypeFactory)
+    coupon = factory.SubFactory(CouponFactory)
+    name = factory.Sequence(lambda n: f"Test Promotion {n:03d}")
+    description = factory.Sequence(lambda n: f"Test Promotion {n:03d} Description")
+    promotion_start = "2024-03-05"
+    promotion_end = "2024-03-15"

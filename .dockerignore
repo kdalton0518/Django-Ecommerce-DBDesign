@@ -1,4 +1,13 @@
-.pytest_cache
-__pycache__
+# Ignore Python virtual environment
 .venv
+venv
+
+# Ignore pytest cache
+.pytest_cache
+
+# Ignore compiled Python files
+__pycache__
+
+# Ignore README.md files
 README.md
+*/README.md

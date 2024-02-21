@@ -69,4 +69,19 @@ urlpatterns = [
         views.RestAPIProductInventory.as_view({"get": "retrieve"}),
         name="restapi_product_inventory_retrieve",
     ),
+    path(
+        "promotions/",
+        views.RestAPIPromotions.as_view({"get": "list"}),
+        name="restapi_promotions_list",
+    ),
+    path(
+        "promotions/<str:id>/",
+        views.RestAPIPromotions.as_view({"get": "retrieve"}),
+        name="restapi_promotions_retrieve",
+    ),
+    path(
+        "promotions/<str:id>/product_inventories/",
+        views.RestAPIPromotionsProductInventories.as_view({"get": "list"}),
+        name="restapi_promotions_product_inventories_list",
+    ),
 ]

@@ -1,6 +1,13 @@
 import pytest
 from ecommerce.apps.inventory import models
 from django.db.utils import IntegrityError
+from django.conf import settings
+from django.utils import timezone
+from decimal import Decimal
+
+
+# Activate time zone
+timezone.activate(settings.TIME_ZONE)
 
 
 @pytest.mark.dbfixture
@@ -8,33 +15,33 @@ from django.db.utils import IntegrityError
     "id, name, slug, is_active",
     [
         (
-            "9212c1b6-f7f9-48e8-9978-bff8b6aaa000",
-            "Parent Category 1",
-            "parent-category-1",
+            "75025157-1bc9-4285-9cfd-672e80886211",
+            "Parent Category 05",
+            "parent-category-05",
             1,
         ),
         (
-            "b8a0430e-e025-4d32-8480-e69821bc2cb5",
-            "Parent Category 25",
-            "parent-category-25",
+            "61df27b8-3144-401a-8520-d588fa3fadf4",
+            "Parent Category 10",
+            "parent-category-10",
             1,
         ),
         (
-            "63b6e645-7c43-415f-94a6-da649383d67b",
-            "Sub Category 3-8",
-            "sub-category-3-8",
+            "9e48e6ae-f401-4c80-926a-e2801152439b",
+            "Parent Category 05 - Sub Category 02",
+            "parent-category-05-sub-category-02",
             1,
         ),
         (
-            "d4a2aefb-0774-4a1a-8a17-957bf2bb6405",
-            "Sub Category 11-4",
-            "sub-category-11-4",
+            "de487603-178c-4fe3-9418-6a91243f2b1b",
+            "Parent Category 08 - Sub Category 04",
+            "parent-category-08-sub-category-04",
             1,
         ),
         (
-            "604999ad-53fd-48d8-aa33-25771b017c92",
-            "Sub Category 20-10",
-            "sub-category-20-10",
+            "a511215c-552e-40f8-8363-367f43e80d04",
+            "Parent Category 10 - Sub Category 02",
+            "parent-category-10-sub-category-02",
             1,
         ),
     ],
@@ -75,57 +82,52 @@ def test_inventory_category_insert_data(db, category_factory, name, slug, is_act
 
 @pytest.mark.dbfixture
 @pytest.mark.parametrize(
-    "id, web_id, name, slug, description, is_active, created_at, updated_at",
+    "id, web_id, name, slug, is_active, created_at, updated_at",
     [
         (
-            "f82b5c1d-72f5-49e0-ac63-8aec2ac6531a",
-            "a19c64cc-83bd-46f8-a81f-e8ca11107c52",
-            "Product 1",
-            "product-1",
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+            "81949235-cf0d-4bd6-844a-444a422d5786",
+            "WEBID-2FC7F75709BE",
+            "Product 0020",
+            "product-0020",
             1,
-            "2021-09-04 22:14:18",
-            "2021-09-04 22:14:18",
+            "2024-02-15 22:14:18",
+            "2024-02-15 22:14:18",
         ),
         (
-            "3915ee45-285d-4c72-83eb-9578685b266f",
-            "e9733557-c598-4cd8-b725-c3a7d34c3d80",
-            "Product 635",
-            "product-635",
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+            "022d63aa-9b86-44a6-9748-8b5e6f3bdf6e",
+            "WEBID-9A241FC3E549",
+            "Product 0040",
+            "product-0040",
             1,
-            "2021-09-04 22:14:18",
-            "2021-09-04 22:14:18",
+            "2024-02-15 22:14:18",
+            "2024-02-15 22:14:18",
         ),
         (
-            "366e9776-2421-4766-b02f-433cd77956da",
-            "532eabbe-89b6-4a92-b2c5-b971b67b910f",
-            "Product 1304",
-            "product-1304",
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+            "d021a95b-a17d-4567-8cc1-1bb582d6832e",
+            "WEBID-B1E41EEB7DFE",
+            "Product 0060",
+            "product-0060",
             1,
-            "2021-09-04 22:14:18",
-            "2021-09-04 22:14:18",
+            "2024-02-15 22:14:18",
+            "2024-02-15 22:14:18",
         ),
         (
-            "500c3fff-da2a-4a99-95e3-6522e3a007c3",
-            "74168451-68c2-4e4e-9b38-25771331f7d3",
-            "Product 2562",
-            "product-2562",
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+            "c047c29d-22e3-4824-889c-db21677edbc9",
+            "WEBID-E0996F2CA172",
+            "Product 0080",
+            "product-0080",
             1,
-            "2021-09-04 22:14:18",
-            "2021-09-04 22:14:18",
+            "2024-02-15 22:14:18",
+            "2024-02-15 22:14:18",
         ),
         (
-            "693f877b-0e9f-460b-90d6-612719bf1ea9",
-            "21f68700-8919-47c4-93c9-b9832668142b",
-            "Product 3729",
-            "product-3729",
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+            "013bd94e-f669-41b5-ab6b-1d7d15f33ff8",
+            "WEBID-F526D7811BE0",
+            "Product 0100",
+            "product-0100",
             1,
-            "2021-09-04 22:14:18",
-            "2021-09-04 22:14:18",
+            "2024-02-15 22:14:18",
+            "2024-02-15 22:14:18",
         ),
     ],
 )
@@ -136,7 +138,6 @@ def test_inventory_product_dbfixture(
     web_id,
     name,
     slug,
-    description,
     is_active,
     created_at,
     updated_at,
@@ -146,125 +147,139 @@ def test_inventory_product_dbfixture(
     """
 
     result = models.Product.objects.get(id=id)
-    result_created_at = result.created_at.strftime("%Y-%m-%d %H:%M:%S")
-    result_updated_at = result.updated_at.strftime("%Y-%m-%d %H:%M:%S")
+    result_created_at = timezone.localtime(result.created_at).strftime(
+        "%Y-%m-%d %H:%M:%S"
+    )
+    result_updated_at = timezone.localtime(result.updated_at).strftime(
+        "%Y-%m-%d %H:%M:%S"
+    )
 
     assert result.web_id == web_id
     assert result.name == name
     assert result.slug == slug
-    assert result.description == description
     assert result.is_active == is_active
     assert result_created_at == created_at
     assert result_updated_at == updated_at
 
 
-def test_inventory_product_uniqueness_integrity(db, product_factory, category_factory):
+@pytest.mark.parametrize(
+    "web_id",
+    [
+        ("WEBID-3FC7F75709BF"),
+        ("WEBID-1A241FC3E541"),
+        ("WEBID-C1E41EEB7DFF"),
+        ("WEBID-F0996F2CA173"),
+        ("WEBID-G526D7811BE1"),
+    ],
+)
+def test_inventory_product_uniqueness_integrity(db, product_factory, web_id):
     """
     Test to verify the Product model data uniqueness integrity.
     """
 
-    new_web_id = product_factory.create(web_id="2a409e2d-d929-4f04-a6f8-a6719d1d57b6")
+    new_web_id = product_factory.create(web_id=web_id)
 
     with pytest.raises(IntegrityError):
         product_factory.create(web_id=new_web_id.web_id)
 
 
 @pytest.mark.dbfixture
-def test_inventory_product_insert_data(db, product_factory, category_factory):
+@pytest.mark.parametrize("categories", [(2), (3), (4), (5), (6)])
+def test_inventory_product_insert_data(
+    db, product_factory, category_factory, categories
+):
     """
     Test to verify the Product model data inserted using the factory.
     """
 
-    category1 = category_factory.create()
-    category2 = category_factory.create()
+    category_list = [category_factory.create() for _ in range(categories)]
 
-    product = product_factory.create(category=[category1, category2])
-
+    product = product_factory.create(category=category_list)
     product = models.Product.objects.get(id=product.id)
 
-    assert product.category.count() == 2
-    assert str(category1.id) in [cat.id for cat in product.category.all()]
-    assert str(category2.id) in [cat.id for cat in product.category.all()]
+    assert product.category.count() == categories
+    for cat in category_list:
+        assert str(cat.id) in [cat.id for cat in product.category.all()]
 
 
 @pytest.mark.dbfixture
 @pytest.mark.parametrize(
-    "id, sku, upc, product_type, product, brand, is_active, retail_price, store_price, sale_price, weight, create_at, updated_at",
+    "id, sku, upc, product_type, product, brand, is_active, retail_price, store_price, promotion_price, weight, created_at, updated_at",
     [
         (
-            "81d9e0e0-b2e0-433e-a3c5-ed4053a33f2c",
-            "cbc1938b-4da4-4846-9e8b-ad805ca4a2a9",
-            "f3f8da2f-4395-479f-9566-022f2590624e",
-            "b81fa2f4-0c6a-4c1b-9de8-2056b6ee5feb",
-            "f82b5c1d-72f5-49e0-ac63-8aec2ac6531a",
-            "30079606-eb77-441e-898e-816b05a03472",
+            "c3e647eb-decc-444d-b530-fbd6424b4026",
+            "SKU-45947A116CEF",
+            "UPC-6AA225185113",
+            "7214a28e-1bc5-462d-bca1-46e9e2191441",
+            "bcf3f8e4-f0d0-435d-8c1e-3ee3fc7bd7df",
+            "3f8fac29-92fc-4536-9c0a-46d882a96782",
             1,
             97,
             92,
-            46,
+            55.2,
             987,
-            "2021-09-04 22:14:18",
-            "2021-09-04 22:14:18",
+            "2024-02-15 22:14:18",
+            "2024-02-15 22:14:18",
         ),
         (
-            "06d57c12-cb53-4c96-814d-3ec876d1bf27",
-            "aca0e545-4e9c-4b4c-98b2-ae38b51f6f45",
-            "45a29799-aabf-426b-9c60-39d2750f19bf",
-            "0c01b7cc-1a47-4748-80ec-aef3a3d22e2e",
-            "d4871fd3-a404-49ed-9a62-de37d9179aff",
-            "30079606-eb77-441e-898e-816b05a03472",
+            "a8c87358-cc8e-4db2-8264-d48d93c3d364",
+            "SKU-BCD276AAE2D7",
+            "UPC-0B61178A3403",
+            "6e510c62-d945-42c0-8555-99fb2dd6b64a",
+            "4c85410b-c6fa-4154-98a6-f399afce7027",
+            "3f8fac29-92fc-4536-9c0a-46d882a96782",
             1,
             97,
             92,
-            46,
+            55.2,
             987,
-            "2021-09-04 22:14:18",
-            "2021-09-04 22:14:18",
+            "2024-02-15 22:14:18",
+            "2024-02-15 22:14:18",
         ),
         (
-            "6a3cb551-d4b7-4ec2-ad39-4ee2ab190fc6",
-            "e526e9ab-a6f6-4a97-a1ae-6353f5e3543c",
-            "cdbc3c2b-ca31-48be-9a30-3e7279137615",
-            "b014692d-d3f1-4215-8201-643cc63a9b05",
-            "734fad23-8803-4f4d-a0ea-ff8cf0b97256",
-            "4d8b5547-cd3c-4af2-92fa-7dc9680b5f39",
+            "45b65b23-44c5-46ea-88a1-dec9d89fc05b",
+            "SKU-3969102B4A92",
+            "UPC-817F4425D640",
+            "266586e0-6621-423d-8f6b-bae43fcc06e4",
+            "d487c229-82ab-4bba-9102-2ba1cb798d4d",
+            "fd533f28-2491-40f6-bb50-318592e98a0e",
             1,
             97,
             92,
-            46,
+            55.2,
             987,
-            "2021-09-04 22:14:18",
-            "2021-09-04 22:14:18",
+            "2024-02-15 22:14:18",
+            "2024-02-15 22:14:18",
         ),
         (
-            "29b13e99-8825-4f51-a94e-2f74c883c38b",
-            "2c1a3bc7-87fd-454c-9407-1a57829134ad",
-            "ee55dc77-b801-45ab-b679-a21ef1c0be2f",
-            "5106cb08-44d0-49c1-94b9-df726fb13218",
-            "09b40472-9f3a-4b65-bd53-e695b7eeefe6",
-            "d4e49bfe-d244-401b-9861-c3f3e63b90e6",
+            "db0c06f2-6d03-48f1-bd25-4cfc65fb90dc",
+            "SKU-A6448AEABDA9",
+            "UPC-3CFA24D92CE2",
+            "7ff69010-2355-45e6-a6b7-b6c413dd2ffc",
+            "ac5191d1-cd21-462b-955e-373a1bf7c91f",
+            "fd533f28-2491-40f6-bb50-318592e98a0e",
             1,
             97,
             92,
-            46,
+            55.2,
             987,
-            "2021-09-04 22:14:18",
-            "2021-09-04 22:14:18",
+            "2024-02-15 22:14:18",
+            "2024-02-15 22:14:18",
         ),
         (
-            "a89effdf-72bb-4679-8725-82e02417f916",
-            "e355ee6d-3b39-42e7-88a2-701928a2a0d6",
-            "fcc8a57b-51f3-45ca-bf28-884cad238085",
-            "3f6b1985-f9ab-42a0-b279-40b8ec7a9c64",
-            "b98e5842-6346-4ee0-a811-d0b9c6cbe139",
-            "dfe155e1-359c-4410-a439-19ca06f0ed7b",
+            "b47d087d-a460-4a08-b056-c55929315052",
+            "SKU-F065242A5029",
+            "UPC-5D46D19AC7E8",
+            "266586e0-6621-423d-8f6b-bae43fcc06e4",
+            "007c2e38-7e05-4c9f-be98-6b527d20bb8f",
+            "9a44f44f-a592-4ee3-b43e-f7e0bf3db78e",
             1,
             97,
             92,
-            46,
+            55.2,
             987,
-            "2021-09-04 22:14:18",
-            "2021-09-04 22:14:18",
+            "2024-02-15 22:14:18",
+            "2024-02-15 22:14:18",
         ),
     ],
 )
@@ -280,9 +295,9 @@ def test_inventory_product_inventory_dbfixture(
     is_active,
     retail_price,
     store_price,
-    sale_price,
+    promotion_price,
     weight,
-    create_at,
+    created_at,
     updated_at,
 ):
     """
@@ -290,8 +305,12 @@ def test_inventory_product_inventory_dbfixture(
     """
 
     result = models.ProductInventory.objects.get(id=id)
-    result_created_at = result.created_at.strftime("%Y-%m-%d %H:%M:%S")
-    result_updated_at = result.updated_at.strftime("%Y-%m-%d %H:%M:%S")
+    result_created_at = timezone.localtime(result.created_at).strftime(
+        "%Y-%m-%d %H:%M:%S"
+    )
+    result_updated_at = timezone.localtime(result.updated_at).strftime(
+        "%Y-%m-%d %H:%M:%S"
+    )
 
     assert result.sku == sku
     assert result.upc == upc
@@ -301,114 +320,110 @@ def test_inventory_product_inventory_dbfixture(
     assert result.is_active == is_active
     assert result.retail_price == retail_price
     assert result.store_price == store_price
-    assert result.sale_price == sale_price
+    assert result.promotion_price == Decimal(str(promotion_price))
     assert result.weight == weight
-    assert result_created_at == create_at
+    assert result_created_at == created_at
     assert result_updated_at == updated_at
 
 
 @pytest.mark.parametrize(
-    "sku, upc, product_type__name, product__web_id, brand__name",
+    "product_type__name, brand__name",
     [
         (
-            "9276b88d-0adc-4215-84dc-a4f69a5ad511",
-            "3520cecf-e7da-4726-8029-cd4845aa070f",
-            "Test Product Type 1",
-            "3c80e56b-84a7-416c-b87b-f0be787ca69e",
-            "Test Brand 1",
+            "Test Product Type 01",
+            "Test Brand 01",
         ),
         (
-            "10ce0e13-521e-4471-a745-e2dafd7da31e",
-            "1b346d61-129c-445b-b047-1bbe6b84560d",
-            "Test Product Type 2",
-            "7784ba24-2389-44e9-91c7-5c4b25c7c1af",
-            "Test Brand 2",
+            "Test Product Type 02",
+            "Test Brand 02",
         ),
         (
-            "bcda7953-262b-4c1b-80b6-ea4d37f7182a",
-            "c7a0f29b-5b16-4ba9-8572-1426275bc4fe",
-            "Test Product Type 3",
-            "0f5ea5af-bca8-4aa8-8430-ab93f9028f21",
-            "Test Brand 3",
+            "Test Product Type 03",
+            "Test Brand 03",
         ),
         (
-            "9889529a-48cc-478e-b3f2-c56ce98035d6",
-            "e268b3b3-e81e-4670-a928-e079f60abd09",
-            "Test Product Type 4",
-            "6a643561-5344-4297-b9f6-77064c9e3677",
-            "Test Brand 4",
+            "Test Product Type 04",
+            "Test Brand 04",
         ),
         (
-            "c145a98b-ae9e-4cea-98fb-c8bc1e0d6992",
-            "d137ff43-6e12-4331-9669-d15e17c7c39f",
             "Test Product Type 5",
-            "0124a134-6070-4b92-a7e2-ba67e4796f36",
-            "Test Brand 5",
+            "Test Brand 05",
         ),
     ],
 )
 def test_inventory_product_inventory_insert_data(
     db,
     product_inventory_factory,
-    sku,
-    upc,
     product_type__name,
-    product__web_id,
     brand__name,
 ):
     """
     Test to verify the ProductInventory model data inserted using the factory.
     """
 
-    new_product = product_inventory_factory.create(
-        sku=sku,
-        upc=upc,
+    new_product_inventory = product_inventory_factory.create(
         product_type__name=product_type__name,
-        product__web_id=product__web_id,
         brand__name=brand__name,
     )
 
-    assert new_product.sku == sku
-    assert new_product.upc == upc
-    assert new_product.product_type.name == product_type__name
-    assert new_product.product.web_id == product__web_id
-    assert new_product.brand.name == brand__name
-    assert new_product.is_active == 1
-    assert new_product.retail_price == 97
-    assert new_product.store_price == 92
-    assert new_product.sale_price == 46
-    assert new_product.weight == 987
-
-
-def test_inventory_producttype_insert_data(db, product_type_factory):
-    """
-    Test to verify the ProductType model data inserted using the factory.
-    """
-
-    new_type = product_type_factory.create(name="Test Product Type")
-
-    assert new_type.name == "Test Product Type"
-
-
-def test_inventory_producttype_uniqueness_integrity(db, product_type_factory):
-    """
-    Test to verify the ProductType model data uniqueness integrity.
-    """
-
-    product_type_factory.create(name="Test Product Type")
-
-    with pytest.raises(IntegrityError):
-        product_type_factory.create(name="Test Product Type")
+    assert new_product_inventory.product_type.name == product_type__name
+    assert new_product_inventory.brand.name == brand__name
+    assert new_product_inventory.is_active == 1
+    assert new_product_inventory.retail_price == 97
+    assert new_product_inventory.store_price == 92
+    assert new_product_inventory.promotion_price == 55.2
+    assert new_product_inventory.weight == 987
 
 
 @pytest.mark.parametrize(
     "name",
     [
-        ("Test Brand 1"),
-        ("Test Brand 2"),
-        ("Test Brand 3"),
-        ("Test Brand 4"),
-        ("Test Brand 5"),
+        ("Test Product Type 01"),
+        ("Test Product Type 02"),
+        ("Test Product Type 03"),
+        ("Test Product Type 04"),
+        ("Test Product Type 05"),
+    ],
+)
+def test_inventory_producttype_insert_data(db, product_type_factory, name):
+    """
+    Test to verify the ProductType model data inserted using the factory.
+    """
+
+    new_type = product_type_factory.create(name=name)
+
+    assert new_type.name == name
+
+
+@pytest.mark.parametrize(
+    "name",
+    [
+        ("Test Product Type 11"),
+        ("Test Product Type 12"),
+        ("Test Product Type 13"),
+        ("Test Product Type 14"),
+        ("Test Product Type 15"),
+    ],
+)
+def test_inventory_producttype_uniqueness_integrity(db, product_type_factory, name):
+    """
+    Test to verify the ProductType model data uniqueness integrity.
+    """
+
+    product_type_factory.create(name=name)
+
+    with pytest.raises(IntegrityError):
+        product_type_factory.create(name=name)
+
+
+@pytest.mark.parametrize(
+    "name",
+    [
+        ("Test Brand 01"),
+        ("Test Brand 02"),
+        ("Test Brand 03"),
+        ("Test Brand 04"),
+        ("Test Brand 05"),
     ],
 )
 def test_inventory_brand_insert_data(db, brand_factory, name):
@@ -421,15 +436,25 @@ def test_inventory_brand_insert_data(db, brand_factory, name):
     assert new_brand.name == name
 
 
-def test_inventory_brand_uniqueness_integrity(db, brand_factory):
+@pytest.mark.parametrize(
+    "name",
+    [
+        ("Test Brand 11"),
+        ("Test Brand 12"),
+        ("Test Brand 13"),
+        ("Test Brand 14"),
+        ("Test Brand 15"),
+    ],
+)
+def test_inventory_brand_uniqueness_integrity(db, brand_factory, name):
     """
     Test to verify the Brand model data uniqueness integrity.
     """
 
-    brand_factory.create(name="Test Brand")
+    brand_factory.create(name=name)
 
     with pytest.raises(IntegrityError):
-        brand_factory.create(name="Test Brand")
+        brand_factory.create(name=name)
 
 
 @pytest.mark.dbfixture
@@ -437,49 +462,49 @@ def test_inventory_brand_uniqueness_integrity(db, brand_factory):
     "id, product_inventory, image, alt_text, is_feature, created_at, updated_at",
     [
         (
-            "085bbdbd-b468-4eac-aa2b-0292cfb7daab",
-            "81d9e0e0-b2e0-433e-a3c5-ed4053a33f2c",
+            "4eefd318-4430-4cbe-bf51-cef19ccd5a26",
+            "19533832-836b-47da-8ebf-b0d4e3acc240",
             "images/default.png",
             "a default image solid color",
             True,
-            "2021-09-04 22:14:18",
-            "2021-09-04 22:14:18",
+            "2024-02-15 22:14:18",
+            "2024-02-15 22:14:18",
         ),
         (
-            "855c6563-f3f3-437d-b365-82a50365e43b",
-            "4af87b9a-3de5-4525-981c-d1d23ca14296",
+            "cca1defe-7ac5-468d-9257-43268fd9eaa3",
+            "9ad7d74e-881b-4d04-96d6-a8da0ccaf674",
             "images/default.png",
             "a default image solid color",
             True,
-            "2021-09-04 22:14:18",
-            "2021-09-04 22:14:18",
+            "2024-02-15 22:14:18",
+            "2024-02-15 22:14:18",
         ),
         (
-            "983e723b-3eb3-46df-894f-cea96b2bc77b",
-            "369d4e81-fec6-4721-9b38-4ed66890ce32",
+            "362247c8-2bb8-4b5b-8ac8-8c6dc8bf7d3e",
+            "4d9be56b-feed-4570-a515-fe61bc28e21e",
             "images/default.png",
             "a default image solid color",
             True,
-            "2021-09-04 22:14:18",
-            "2021-09-04 22:14:18",
+            "2024-02-15 22:14:18",
+            "2024-02-15 22:14:18",
         ),
         (
-            "70a4668c-2320-4436-8fc2-718a602ac512",
-            "4b7f16e5-7998-416a-b503-fa29482fb73c",
+            "e0830e6a-460f-41fe-9f76-62e3f191c646",
+            "d69f9e11-06e7-4b9d-9615-ad45e3ae4b0b",
             "images/default.png",
             "a default image solid color",
             True,
-            "2021-09-04 22:14:18",
-            "2021-09-04 22:14:18",
+            "2024-02-15 22:14:18",
+            "2024-02-15 22:14:18",
         ),
         (
-            "b93f42c6-98e5-42fb-a970-baba439d4df5",
-            "cf1a80a3-7194-4dc4-8abf-9d7be515515e",
+            "87bf89eb-a6f1-4cf0-888d-b84e7cca228b",
+            "fd33bb19-e678-4957-ab71-2b2f07c67540",
             "images/default.png",
             "a default image solid color",
             True,
-            "2021-09-04 22:14:18",
-            "2021-09-04 22:14:18",
+            "2024-02-15 22:14:18",
+            "2024-02-15 22:14:18",
         ),
     ],
 )
@@ -499,8 +524,12 @@ def test_inventory_media_dbfixture(
     """
 
     result = models.Media.objects.get(id=id)
-    result_created_at = result.created_at.strftime("%Y-%m-%d %H:%M:%S")
-    result_updated_at = result.updated_at.strftime("%Y-%m-%d %H:%M:%S")
+    result_created_at = timezone.localtime(result.created_at).strftime(
+        "%Y-%m-%d %H:%M:%S"
+    )
+    result_updated_at = timezone.localtime(result.updated_at).strftime(
+        "%Y-%m-%d %H:%M:%S"
+    )
 
     assert result.product_inventory.id == product_inventory
     assert result.image == image
@@ -513,11 +542,11 @@ def test_inventory_media_dbfixture(
 @pytest.mark.parametrize(
     "product_inventory__sku",
     [
-        ("56ca5f64-93db-4517-a380-9adac4a9d11c"),
-        ("bd8cead1-8f2a-4dc4-81a2-c6415fdb993a"),
-        ("98c33e3d-2211-4374-9fd6-c09025e13cc6"),
-        ("ba40e4ef-9eae-46d9-bc0b-ed0829d949c0"),
-        ("282684cc-a1cd-40ed-9923-4ff9aaf79ba9"),
+        ("SKU-56CA5F6493DB"),
+        ("SKU-BD8CEAD18F2A"),
+        ("SKU-98C33E3D2211"),
+        ("SKU-BA40E4EF9EAE"),
+        ("SKU-282684CCA1CD"),
     ],
 )
 def test_inventory_media_insert_data(db, media_factory, product_inventory__sku):
@@ -538,37 +567,37 @@ def test_inventory_media_insert_data(db, media_factory, product_inventory__sku):
     "id, product_inventory, last_checked, units, units_sold",
     [
         (
-            "a34a551a-8b32-4699-83a5-18a23a3019f5",
-            "81d9e0e0-b2e0-433e-a3c5-ed4053a33f2c",
-            "2021-09-04 22:14:18",
+            "b8e233ab-bc57-47d7-b765-0d25d76fccd0",
+            "2ce051d9-b107-470a-90d7-a1f3f8d17442",
+            "2024-02-15 22:14:18",
             135,
             45,
         ),
         (
-            "16bfe0d8-6b78-4a3c-ac5d-211dc2c6b232",
-            "52ac6b58-850a-46b8-a70b-b85986d35f45",
-            "2021-09-04 22:14:18",
+            "87b87f49-b924-4893-a500-b914b9c08e17",
+            "bfcd7b0b-24c6-40e9-a668-2090982dbad2",
+            "2024-02-15 22:14:18",
             135,
             45,
         ),
         (
-            "5b20a714-4473-4fef-98db-0c400145c724",
-            "c420854f-b508-4431-a333-bb4e8d27e820",
-            "2021-09-04 22:14:18",
+            "8fd0abc5-4cb9-498d-b0a2-f913f340f492",
+            "9dd63498-1c63-4116-9ec5-7488e380398d",
+            "2024-02-15 22:14:18",
             135,
             45,
         ),
         (
-            "7f91dac4-42cc-4f77-a652-64a2f7ec2330",
-            "ccbda026-b07a-4452-8877-fff66d407ce2",
-            "2021-09-04 22:14:18",
+            "79ee91d1-7088-402c-be9e-c0ac0ba727f0",
+            "9f45c36e-e639-4659-916b-84de5b58ec84",
+            "2024-02-15 22:14:18",
             135,
             45,
         ),
         (
-            "0972702b-3420-411a-9302-fabc854f1312",
-            "5e61c59b-194e-4b70-8cc5-f058b25d589f",
-            "2021-09-04 22:14:18",
+            "7a9e7e2d-a427-4b58-b3fb-90f193d98da5",
+            "0b31921a-30c9-4974-87e9-73677bbf345f",
+            "2024-02-15 22:14:18",
             135,
             45,
         ),
@@ -588,7 +617,9 @@ def test_inventory_stock_dbfixture(
     """
 
     result = models.Stock.objects.get(id=id)
-    result_last_checked = result.last_checked.strftime("%Y-%m-%d %H:%M:%S")
+    result_last_checked = timezone.localtime(result.last_checked).strftime(
+        "%Y-%m-%d %H:%M:%S"
+    )
 
     assert result.product_inventory.id == product_inventory
     assert result_last_checked == last_checked
@@ -599,11 +630,11 @@ def test_inventory_stock_dbfixture(
 @pytest.mark.parametrize(
     "product_inventory__sku",
     [
-        ("dc3caef3-95cf-468e-a4c3-d20f5209b0eb"),
-        ("9f525d9c-5531-42d7-a947-f6c155209103"),
-        ("4410f9a6-a738-4eaf-968a-05cd3bc2927b"),
-        ("fad708af-cc9a-4e7b-a7c7-845a9cbb3759"),
-        ("7a281fe3-ab1c-4d73-87fc-8b05d16203ce"),
+        ("SKU-DC3CAEF395CF"),
+        ("SKU-9F525D9C5531"),
+        ("SKU-4410F9A6A738"),
+        ("SKU-FAD708AFCC9A"),
+        ("SKU-7A281FE3AB1C"),
     ],
 )
 def test_inventory_stock_insert_data(db, stock_factory, product_inventory__sku):
@@ -620,82 +651,82 @@ def test_inventory_stock_insert_data(db, stock_factory, product_inventory__sku):
 
 @pytest.mark.dbfixture
 @pytest.mark.parametrize(
-    "id, name, description",
+    "id, name",
     [
         (
-            "ef9b6bbb-1b69-4aac-bb21-a2922a0b0a30",
-            "Product Attribute 1",
-            "Product Attribute 1 Description",
+            "9e7f8df0-c163-4ed8-a532-323067f8b98f",
+            "Product Attribute 02",
         ),
         (
-            "e8e8fe4f-fe44-4f40-a124-a1ca387ace41",
-            "Product Attribute 15",
-            "Product Attribute 15 Description",
+            "2a3d2c93-c874-478d-9673-b5283b20057e",
+            "Product Attribute 04",
         ),
         (
-            "b25da9d7-e690-42b1-bf2a-bf827cef62a7",
-            "Product Attribute 22",
-            "Product Attribute 22 Description",
+            "aac747f7-1d7a-46fa-99a6-3aa123e20a14",
+            "Product Attribute 06",
         ),
         (
-            "d833da40-7ece-48fd-8d2d-89536b3a40f5",
-            "Product Attribute 30",
-            "Product Attribute 30 Description",
+            "c985d780-3097-4845-b263-a8c159c2af04",
+            "Product Attribute 08",
         ),
         (
-            "39038145-9348-4070-a3a1-ac2f44cf3390",
-            "Product Attribute 44",
-            "Product Attribute 44 Description",
+            "7b36e7fa-af91-41ff-872f-ca3ff722ab97",
+            "Product Attribute 10",
         ),
     ],
 )
-def test_inventory_product_attribute_dbfixture(
-    db, db_fixture_setup, id, name, description
-):
+def test_inventory_product_attribute_dbfixture(db, db_fixture_setup, id, name):
     """
     Test to verify the ProductAttribute model data loaded from the fixture.
     """
 
     result = models.ProductAttribute.objects.get(id=id)
 
+    assert result.id == id
     assert result.name == name
-    assert result.description == description
 
 
 @pytest.mark.parametrize(
-    "name, description",
+    "name",
     [
-        ("Test Product Attribute 1", "Test Product Attribute 1 Description"),
-        ("Test Product Attribute 2", "Test Product Attribute 2 Description"),
-        ("Test Product Attribute 3", "Test Product Attribute 3 Description"),
-        ("Test Product Attribute 4", "Test Product Attribute 4 Description"),
-        ("Test Product Attribute 5", "Test Product Attribute 5 Description"),
+        ("Test Product Attribute 01"),
+        ("Test Product Attribute 02"),
+        ("Test Product Attribute 03"),
+        ("Test Product Attribute 04"),
+        ("Test Product Attribute 05"),
     ],
 )
-def test_inventory_product_attrubite_insert_data(
-    db, product_attribute_factory, name, description
-):
+def test_inventory_product_attribute_insert_data(db, product_attribute_factory, name):
     """
     Test to verify the ProductAttribute model data inserted using the factory.
     """
 
-    new_attribute = product_attribute_factory.create(name=name, description=description)
+    new_attribute = product_attribute_factory.create(name=name)
 
     assert new_attribute.name == name
-    assert new_attribute.description == description
 
 
-def test_inventory_product_attrubite_uniqueness_integrity(
-    db, product_attribute_factory
+@pytest.mark.parametrize(
+    "name",
+    [
+        ("Test Product Attribute 11"),
+        ("Test Product Attribute 12"),
+        ("Test Product Attribute 13"),
+        ("Test Product Attribute 14"),
+        ("Test Product Attribute 15"),
+    ],
+)
+def test_inventory_product_attribute_uniqueness_integrity(
+    db, product_attribute_factory, name
 ):
     """
     Test to verify the ProductAttribute model data uniqueness integrity.
     """
 
-    product_attribute_factory.create(name="Test Product Attribute")
+    product_attribute_factory.create(name=name)
 
     with pytest.raises(IntegrityError):
-        product_attribute_factory.create(name="Test Product Attribute")
+        product_attribute_factory.create(name=name)
 
 
 @pytest.mark.dbfixture
@@ -703,29 +734,29 @@ def test_inventory_product_attrubite_uniqueness_integrity(
     "id, product_attribute, attribute_value",
     [
         (
-            "6b3a4165-8de3-4437-ac37-c72074e3de32",
-            "ef9b6bbb-1b69-4aac-bb21-a2922a0b0a30",
-            "Product Attribute Value 1-1",
+            "61f5a632-27b9-4018-bd07-7cfc6da73174",
+            "68d5dc34-1f2d-4cec-98c7-73c7f57945b5",
+            "Product Attribute Value 001 - 02",
         ),
         (
-            "c24208e4-129f-48fb-85df-7a2ccb941aa6",
-            "be05405d-0779-4d25-813d-a8ed09a19d61",
-            "Product Attribute Value 5-3",
+            "f49246c1-c937-4902-b531-a0c2e9665eb4",
+            "9e7f8df0-c163-4ed8-a532-323067f8b98f",
+            "Product Attribute Value 002 - 02",
         ),
         (
-            "cee450ba-fbac-4c16-88df-61efaf526b0f",
-            "a2f38f38-b213-4eca-866d-0acfe85c635e",
-            "Product Attribute Value 11-1",
+            "3057dce7-299a-4730-bf0f-b4f77242cf77",
+            "d5e2b472-5232-4f73-a78a-cdb94462d56c",
+            "Product Attribute Value 003 - 02",
         ),
         (
-            "1fe9e679-8d30-4315-b803-93ec622a1ca0",
-            "01380a78-56ba-4a79-93a2-e04d68372e14",
-            "Product Attribute Value 16-4",
+            "a560e912-5cf9-4ff5-95d8-8719772f7a83",
+            "2a3d2c93-c874-478d-9673-b5283b20057e",
+            "Product Attribute Value 004 - 02",
         ),
         (
-            "72cdf8f1-c1a5-4dcf-9279-7bac1beea662",
-            "16564be4-1078-4ba3-9c86-2c8c35dcaeea",
-            "Product Attribute Value 24-6",
+            "e12733be-8fc8-4110-a7a2-95558fc36d5b",
+            "5da3785b-9bfb-4ac3-823f-dbf80603789f",
+            "Product Attribute Value 005 - 02",
         ),
     ],
 )
@@ -738,6 +769,7 @@ def test_inventory_product_attribute_value_dbfixture(
 
     result = models.ProductAttributeValue.objects.get(id=id)
 
+    assert result.id == id
     assert result.product_attribute.id == product_attribute
     assert result.attribute_value == attribute_value
 
@@ -745,11 +777,11 @@ def test_inventory_product_attribute_value_dbfixture(
 @pytest.mark.parametrize(
     "attribute_value, product_attribute__name",
     [
-        ("Test Attribute Value 1-1", "Test Attribute 1"),
-        ("Test Attribute Value 1-2", "Test Attribute 1"),
-        ("Test Attribute Value 1-3", "Test Attribute 1"),
-        ("Test Attribute Value 2-1", "Test Attribute 2"),
-        ("Test Attribute Value 2-2", "Test Attribute 2"),
+        ("Test Attribute Value 001 - 01", "Test Attribute 001"),
+        ("Test Attribute Value 001 - 02", "Test Attribute 001"),
+        ("Test Attribute Value 001 - 03", "Test Attribute 001"),
+        ("Test Attribute Value 002 - 01", "Test Attribute 002"),
+        ("Test Attribute Value 002 - 02", "Test Attribute 002"),
     ],
 )
 def test_inventory_product_attribute_value_insert_data(

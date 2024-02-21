@@ -217,7 +217,14 @@ class RestAPICategoriesProducts(viewsets.GenericViewSet, mixins.ListModelMixin):
                 type=openapi.TYPE_INTEGER,
                 description="Page number for the paginated response",
                 required=True,
-            )
+            ),
+            openapi.Parameter(
+                name="id",
+                in_=openapi.IN_PATH,
+                type=openapi.TYPE_STRING,
+                description="Category ID",
+                required=True,
+            ),
         ],
         responses={
             status.HTTP_200_OK: openapi.Response(
@@ -409,7 +416,14 @@ class RestAPIProductTypesProducts(viewsets.GenericViewSet, mixins.ListModelMixin
                 type=openapi.TYPE_INTEGER,
                 description="Page number for the paginated response",
                 required=True,
-            )
+            ),
+            openapi.Parameter(
+                name="id",
+                in_=openapi.IN_PATH,
+                type=openapi.TYPE_STRING,
+                description="Product Type ID",
+                required=True,
+            ),
         ],
         responses={
             status.HTTP_200_OK: openapi.Response(
@@ -601,7 +615,14 @@ class RestAPIBrandsProducts(viewsets.GenericViewSet, mixins.ListModelMixin):
                 type=openapi.TYPE_INTEGER,
                 description="Page number for the paginated response",
                 required=True,
-            )
+            ),
+            openapi.Parameter(
+                name="id",
+                in_=openapi.IN_PATH,
+                type=openapi.TYPE_STRING,
+                description="Brand ID",
+                required=True,
+            ),
         ],
         responses={
             status.HTTP_200_OK: openapi.Response(
@@ -886,3 +907,204 @@ class RestAPIProductInventory(
                 {"detail": "ProductInventory not found."},
                 status=status.HTTP_404_NOT_FOUND,
             )
+
+
+class RestAPIPromotions(
+    viewsets.GenericViewSet, mixins.ListModelMixin, mixins.RetrieveModelMixin
+):
+    """
+    This viewset automatically provides `list` and `retrieve` actions for the promotions.
+    """
+
+    queryset = Promotion.objects.all()
+    pagination_class = pagination.PageNumberPagination
+
+    @swagger_auto_schema(
+        operation_id="restapi_promotions_list",
+        operation_description="List of Promotions",
+        manual_parameters=[
+            openapi.Parameter(
+                name="page",
+                default=1,
+                in_=openapi.IN_QUERY,
+                type=openapi.TYPE_INTEGER,
+                description="Page number for the paginated response",
+                required=True,
+            ),
+        ],
+        responses={
+            status.HTTP_200_OK: openapi.Response(
+                description="List of Promotion objects",
+                schema=PromotionListSerializer(many=True),
+            ),
+            status.HTTP_400_BAD_REQUEST: openapi.Response(
+                description="Page not found",
+                schema=openapi.Schema(
+                    type=openapi.TYPE_OBJECT,
+                    properties={
+                        "detail": openapi.Schema(
+                            type=openapi.TYPE_STRING,
+                            description="Invalid page.",
+                        ),
+                    },
+                ),
+            ),
+        },
+        tags=["Promotions"],
+    )
+    def list(self, request):
+        """
+        Override the list method to paginate the queryset manually.
+        """
+
+        page = self.paginate_queryset(self.queryset)
+
+        if page is not None:
+            serializer = PromotionListSerializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+
+        serializer = PromotionListSerializer(self.queryset, many=True)
+        return Response(serializer.data)
+
+    @swagger_auto_schema(
+        operation_id="restapi_promotions_retrieve",
+        operation_description="Retrieve a Promotion by ID",
+        responses={
+            status.HTTP_200_OK: openapi.Response(
+                description="Promotion object",
+                schema=PromotionRetrieveSerializer(),
+            ),
+            status.HTTP_400_BAD_REQUEST: openapi.Response(
+                description="Promotion ID required",
+                schema=openapi.Schema(
+                    type=openapi.TYPE_OBJECT,
+                    properties={
+                        "detail": openapi.Schema(
+                            type=openapi.TYPE_STRING,
+                            description="Promotion ID required.",
+                        ),
+                    },
+                ),
+            ),
+            status.HTTP_404_NOT_FOUND: openapi.Response(
+                description="Promotion not found",
+                schema=openapi.Schema(
+                    type=openapi.TYPE_OBJECT,
+                    properties={
+                        "detail": openapi.Schema(
+                            type=openapi.TYPE_STRING,
+                            description="Promotion not found.",
+                        ),
+                    },
+                ),
+            ),
+        },
+        tags=["Promotions"],
+    )
+    def retrieve(self, request, id=None):
+        """
+        Override the retrieve method to return the promotion details.
+        """
+
+        if id is None:
+            return Response(
+                {"detail": "Promotion ID required."},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        try:
+            queryset = self.queryset.get(id=id)
+            serializer = PromotionRetrieveSerializer(queryset)
+            return Response(serializer.data)
+        except Promotion.DoesNotExist:
+            return Response(
+                {"detail": "Promotion not found."},
+                status=status.HTTP_404_NOT_FOUND,
+            )
+
+
+class RestAPIPromotionsProductInventories(
+    viewsets.GenericViewSet, mixins.ListModelMixin
+):
+    """
+    This viewset automatically provides `list` action for the product inventories under a promotion.
+    """
+
+    queryset = ProductInventory.objects.all()
+    pagination_class = pagination.PageNumberPagination
+
+    @swagger_auto_schema(
+        operation_id="restapi_promotions_product_inventories_list",
+        operation_description="List of Product Inventories under a Promotion",
+        manual_parameters=[
+            openapi.Parameter(
+                name="page",
+                default=1,
+                in_=openapi.IN_QUERY,
+                type=openapi.TYPE_INTEGER,
+                description="Page number for the paginated response",
+                required=True,
+            ),
+            openapi.Parameter(
+                name="id",
+                in_=openapi.IN_PATH,
+                type=openapi.TYPE_STRING,
+                description="Promotion ID",
+                required=True,
+            ),
+        ],
+        responses={
+            status.HTTP_200_OK: openapi.Response(
+                description="Product Inventories under a Promotion",
+                schema=ProductInventoryListSerializer(many=True),
+            ),
+            status.HTTP_400_BAD_REQUEST: openapi.Response(
+                description="Page not found",
+                schema=openapi.Schema(
+                    type=openapi.TYPE_OBJECT,
+                    properties={
+                        "detail": openapi.Schema(
+                            type=openapi.TYPE_STRING,
+                            description="Invalid page.",
+                        ),
+                    },
+                ),
+            ),
+            status.HTTP_404_NOT_FOUND: openapi.Response(
+                description="Promotion not found",
+                schema=openapi.Schema(
+                    type=openapi.TYPE_OBJECT,
+                    properties={
+                        "detail": openapi.Schema(
+                            type=openapi.TYPE_STRING,
+                            description="Promotion not found.",
+                        ),
+                    },
+                ),
+            ),
+        },
+        tags=["Promotions"],
+    )
+    def list(self, request, id=None):
+        """
+        Override the list method to paginate the queryset manually.
+        """
+
+        page = request.query_params.get("page", 1)
+        promotion_id = id
+
+        if page is not None:
+            queryset = self.queryset.filter(promotions__id=promotion_id)
+
+            if not queryset.exists():
+                return Response(
+                    {"detail": "Promotion not found."},
+                    status=status.HTTP_404_NOT_FOUND,
+                )
+
+            page = self.paginate_queryset(queryset)
+            serializer = ProductInventoryListSerializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+
+        serializer = ProductInventoryListSerializer(self.queryset, many=True)
+        return Response(serializer.data)

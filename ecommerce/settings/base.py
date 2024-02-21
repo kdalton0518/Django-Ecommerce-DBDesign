@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     "corsheaders",
     "django_extensions",
     "django_bootstrap5",
+    "mptt",
     "django_elasticsearch_dsl",
     "rest_framework",
     "drf_yasg",
@@ -42,6 +43,7 @@ INSTALLED_APPS = [
     "ecommerce.apps.inventory.apps.InventoryConfig",
     "ecommerce.apps.management.apps.ManagementConfig",
     "ecommerce.apps.demo.apps.DemoConfig",
+    "ecommerce.apps.promotion.apps.PromotionConfig",
     "ecommerce.apps.jwtauth.apps.JwtauthConfig",
     "ecommerce.apps.restapi.apps.RestapiConfig",
 ]
@@ -116,8 +118,11 @@ STATIC_ROOT = BASE_DIR.parent / "staticfiles" / "static"
 
 
 # Set the static files storage
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
-
+STORAGES = {
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
