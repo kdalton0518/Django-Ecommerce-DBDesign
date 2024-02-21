@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     "corsheaders",
     "django_extensions",
     "django_bootstrap5",
+    "mptt",
     "django_elasticsearch_dsl",
     "rest_framework",
     "drf_yasg",
@@ -117,8 +118,11 @@ STATIC_ROOT = BASE_DIR.parent / "staticfiles" / "static"
 
 
 # Set the static files storage
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
-
+STORAGES = {
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
@@ -140,7 +144,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Elastic search configuration
 ELASTICSEARCH_DSL = {
     "default": {
-        "hosts": ["http://esearch:9200", "http://esearch:9300"],
+        "hosts": ["http://localhost:9200", "http://localhost:9300"],
         "http_auth": ("admin", "admin"),
     }
 }

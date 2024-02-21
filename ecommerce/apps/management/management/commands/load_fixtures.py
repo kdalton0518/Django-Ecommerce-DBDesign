@@ -24,25 +24,25 @@ class Command(BaseCommand):
             call_command("migrate")
 
             # Load fixtures with potential dependencies
-            self.load_fixture("db_admin_fixture.json")
-            self.load_fixture("db_type_fixture.json")
-            self.load_fixture("db_brand_fixture.json")
-            self.load_fixture("db_product_attribute_fixture.json")
-            self.load_fixture("db_product_attribute_value_fixture.json")
-            self.load_fixture("db_category_fixture.json")
+            self.load_fixture("main_db_admin_fixture.json")
+            self.load_fixture("main_db_type_fixture.json")
+            self.load_fixture("main_db_brand_fixture.json")
+            self.load_fixture("main_db_product_attribute_fixture.json")
+            self.load_fixture("main_db_product_attribute_value_fixture.json")
+            self.load_fixture("main_db_category_fixture.json")
 
             # Load promotion-related fixtures
-            self.load_fixture("db_promotion_type_fixture.json")
-            self.load_fixture("db_coupon_fixture.json")
-            self.load_fixture("db_promotion_fixture.json")
+            self.load_fixture("main_db_promotion_type_fixture.json")
+            self.load_fixture("main_db_coupon_fixture.json")
+            self.load_fixture("main_db_promotion_fixture.json")
 
             # Load product-related fixtures
-            self.load_fixture("db_product_fixture.json")
-            self.load_fixture("db_product_inventory_fixture.json")
+            self.load_fixture("main_db_product_fixture.json")
+            self.load_fixture("main_db_product_inventory_fixture.json")
 
             # Load remaining fixtures
-            self.load_fixture("db_media_fixture.json")
-            self.load_fixture("db_stock_fixture.json")
+            self.load_fixture("main_db_media_fixture.json")
+            self.load_fixture("main_db_stock_fixture.json")
 
             self.stdout.write(self.style.SUCCESS("Successfully loaded all fixtures."))
 

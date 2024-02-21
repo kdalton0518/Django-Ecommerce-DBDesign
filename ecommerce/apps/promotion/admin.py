@@ -14,8 +14,6 @@ class PromotionTypeAdmin(admin.ModelAdmin):
         "id",
         "name",
     )
-    list_filter = ("name",)
-    search_fields = ("name",)
     readonly_fields = ("id",)
 
 
@@ -33,7 +31,6 @@ class CouponAdmin(admin.ModelAdmin):
         "code",
         "description",
     )
-    list_filter = ("name", "code")
     search_fields = ("name", "code", "description")
     readonly_fields = (
         "id",
@@ -62,7 +59,6 @@ class PromotionAdmin(admin.ModelAdmin):
         "coupon",
     )
     list_filter = (
-        "name",
         "promotion_reduction",
         "is_active",
         "is_schedule",

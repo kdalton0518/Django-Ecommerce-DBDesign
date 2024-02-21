@@ -27,7 +27,6 @@ class CategoryAdmin(admin.ModelAdmin):
         "slug",
         "parent",
     )
-    list_filter = ("parent",)
     search_fields = ("name",)
     prepopulated_fields = {"slug": ("name",)}
     readonly_fields = ("id",)
@@ -107,7 +106,6 @@ class ProductInventoryAdmin(admin.ModelAdmin):
     """
 
     list_display = (
-        "product_type",
         "product",
         "brand",
         "is_active",
@@ -134,7 +132,11 @@ class ProductInventoryAdmin(admin.ModelAdmin):
         "created_at",
         "updated_at",
     )
-    list_filter = ("is_active",)
+    list_filter = (
+        "is_active",
+        "is_on_sale",
+        "is_digital",
+    )
     search_fields = (
         "product_type__name, product__name",
         "brand__name",
@@ -160,7 +162,6 @@ class ProductAttributeAdmin(admin.ModelAdmin):
 
     list_display = ("name",)
     fields = ("id", "name", "description")
-    list_filter = ("name",)
     search_fields = ("name", "description")
     readonly_fields = ("id",)
 
@@ -174,7 +175,6 @@ class ProductAttributeValueAdmin(admin.ModelAdmin):
 
     list_display = ("product_attribute", "attribute_value")
     fields = ("id", "product_attribute", "attribute_value")
-    list_filter = ("product_attribute", "attribute_value")
     search_fields = ("product_attribute", "attribute_value")
     autocomplete_fields = ["product_attribute"]
     readonly_fields = ("id",)
