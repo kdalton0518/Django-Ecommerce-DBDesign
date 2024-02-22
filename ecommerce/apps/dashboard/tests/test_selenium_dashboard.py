@@ -23,10 +23,10 @@ def test_dashboard_admin_login(live_server, db_fixture_setup, chrome_browser_ins
     assert "Log in | Django site admin" in browser.title
 
     username = browser.find_element(By.CSS_SELECTOR, "input#id_username")
-    username.send_keys("test_admin")
+    username.send_keys("admin")
 
     password = browser.find_element(By.CSS_SELECTOR, "input#id_password")
-    password.send_keys("test_admin")
+    password.send_keys("admin")
 
     password.send_keys(Keys.RETURN)
 

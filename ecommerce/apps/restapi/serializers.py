@@ -238,7 +238,20 @@ class PromotionRetrieveSerializer(serializers.ModelSerializer):
 
     promotion_type = PromotionTypeSerializer()
     coupon = PromotionCouponSerializer()
+    products_on_promotion = serializers.SerializerMethodField()
 
     class Meta:
         model = Promotion
         fields = "__all__"
+
+    def get_products_on_promotion(self, obj):
+        all_products_on_promotion = ProductsOnPromotion.objects.filter(promotion=obj)
+
+        return [
+            {
+                "product_inventory": item.product_inventory.id,
+                "price_override": item.price_override,
+                "promotion_price": item.promotion_price,
+            }
+            for item in all_products_on_promotion
+        ]

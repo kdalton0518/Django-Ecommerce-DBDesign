@@ -4,7 +4,6 @@ from django.utils.translation import gettext_lazy as _
 from mptt.models import MPTTModel, TreeForeignKey, TreeManyToManyField
 from decimal import Decimal
 from django.core.validators import MinValueValidator, MaxValueValidator
-from ecommerce.apps.promotion.models import Promotion
 
 
 class Category(MPTTModel):
@@ -349,9 +348,6 @@ class ProductInventory(models.Model):
         product (ForeignKey): A ForeignKey that links to the Product model. It represents the product itself.
         brand (ForeignKey): A ForeignKey that links to the Brand model. It represents the brand of the product.
         attribute_values (ManyToManyField): A ManyToManyField that represents the product attributes of the product.
-        promotions (ManyToManyField): A ManyToManyField that represents the promotions of the product. It is not required and can be null.
-        promotion_price (DecimalField): A DecimalField that stores the promotion price of the product. It is not required and can be null. It has a maximum value of 9999.99.
-        price_override (BooleanField): A BooleanField that indicates whether the price of the product has been overridden. It is required and its default value is False.
         is_active (BooleanField): A BooleanField that indicates whether the product is active. It is required and its default value is True.
         retail_price (DecimalField): A DecimalField that stores the recommended retail price of the product. It is required and has a maximum value of 9999.99.
         store_price (DecimalField): A DecimalField that stores the regular store price of the product. It is required and has a maximum value of 9999.99.
@@ -401,28 +397,6 @@ class ProductInventory(models.Model):
     attribute_values = models.ManyToManyField(
         ProductAttributeValue,
         related_name="product_attribute_values",
-    )
-    promotions = models.ManyToManyField(
-        Promotion,
-        related_name="product_promotions",
-    )
-    promotion_price = models.DecimalField(
-        max_digits=6,
-        decimal_places=2,
-        unique=False,
-        null=False,
-        blank=False,
-        verbose_name=_("Promotion Price"),
-        validators=[
-            MinValueValidator(Decimal(0.01)),
-            MaxValueValidator(Decimal(9999.99)),
-        ],
-    )
-    price_override = models.BooleanField(
-        null=False,
-        blank=False,
-        default=False,
-        verbose_name=_("Price Override"),
     )
     is_active = models.BooleanField(
         default=True,

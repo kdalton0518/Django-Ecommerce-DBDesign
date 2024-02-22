@@ -32,6 +32,16 @@ class CategoryAdmin(admin.ModelAdmin):
     readonly_fields = ("id",)
 
 
+class CategoryInline(admin.TabularInline):
+    """
+    The CategoryInline class inherits from Django's TabularInline class.
+    It represents the inline interface for the Category model.
+    """
+
+    model = Product.category.through
+    extra = 1
+
+
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     """
@@ -50,7 +60,6 @@ class ProductAdmin(admin.ModelAdmin):
         "slug",
         "description",
         "is_active",
-        "category",
         "created_at",
         "updated_at",
     )
@@ -64,6 +73,7 @@ class ProductAdmin(admin.ModelAdmin):
         "created_at",
         "updated_at",
     )
+    inlines = [CategoryInline]
 
 
 @admin.register(ProductType)
@@ -98,6 +108,16 @@ class BrandAdmin(admin.ModelAdmin):
     readonly_fields = ("id",)
 
 
+class AttributeValuesInline(admin.TabularInline):
+    """
+    The AttributeValuesInline class inherits from Django's TabularInline class.
+    It represents the inline interface for the ProductAttributeValue model.
+    """
+
+    model = ProductInventory.attribute_values.through
+    extra = 1
+
+
 @admin.register(ProductInventory)
 class ProductInventoryAdmin(admin.ModelAdmin):
     """
@@ -119,14 +139,10 @@ class ProductInventoryAdmin(admin.ModelAdmin):
         "product_type",
         "product",
         "brand",
-        "attribute_values",
         "is_active",
         "retail_price",
         "store_price",
         "weight",
-        "promotions",
-        "promotion_price",
-        "price_override",
         "is_on_sale",
         "is_digital",
         "created_at",
@@ -151,6 +167,7 @@ class ProductInventoryAdmin(admin.ModelAdmin):
         "created_at",
         "updated_at",
     )
+    inlines = [AttributeValuesInline]
 
 
 @admin.register(ProductAttribute)

@@ -49,6 +49,14 @@
 #             "code": fields.KeywordField(),
 #         }
 #     )
+#     products_on_promotion = fields.NestedField(
+#         properties={
+#             "id": fields.KeywordField(),
+#             "product_inventory": fields.KeywordField(),
+#             "promotion_price": fields.FloatField(),
+#             "price_override": fields.BooleanField(),
+#         }
+#     )
 
 #     class Index:
 #         name = "product_types"

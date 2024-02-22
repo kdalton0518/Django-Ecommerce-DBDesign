@@ -199,23 +199,19 @@
                                     <tr>
                                         <th scope="col">Promotion Name</th>
                                         <th scope="col">Reduction</th>
+                                        <th scope="col">Promo Price</th>
                                         <th scope="col">Is Active</th>
-                                        <th scope="col">Is Schedule</th>
-                                        <th scope="col">Start Date</th>
-                                        <th scope="col">End Date</th>
                                         <th scope="col">Type</th>
-                                        <th scope="col">Coupon</th>
+                                        <th scope="col">Coupon Code</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {% for promo in inventory.product_inventory.promotions.all %}
+                                    {% for promo in inventory.promotions %}
                                         <tr>
                                             <td>{{ promo.name }}</td>
                                             <td>{{ promo.promotion_reduction }} %</td>
+                                            <td>{{ promo.promotion_price }} USD</td>
                                             <td>{{ promo.is_active }}</td>
-                                            <td>{{ promo.is_schedule }}</td>
-                                            <td>{{ promo.promotion_start }}</td>
-                                            <td>{{ promo.promotion_end }}</td>
                                             <td>{{ promo.promotion_type }}</td>
                                             <td>{{ promo.coupon }}</td>
                                         </tr>
