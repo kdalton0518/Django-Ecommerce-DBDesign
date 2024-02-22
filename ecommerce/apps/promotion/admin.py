@@ -1,5 +1,7 @@
+from typing import Any
 from django.contrib import admin
 from ecommerce.apps.promotion.models import *
+from ecommerce.apps.promotion.tasks import *
 
 
 @admin.register(PromotionType)
@@ -38,6 +40,16 @@ class CouponAdmin(admin.ModelAdmin):
     )
 
 
+class ProductsOnPromotionInline(admin.TabularInline):
+    """
+    The ProductsOnPromotionInline class inherits from Django's TabularInline class.
+    It represents the inline interface for the ProductsOnPromotion model.
+    """
+
+    model = Promotion.products_on_promotion.through
+    extra = 1
+
+
 @admin.register(Promotion)
 class PromotionAdmin(admin.ModelAdmin):
     """
@@ -68,3 +80,11 @@ class PromotionAdmin(admin.ModelAdmin):
     search_fields = ("name", "description")
     autocomplete_fields = ("coupon",)
     readonly_fields = ("id",)
+    inlines = [ProductsOnPromotionInline]
+
+    def save_model(self, request, obj, form, change) -> None:
+        """
+        The save_model method allows us to override the default behavior of the save_model method.
+        """
+        super().save_model(request, obj, form, change)
+        promotion_prices(obj.promotion_reduction, obj.id)

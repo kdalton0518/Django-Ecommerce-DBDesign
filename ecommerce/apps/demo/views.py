@@ -1,6 +1,7 @@
 from django.views.generic import View
 from django.shortcuts import render
 from ecommerce.apps.inventory import models as inventory_models
+from ecommerce.apps.promotion import models as promotion_models
 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
@@ -152,12 +153,33 @@ class DemoProductDetailView(View):
             stock = inventory_models.Stock.objects.get(product_inventory=pi)
             media = inventory_models.Media.objects.filter(product_inventory=pi)
 
+            products_on_promotion = promotion_models.ProductsOnPromotion.objects.filter(
+                product_inventory=pi
+            )
+
+            promotions_list = []
+
+            for item in products_on_promotion:
+                promotion = promotion_models.Promotion.objects.get(id=item.promotion.id)
+
+                promotions_list.append(
+                    {
+                        "name": promotion.name,
+                        "promotion_reduction": promotion.promotion_reduction,
+                        "is_active": promotion.is_active,
+                        "promotion_type": promotion.promotion_type,
+                        "coupon": promotion.coupon.code,
+                        "promotion_price": item.promotion_price,
+                    }
+                )
+
             product_inventory_stock_media_map.append(
                 {
                     "product_inventory": pi,
                     "stock": stock,
                     "media": media,
                     "attribute_values": pi.attribute_values.all(),
+                    "promotions": promotions_list,
                 }
             )
 

@@ -4,6 +4,8 @@ from django.utils.translation import gettext_lazy as _
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.core.exceptions import ValidationError
 
+from ecommerce.apps.inventory.models import ProductInventory
+
 
 class PromotionType(models.Model):
     """
@@ -126,6 +128,7 @@ class Promotion(models.Model):
                                    The verbose name is "Promotion End" and the help text is "format: required, date".
         promotion_type (ForeignKey): A ForeignKey that links to the PromotionType model. It is required.
                                      The verbose name is "Promotion Type" and the help text is "format: required, foreign key".
+        products_on_promotion (ManyToManyField): A ManyToManyField that links to the ProductInventory model through the ProductsOnPromotion model.
         coupon (ForeignKey): A ForeignKey that links to the Coupon model. It is not required and can be null.
                              The verbose name is "Coupon" and the help text is "format: required, foreign key".
 
@@ -197,6 +200,11 @@ class Promotion(models.Model):
         blank=True,
         unique=False,
     )
+    products_on_promotion = models.ManyToManyField(
+        ProductInventory,
+        related_name="products_on_promotion",
+        through="ProductsOnPromotion",
+    )
 
     promotion_type = models.ForeignKey(
         PromotionType,
@@ -235,3 +243,66 @@ class Promotion(models.Model):
         verbose_name = "Promotion"
         verbose_name_plural = "Promotions"
         ordering = ["-promotion_start", "-promotion_end"]
+
+
+class ProductsOnPromotion(models.Model):
+    """
+    This class represents the relationship between the Promotion and ProductInventory models.
+
+    Attributes:
+        id (CharField): The primary key for the ProductsOnPromotion model. It's a CharField that gets its default value
+                        from the uuid.uuid4 function and is not editable. It has a maximum length of 256 characters.
+        promotion (ForeignKey): A ForeignKey that links to the Promotion model. It is required.
+                                The verbose name is "Promotion" and the help text is "format: required, foreign key".
+        product_inventory (ForeignKey): A ForeignKey that links to the ProductInventory model. It is required.
+                                        The verbose name is "Product Inventory" and the help text is "format: required, foreign key".
+        promotion_price (DecimalField): A DecimalField that stores the promotion price. It is required and its default value is 0.
+                                        The verbose name is "Promotion Price" and the help text is "format: required, decimal".
+        price_override (BooleanField): A BooleanField that indicates whether the price is overridden. It is required and its default value is False.
+    """
+
+    id = models.CharField(
+        primary_key=True,
+        default=uuid.uuid4,
+        editable=False,
+        max_length=256,
+        validators=[MaxValueValidator(256)],
+    )
+    promotion = models.ForeignKey(
+        Promotion,
+        related_name="product_inventory_promotion",
+        verbose_name="Product Inventory Promotion",
+        on_delete=models.PROTECT,
+        help_text=_("format: required, foreign key"),
+        null=False,
+        blank=False,
+        unique=False,
+    )
+    product_inventory = models.ForeignKey(
+        ProductInventory,
+        related_name="promotion_product_inventory",
+        verbose_name="Promotion Product Inventory",
+        on_delete=models.PROTECT,
+        help_text=_("format: required, foreign key"),
+        null=False,
+        blank=False,
+        unique=False,
+    )
+    promotion_price = models.DecimalField(
+        verbose_name="Promotion Price",
+        help_text=_("format: required, decimal"),
+        max_digits=10,
+        decimal_places=2,
+        null=False,
+        blank=False,
+        unique=False,
+        default=0,
+    )
+    price_override = models.BooleanField(
+        verbose_name="Price Override",
+        help_text=_("format: required, boolean"),
+        null=False,
+        blank=False,
+        unique=False,
+        default=False,
+    )

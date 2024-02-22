@@ -11,3 +11,6 @@ __pycache__
 # Ignore README.md files
 README.md
 */README.md
+
+# Ignore windows chromedirver
+chromedriver.exe

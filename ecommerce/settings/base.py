@@ -119,6 +119,9 @@ STATIC_ROOT = BASE_DIR.parent / "staticfiles" / "static"
 
 # Set the static files storage
 STORAGES = {
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+    },
     "staticfiles": {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
@@ -144,7 +147,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Elastic search configuration
 ELASTICSEARCH_DSL = {
     "default": {
-        "hosts": ["http://localhost:9200", "http://localhost:9300"],
+        "hosts": ["http://esearch:9200", "http://esearch:9300"],
         "http_auth": ("admin", "admin"),
     }
 }
@@ -173,3 +176,9 @@ SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": datetime.timedelta(minutes=30),
     "REFRESH_TOKEN_LIFETIME": datetime.timedelta(minutes=60),
 }
+
+
+# Celery configuration
+CELERY_BROKER_URL = "redis://redis:6379/0"
+CELERY_RESULT_BACKEND = "redis://redis:6379/0"
+CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP = True

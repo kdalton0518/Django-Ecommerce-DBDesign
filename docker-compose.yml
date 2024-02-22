@@ -1,6 +1,20 @@
 version: "3.11"
 
 services:
+  web:
+    restart: always
+    container_name: web_ecommerce
+    build:
+      context: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - redis
+      - pgdb
+
   pgdb:
     container_name: pgdb_ecommerce
     image: postgres
@@ -40,21 +54,21 @@ services:
     ports:
       - 6379:6379
   
-  # celery:
-  #   container_name: celery_ecommerce
-  #   restart: always
-  #   build:
-  #     context: .
-  #     dockerfile: Dockerfile
-  #   command: celery -A ecommerce worker -l info
-  #   volumes:
-  #     - .:/usr/src/app
-  #   environment:
-  #     - DEBUG=1
-  #     - CELEERY_BROKER_URL=redis://redis:6379/0
-  #     - CELERY_RESULT_BACKEND=redis://redis:6379/0
-  #   depends_on:
-  #     - redis
+  celery:
+    container_name: celery_ecommerce
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: celery -A ecommerce worker -l info
+    volumes:
+      - .:/usr/src/app
+    environment:
+      - DEBUG=1
+      - CELEERY_BROKER_URL=redis://redis:6379/0
+      - CELERY_RESULT_BACKEND=redis://redis:6379/0
+    depends_on:
+      - redis
   
   # celery-beat:
   #   container_name: celery_beat_ecommerce

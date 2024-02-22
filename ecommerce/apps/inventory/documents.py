@@ -120,7 +120,6 @@
 #     product = fields.KeywordField()
 #     brand = fields.KeywordField()
 #     attribute_values = fields.ListField(fields.KeywordField())
-#     promotions = fields.ListField(fields.KeywordField())
 #     media = fields.NestedField(
 #         properties={
 #             "id": fields.KeywordField(),
@@ -151,8 +150,6 @@
 #             "retail_price",
 #             "store_price",
 #             "weight",
-#             "promotion_price",
-#             "price_override",
 #             "is_on_sale",
 #             "is_digital",
 #             "created_at",
@@ -170,9 +167,6 @@
 
 #     def prepare_attribute_values(self, instance):
 #         return [str(value.id) for value in instance.attribute_values.all()]
-
-#     def prepare_promotions(self, instance):
-#         return [str(promotion.id) for promotion in instance.promotions.all()]
 
 #     def prepare_media(self, instance):
 #         return [
