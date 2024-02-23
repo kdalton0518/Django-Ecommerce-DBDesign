@@ -87,4 +87,5 @@ class PromotionAdmin(admin.ModelAdmin):
         The save_model method allows us to override the default behavior of the save_model method.
         """
         super().save_model(request, obj, form, change)
-        promotion_prices(obj.promotion_reduction, obj.id)
+        promotion_prices(obj.id)
+        promotion_management.delay()

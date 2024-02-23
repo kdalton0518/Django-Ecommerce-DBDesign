@@ -70,34 +70,34 @@ services:
     depends_on:
       - redis
   
-  # celery-beat:
-  #   container_name: celery_beat_ecommerce
-  #   restart: always
-  #   build:
-  #     context: .
-  #     dockerfile: Dockerfile
-  #   command: celery -A ecommerce beat -l info
-  #   volumes:
-  #     - .:/usr/src/app
-  #   depends_on:
-  #     - redis
-  #     - celery
+  celery-beat:
+    container_name: celery_beat_ecommerce
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: celery -A ecommerce beat -l info
+    volumes:
+      - .:/usr/src/app
+    depends_on:
+      - redis
+      - celery
   
-  # flower:
-  #   container_name: flower_ecommerce
-  #   image: mher/flower
-  #   restart: always
-  #   environment:
-  #     - CELEERY_BROKER_URL=redis://redis:6379/0
-  #     - CELERY_RESULT_BACKEND=redis://redis:6379/0
-  #   build:
-  #     context: .
-  #     dockerfile: Dockerfile
-  #   command: flower -A ecommerce --port=5555
-  #   volumes:
-  #     - .:/usr/src/app
-  #   ports:
-  #     - 5555:5555
-  #   depends_on:
-  #     - redis
-  #     - celery
+  flower:
+    container_name: flower_ecommerce
+    image: mher/flower
+    restart: always
+    environment:
+      - CELEERY_BROKER_URL=redis://redis:6379/0
+      - CELERY_RESULT_BACKEND=redis://redis:6379/0
+      - FLOWER_PORT=5555
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/usr/src/app
+    ports:
+      - 5555:5555
+    depends_on:
+      - redis
+      - celery
