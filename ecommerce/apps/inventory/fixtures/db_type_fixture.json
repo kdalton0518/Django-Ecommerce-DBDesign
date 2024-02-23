@@ -1,0 +1,72 @@
+[
+    {
+        "model": "inventory.producttype",
+        "pk": "c6b49f56-d8c0-4e30-bcad-e08dabdf4b76",
+        "fields": {
+            "name": "Product Type 01"
+        }
+    },
+    {
+        "model": "inventory.producttype",
+        "pk": "7aaa6a2e-bc01-4da7-a2cf-a8fb613bc312",
+        "fields": {
+            "name": "Product Type 02"
+        }
+    },
+    {
+        "model": "inventory.producttype",
+        "pk": "cb16a116-f687-4a65-9d2f-0d5d0c54dfae",
+        "fields": {
+            "name": "Product Type 03"
+        }
+    },
+    {
+        "model": "inventory.producttype",
+        "pk": "9c490b1f-da1f-4d06-8315-d746bbcb017f",
+        "fields": {
+            "name": "Product Type 04"
+        }
+    },
+    {
+        "model": "inventory.producttype",
+        "pk": "c4974851-397f-4b87-b2fa-b91df951fc5b",
+        "fields": {
+            "name": "Product Type 05"
+        }
+    },
+    {
+        "model": "inventory.producttype",
+        "pk": "235586d8-fa9b-41b6-9780-5fee8f2d0701",
+        "fields": {
+            "name": "Product Type 06"
+        }
+    },
+    {
+        "model": "inventory.producttype",
+        "pk": "5bc4b5f2-5b0c-45cf-bd93-db619a3163c2",
+        "fields": {
+            "name": "Product Type 07"
+        }
+    },
+    {
+        "model": "inventory.producttype",
+        "pk": "102778a9-1f01-4ff0-ab1e-d8308fae62bf",
+        "fields": {
+            "name": "Product Type 08"
+        }
+    },
+    {
+        "model": "inventory.producttype",
+        "pk": "a2227f26-2a45-4bd9-8f46-2bc9f7c5adab",
+        "fields": {
+            "name": "Product Type 09"
+        }
+    },
+    {
+        "model": "inventory.producttype",
+        "pk": "63cbbec6-f4af-4773-8757-b7326e7ab857",
+        "fields": {
+            "name": "Product Type 10"
+        }
+    }
+]

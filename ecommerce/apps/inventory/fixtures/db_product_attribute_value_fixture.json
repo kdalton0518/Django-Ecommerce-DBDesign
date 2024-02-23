@@ -1,0 +1,162 @@
+[
+    {
+        "model": "inventory.productattributevalue",
+        "pk": "eb5e7b93-b94c-4d71-b6fd-ee6322eeda22",
+        "fields": {
+            "product_attribute": "a0bb245f-2cf3-4b1a-923a-8157690f0a2c",
+            "attribute_value": "Product Attribute Value 001 - 01"
+        }
+    },
+    {
+        "model": "inventory.productattributevalue",
+        "pk": "e051a5ef-3f27-43f7-9a2b-587eda139e1f",
+        "fields": {
+            "product_attribute": "a0bb245f-2cf3-4b1a-923a-8157690f0a2c",
+            "attribute_value": "Product Attribute Value 001 - 02"
+        }
+    },
+    {
+        "model": "inventory.productattributevalue",
+        "pk": "59e100ea-b073-473e-b880-5fd0d7dc7cd2",
+        "fields": {
+            "product_attribute": "375f0c2a-e7e7-4331-87c7-74fc85c96aa0",
+            "attribute_value": "Product Attribute Value 002 - 01"
+        }
+    },
+    {
+        "model": "inventory.productattributevalue",
+        "pk": "27c54cad-de1d-4800-a6f6-22a77c84852d",
+        "fields": {
+            "product_attribute": "375f0c2a-e7e7-4331-87c7-74fc85c96aa0",
+            "attribute_value": "Product Attribute Value 002 - 02"
+        }
+    },
+    {
+        "model": "inventory.productattributevalue",
+        "pk": "99a67796-6cba-4145-8072-60471eb20d3e",
+        "fields": {
+            "product_attribute": "36959db7-8ade-4f5c-b107-e170ee4097e8",
+            "attribute_value": "Product Attribute Value 003 - 01"
+        }
+    },
+    {
+        "model": "inventory.productattributevalue",
+        "pk": "94246fde-08bc-4cf8-8f10-f4914847edbd",
+        "fields": {
+            "product_attribute": "36959db7-8ade-4f5c-b107-e170ee4097e8",
+            "attribute_value": "Product Attribute Value 003 - 02"
+        }
+    },
+    {
+        "model": "inventory.productattributevalue",
+        "pk": "cd563172-fdba-43ed-87e9-1350aa4013b6",
+        "fields": {
+            "product_attribute": "39de9817-e88f-4163-881f-98fb9f81bbc9",
+            "attribute_value": "Product Attribute Value 004 - 01"
+        }
+    },
+    {
+        "model": "inventory.productattributevalue",
+        "pk": "e7b2cb23-1dcc-4b6b-b256-9623931d9d07",
+        "fields": {
+            "product_attribute": "39de9817-e88f-4163-881f-98fb9f81bbc9",
+            "attribute_value": "Product Attribute Value 004 - 02"
+        }
+    },
+    {
+        "model": "inventory.productattributevalue",
+        "pk": "0860d73a-43cd-41c4-8e82-687b90151671",
+        "fields": {
+            "product_attribute": "046dffb2-56e7-49de-a34b-717074f18398",
+            "attribute_value": "Product Attribute Value 005 - 01"
+        }
+    },
+    {
+        "model": "inventory.productattributevalue",
+        "pk": "2afbbdb7-d23c-4bce-9a54-f9a3656295d5",
+        "fields": {
+            "product_attribute": "046dffb2-56e7-49de-a34b-717074f18398",
+            "attribute_value": "Product Attribute Value 005 - 02"
+        }
+    },
+    {
+        "model": "inventory.productattributevalue",
+        "pk": "4c7c09b2-b833-4699-a5fa-b73567bdcc03",
+        "fields": {
+            "product_attribute": "c0ed54c7-7321-419a-8af9-c9be13bbb8d1",
+            "attribute_value": "Product Attribute Value 006 - 01"
+        }
+    },
+    {
+        "model": "inventory.productattributevalue",
+        "pk": "07823381-ccd8-4e76-81da-a5bd75079b2b",
+        "fields": {
+            "product_attribute": "c0ed54c7-7321-419a-8af9-c9be13bbb8d1",
+            "attribute_value": "Product Attribute Value 006 - 02"
+        }
+    },
+    {
+        "model": "inventory.productattributevalue",
+        "pk": "7b3b4f8e-7e89-4850-a832-03f99669c7b4",
+        "fields": {
+            "product_attribute": "bd025fec-f2d7-46a0-a1e3-68e79fc56308",
+            "attribute_value": "Product Attribute Value 007 - 01"
+        }
+    },
+    {
+        "model": "inventory.productattributevalue",
+        "pk": "c70cee5a-cbe5-4ef4-a512-99add9c5e350",
+        "fields": {
+            "product_attribute": "bd025fec-f2d7-46a0-a1e3-68e79fc56308",
+            "attribute_value": "Product Attribute Value 007 - 02"
+        }
+    },
+    {
+        "model": "inventory.productattributevalue",
+        "pk": "39ca1077-25c9-4325-935b-c1236200a9be",
+        "fields": {
+            "product_attribute": "14aadbb5-78b0-409f-bbd6-cfa0f2d64557",
+            "attribute_value": "Product Attribute Value 008 - 01"
+        }
+    },
+    {
+        "model": "inventory.productattributevalue",
+        "pk": "145562a0-7eae-476e-ae37-58ee56b0dd95",
+        "fields": {
+            "product_attribute": "14aadbb5-78b0-409f-bbd6-cfa0f2d64557",
+            "attribute_value": "Product Attribute Value 008 - 02"
+        }
+    },
+    {
+        "model": "inventory.productattributevalue",
+        "pk": "739cc5e8-cefb-4231-a98d-b469ddee65cc",
+        "fields": {
+            "product_attribute": "42c770de-f448-4b06-b79f-6f5f27bad072",
+            "attribute_value": "Product Attribute Value 009 - 01"
+        }
+    },
+    {
+        "model": "inventory.productattributevalue",
+        "pk": "05212fb8-9e5f-4df9-a3fd-d386d5530bce",
+        "fields": {
+            "product_attribute": "42c770de-f448-4b06-b79f-6f5f27bad072",
+            "attribute_value": "Product Attribute Value 009 - 02"
+        }
+    },
+    {
+        "model": "inventory.productattributevalue",
+        "pk": "9a8cddaf-d40b-48b0-88d1-9188cfe52f14",
+        "fields": {
+            "product_attribute": "b55d9111-0fd4-4b2c-b914-550b3d851e1e",
+            "attribute_value": "Product Attribute Value 010 - 01"
+        }
+    },
+    {
+        "model": "inventory.productattributevalue",
+        "pk": "2510dcdb-ab9c-431a-ae99-d901ef9e7c31",
+        "fields": {
+            "product_attribute": "b55d9111-0fd4-4b2c-b914-550b3d851e1e",
+            "attribute_value": "Product Attribute Value 010 - 02"
+        }
+    }
+]

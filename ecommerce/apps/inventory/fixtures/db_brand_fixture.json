@@ -1,0 +1,72 @@
+[
+    {
+        "model": "inventory.brand",
+        "pk": "af583124-5e48-4e5a-9361-5a05576ced44",
+        "fields": {
+            "name": "Brand 01"
+        }
+    },
+    {
+        "model": "inventory.brand",
+        "pk": "93d321ed-c93b-4ceb-b046-30f0d2311804",
+        "fields": {
+            "name": "Brand 02"
+        }
+    },
+    {
+        "model": "inventory.brand",
+        "pk": "2caacc9e-958a-404d-84e1-5563c678ec3b",
+        "fields": {
+            "name": "Brand 03"
+        }
+    },
+    {
+        "model": "inventory.brand",
+        "pk": "97f665bf-46b1-4733-afca-1d0fc0f21701",
+        "fields": {
+            "name": "Brand 04"
+        }
+    },
+    {
+        "model": "inventory.brand",
+        "pk": "a77c3a48-133e-4bdb-b0ec-1f825de6c9a5",
+        "fields": {
+            "name": "Brand 05"
+        }
+    },
+    {
+        "model": "inventory.brand",
+        "pk": "35246e72-5b49-4b32-a7ad-2dfa96ae71d7",
+        "fields": {
+            "name": "Brand 06"
+        }
+    },
+    {
+        "model": "inventory.brand",
+        "pk": "a088793f-d751-4755-8527-dc8e46775c60",
+        "fields": {
+            "name": "Brand 07"
+        }
+    },
+    {
+        "model": "inventory.brand",
+        "pk": "f4773bfa-f583-4282-9b0e-5508160230fc",
+        "fields": {
+            "name": "Brand 08"
+        }
+    },
+    {
+        "model": "inventory.brand",
+        "pk": "95140968-b94e-4507-92e4-592132138bd7",
+        "fields": {
+            "name": "Brand 09"
+        }
+    },
+    {
+        "model": "inventory.brand",
+        "pk": "32c20b2a-f53f-4f63-b933-c2f0e4f56ed8",
+        "fields": {
+            "name": "Brand 10"
+        }
+    }
+]

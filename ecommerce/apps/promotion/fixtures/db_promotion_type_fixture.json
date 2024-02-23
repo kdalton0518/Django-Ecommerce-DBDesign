@@ -1,0 +1,702 @@
+[
+    {
+        "model": "promotion.promotiontype",
+        "pk": "289e3a81-72f9-42b1-a519-32ca3c93e0ac",
+        "fields": {
+            "name": "Promotion Type 001"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "69dc7875-40de-4c4d-a88d-e8a1ce36e79f",
+        "fields": {
+            "name": "Promotion Type 002"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "d92e6802-a5a8-41a2-b166-2be2c11d521f",
+        "fields": {
+            "name": "Promotion Type 003"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "684fd9cf-0e15-4058-a832-b482824a4921",
+        "fields": {
+            "name": "Promotion Type 004"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "c3392baf-98ff-4de3-a70e-4735a5b1de94",
+        "fields": {
+            "name": "Promotion Type 005"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "6a444753-e653-451a-a2b8-a7f8126a4d2f",
+        "fields": {
+            "name": "Promotion Type 006"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "a1c93e01-1c75-4a2a-9f03-0757f4583bb3",
+        "fields": {
+            "name": "Promotion Type 007"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "7025d17d-9f3d-4598-85e0-04a855920942",
+        "fields": {
+            "name": "Promotion Type 008"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "47d46f10-7bf1-47ea-9e17-43092d603df1",
+        "fields": {
+            "name": "Promotion Type 009"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "66e4d5c4-ef28-4fd8-86ea-c5323f0e1817",
+        "fields": {
+            "name": "Promotion Type 010"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "fdbbc1d3-4fa5-48a7-a125-442a09716fde",
+        "fields": {
+            "name": "Promotion Type 011"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "d374dc5b-cf59-4c13-b30b-3bd6a70166a2",
+        "fields": {
+            "name": "Promotion Type 012"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "1d59dc16-2ed4-405b-b496-139f9a3592ba",
+        "fields": {
+            "name": "Promotion Type 013"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "80f2c105-754b-4005-964a-1436cccdc95a",
+        "fields": {
+            "name": "Promotion Type 014"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "033e233d-5538-4ffa-b20b-f2f44084ab33",
+        "fields": {
+            "name": "Promotion Type 015"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "177f15a6-5fd9-4cbb-b1ba-e20d1c9f6fd4",
+        "fields": {
+            "name": "Promotion Type 016"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "69d9a893-37a9-4006-bc8b-a4774d4e710c",
+        "fields": {
+            "name": "Promotion Type 017"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "ae5fbfaf-6e8a-4be2-bb65-da4bc0351a6f",
+        "fields": {
+            "name": "Promotion Type 018"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "bf355686-c405-4c4c-94fb-13bf14d085d2",
+        "fields": {
+            "name": "Promotion Type 019"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "419776eb-3a2d-4c87-925d-47ae9fa71b9a",
+        "fields": {
+            "name": "Promotion Type 020"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "dbcf63cf-28a6-42be-a16f-0f3afe08cd27",
+        "fields": {
+            "name": "Promotion Type 021"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "73fe9136-affd-484f-8d47-914c347a855f",
+        "fields": {
+            "name": "Promotion Type 022"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "da114062-d17f-4d5b-9449-d622bce73534",
+        "fields": {
+            "name": "Promotion Type 023"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "9d8d84fe-c82c-47b5-b68c-d2d49ba4a6a0",
+        "fields": {
+            "name": "Promotion Type 024"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "f9b9a2d0-24d3-449c-af78-506e719b8e2a",
+        "fields": {
+            "name": "Promotion Type 025"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "7fae24c8-1ef0-450b-933b-8cbd597e7c9a",
+        "fields": {
+            "name": "Promotion Type 026"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "f576d3ff-ad7b-44bc-b4f5-d53d35dac3aa",
+        "fields": {
+            "name": "Promotion Type 027"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "f9f2b7fd-9f5d-4386-a7c4-06ae19e5e694",
+        "fields": {
+            "name": "Promotion Type 028"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "fbec4d4c-1a26-4758-8570-60325c68e7e1",
+        "fields": {
+            "name": "Promotion Type 029"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "0119cc28-4332-4b2b-89e2-30c40cae8799",
+        "fields": {
+            "name": "Promotion Type 030"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "18732d8c-4238-4192-82f6-a4c37a5d1e24",
+        "fields": {
+            "name": "Promotion Type 031"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "95870e3a-81a3-440c-80ad-81d7f7f1e118",
+        "fields": {
+            "name": "Promotion Type 032"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "0adf2242-1f49-4e15-a89a-245ebd162b6b",
+        "fields": {
+            "name": "Promotion Type 033"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "e8de9dcf-7999-460a-99a2-3b278c6aa9b5",
+        "fields": {
+            "name": "Promotion Type 034"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "dc261bcc-ce4a-4cbe-a329-97130ba7509e",
+        "fields": {
+            "name": "Promotion Type 035"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "8d2e5671-e4fd-4406-b801-b10d2f7fcce2",
+        "fields": {
+            "name": "Promotion Type 036"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "26ed3730-1e83-4a75-9a20-0cf51c508faf",
+        "fields": {
+            "name": "Promotion Type 037"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "111f7891-1bbd-4e7e-a802-13fb97adf184",
+        "fields": {
+            "name": "Promotion Type 038"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "b9284a04-df09-449e-8d4c-1a39c1657b34",
+        "fields": {
+            "name": "Promotion Type 039"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "11253b68-54cc-4d6a-85f0-106117d37af7",
+        "fields": {
+            "name": "Promotion Type 040"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "a5cfbe1b-00d1-4bb2-8569-d39b7e2d30ea",
+        "fields": {
+            "name": "Promotion Type 041"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "6c9cfcf2-605d-47a9-9d8e-4738d6efce59",
+        "fields": {
+            "name": "Promotion Type 042"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "a9c5119e-52b2-46ee-a37c-51b1341cb497",
+        "fields": {
+            "name": "Promotion Type 043"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "b251d79e-b15e-4317-a159-bb2f53b72dbb",
+        "fields": {
+            "name": "Promotion Type 044"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "3d16973f-3d35-4a45-9d7f-36a96ac53ba0",
+        "fields": {
+            "name": "Promotion Type 045"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "64951b53-76a3-488e-90ff-e90f235270f0",
+        "fields": {
+            "name": "Promotion Type 046"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "a498c557-a8f9-48ea-8250-b15b12fcb712",
+        "fields": {
+            "name": "Promotion Type 047"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "6c7062a3-d027-4171-96c7-844063a1eb58",
+        "fields": {
+            "name": "Promotion Type 048"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "290b4f1e-50bf-4d14-94ab-48cd8969ef2a",
+        "fields": {
+            "name": "Promotion Type 049"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "c28f3de1-8553-46c7-b28c-e72ef44fa3d0",
+        "fields": {
+            "name": "Promotion Type 050"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "34d0fcb6-b52e-4260-ac02-599ca67679db",
+        "fields": {
+            "name": "Promotion Type 051"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "342ae699-5e64-468c-b3ba-eeb8f3e46552",
+        "fields": {
+            "name": "Promotion Type 052"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "8fd5a61c-b038-48f3-ba26-026c0fcd8f2b",
+        "fields": {
+            "name": "Promotion Type 053"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "23cc9513-31c3-4897-a7b4-649b127e9dc5",
+        "fields": {
+            "name": "Promotion Type 054"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "c276eae3-83c8-4195-8000-3325a51b0cd0",
+        "fields": {
+            "name": "Promotion Type 055"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "a6cd4a85-f6f9-4465-a8e7-cf15b1b8ff6d",
+        "fields": {
+            "name": "Promotion Type 056"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "cd2f9700-5cd4-4392-a706-111f6ac4b212",
+        "fields": {
+            "name": "Promotion Type 057"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "68acb649-7d15-4afc-997b-efd76e64f990",
+        "fields": {
+            "name": "Promotion Type 058"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "7f1ffc8e-e6bc-4bea-8669-931a59aadef8",
+        "fields": {
+            "name": "Promotion Type 059"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "4b62f964-f0ce-4a97-bce8-f167d910dda9",
+        "fields": {
+            "name": "Promotion Type 060"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "2974281a-595d-425a-98c8-33e0d36a2bf3",
+        "fields": {
+            "name": "Promotion Type 061"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "f0f762fe-2b59-449e-a4f8-38152549f2d0",
+        "fields": {
+            "name": "Promotion Type 062"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "0f7955c2-f5dd-4e41-a20d-9574fe5052b1",
+        "fields": {
+            "name": "Promotion Type 063"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "28d4c125-43e7-420b-92dc-3def7ff0a3f8",
+        "fields": {
+            "name": "Promotion Type 064"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "70899f02-5be4-4952-944b-ede59ae74451",
+        "fields": {
+            "name": "Promotion Type 065"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "33f5e1b7-9c14-476f-83f7-7a26f4464baa",
+        "fields": {
+            "name": "Promotion Type 066"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "1925e84c-5ded-4db5-a09b-861ed89c3956",
+        "fields": {
+            "name": "Promotion Type 067"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "deab85bf-2f32-46b9-bbd0-ebc2af511110",
+        "fields": {
+            "name": "Promotion Type 068"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "4a4b8d49-de74-4828-bb7a-a0d660221f85",
+        "fields": {
+            "name": "Promotion Type 069"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "9d298fb7-1d47-4d06-9848-4446774641ba",
+        "fields": {
+            "name": "Promotion Type 070"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "f94b804f-d553-43c5-8c8d-ad97b28a4da3",
+        "fields": {
+            "name": "Promotion Type 071"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "d6a66ce2-a8b4-4de5-8f75-f4780d898306",
+        "fields": {
+            "name": "Promotion Type 072"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "ce24decb-ea87-4c00-b8ae-fe7a3fd8b81a",
+        "fields": {
+            "name": "Promotion Type 073"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "e7f4218e-78c1-4bd2-95a7-2032264304cd",
+        "fields": {
+            "name": "Promotion Type 074"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "71f2bf19-17c6-455d-8a44-f87b3c4870d1",
+        "fields": {
+            "name": "Promotion Type 075"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "42390cc7-517a-4868-acbc-715c2eb81b4b",
+        "fields": {
+            "name": "Promotion Type 076"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "57f999e9-8953-4be0-b224-df739ca3ea8e",
+        "fields": {
+            "name": "Promotion Type 077"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "b61f61c6-1e54-4814-8118-cb48f8673a30",
+        "fields": {
+            "name": "Promotion Type 078"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "60957273-6038-49df-b439-62adb153eff9",
+        "fields": {
+            "name": "Promotion Type 079"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "7a4203b6-1a34-4fb5-87a9-9aa9f9ffd106",
+        "fields": {
+            "name": "Promotion Type 080"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "3e2926d3-a129-4c25-988f-e01a58e8efc5",
+        "fields": {
+            "name": "Promotion Type 081"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "4e148528-70b2-4d6a-a4ab-16a4027a671d",
+        "fields": {
+            "name": "Promotion Type 082"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "e856958d-a0dd-4d31-9e25-333f07513b4d",
+        "fields": {
+            "name": "Promotion Type 083"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "0fcbab50-6506-4061-80c0-06485d406da2",
+        "fields": {
+            "name": "Promotion Type 084"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "a1a3538c-3765-46b5-bf45-89142d245481",
+        "fields": {
+            "name": "Promotion Type 085"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "c03f628e-61d9-4375-b9c7-d0fe9d676966",
+        "fields": {
+            "name": "Promotion Type 086"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "b1b78877-3008-4a92-867c-d44ad83b05e8",
+        "fields": {
+            "name": "Promotion Type 087"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "8c7b34a9-f134-4508-a5b0-c45d5b618ccb",
+        "fields": {
+            "name": "Promotion Type 088"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "9022c80f-36d7-4c7d-ac10-7abbc60c188b",
+        "fields": {
+            "name": "Promotion Type 089"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "223f5e76-34e1-4e65-bb5f-aeb0ef610004",
+        "fields": {
+            "name": "Promotion Type 090"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "9e564738-0fbf-439d-b51d-8a048192b4b4",
+        "fields": {
+            "name": "Promotion Type 091"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "52e42344-7045-49fd-a89f-e47bd6fe3468",
+        "fields": {
+            "name": "Promotion Type 092"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "a881abef-83a0-4a9b-a952-37b244d645db",
+        "fields": {
+            "name": "Promotion Type 093"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "d4a1342c-17e8-42be-8f69-efa61000e0db",
+        "fields": {
+            "name": "Promotion Type 094"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "0dfa1494-d0bf-4927-9110-3b8ddf29f76b",
+        "fields": {
+            "name": "Promotion Type 095"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "4163d275-fdc1-4633-9f84-8bca68c1eb7c",
+        "fields": {
+            "name": "Promotion Type 096"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "5c28c77e-c473-4c2c-83f5-fd94524db95f",
+        "fields": {
+            "name": "Promotion Type 097"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "96199862-00c8-45e9-9b98-2a26b331f3b2",
+        "fields": {
+            "name": "Promotion Type 098"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "de9bb4cb-b712-4e46-a95d-218d7c3f43d7",
+        "fields": {
+            "name": "Promotion Type 099"
+        }
+    },
+    {
+        "model": "promotion.promotiontype",
+        "pk": "79e2ff9e-3ff7-463f-bc16-c1d1ac807e0e",
+        "fields": {
+            "name": "Promotion Type 100"
+        }
+    }
+]
