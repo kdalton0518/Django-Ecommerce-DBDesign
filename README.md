@@ -76,3 +76,9 @@ This Django-based E-commerce project is designed to offer a robust and scalable 
     -   PgAdmin
     -   Celery Beat
     -   Flower
+
+### **Credits**
+
+-   **Very Academy**
+    -   Youtube: [Link](https://youtube.com/playlist?list=PLOLrQ9Pn6cay_cQkyg-WYYiJ_EKU8KWKh&si=r46p0o9Oyjpos9a4)
+    -   GitHub: [Link](https://github.com/veryacademy/django-ecommerce-project-v2)
