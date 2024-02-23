@@ -1,0 +1,842 @@
+[
+    {
+        "model": "inventory.category",
+        "pk": "79b6e36d-3850-4b3e-a03b-b9dcef1b154c",
+        "fields": {
+            "name": "Parent Category 01",
+            "slug": "parent-category-01",
+            "is_active": true,
+            "parent": null,
+            "lft": 1,
+            "rght": 2,
+            "tree_id": 1,
+            "level": 0
+        }
+    },
+    {
+        "model": "inventory.category",
+        "pk": "e4833529-b024-4a27-94dd-6075e1f11851",
+        "fields": {
+            "name": "Parent Category 02",
+            "slug": "parent-category-02",
+            "is_active": true,
+            "parent": null,
+            "lft": 3,
+            "rght": 4,
+            "tree_id": 1,
+            "level": 0
+        }
+    },
+    {
+        "model": "inventory.category",
+        "pk": "0e009c9c-2984-4b73-b815-5fa82b0ded9a",
+        "fields": {
+            "name": "Parent Category 03",
+            "slug": "parent-category-03",
+            "is_active": true,
+            "parent": null,
+            "lft": 5,
+            "rght": 6,
+            "tree_id": 1,
+            "level": 0
+        }
+    },
+    {
+        "model": "inventory.category",
+        "pk": "7b272556-f92f-4a14-befb-40f4a3fbe92d",
+        "fields": {
+            "name": "Parent Category 04",
+            "slug": "parent-category-04",
+            "is_active": true,
+            "parent": null,
+            "lft": 7,
+            "rght": 8,
+            "tree_id": 1,
+            "level": 0
+        }
+    },
+    {
+        "model": "inventory.category",
+        "pk": "2866ab3f-68c9-4a2c-9dc2-87bb6017f534",
+        "fields": {
+            "name": "Parent Category 05",
+            "slug": "parent-category-05",
+            "is_active": true,
+            "parent": null,
+            "lft": 9,
+            "rght": 10,
+            "tree_id": 1,
+            "level": 0
+        }
+    },
+    {
+        "model": "inventory.category",
+        "pk": "17847d24-edb4-4029-b300-760888889afc",
+        "fields": {
+            "name": "Parent Category 06",
+            "slug": "parent-category-06",
+            "is_active": true,
+            "parent": null,
+            "lft": 11,
+            "rght": 12,
+            "tree_id": 1,
+            "level": 0
+        }
+    },
+    {
+        "model": "inventory.category",
+        "pk": "00450a09-121b-49d2-a8dd-f8ef5c965f4d",
+        "fields": {
+            "name": "Parent Category 07",
+            "slug": "parent-category-07",
+            "is_active": true,
+            "parent": null,
+            "lft": 13,
+            "rght": 14,
+            "tree_id": 1,
+            "level": 0
+        }
+    },
+    {
+        "model": "inventory.category",
+        "pk": "80d64976-9129-4b35-a1a1-afa31ca67c86",
+        "fields": {
+            "name": "Parent Category 08",
+            "slug": "parent-category-08",
+            "is_active": true,
+            "parent": null,
+            "lft": 15,
+            "rght": 16,
+            "tree_id": 1,
+            "level": 0
+        }
+    },
+    {
+        "model": "inventory.category",
+        "pk": "4fed6b25-50d5-4e04-be72-2d7cf30bb006",
+        "fields": {
+            "name": "Parent Category 09",
+            "slug": "parent-category-09",
+            "is_active": true,
+            "parent": null,
+            "lft": 17,
+            "rght": 18,
+            "tree_id": 1,
+            "level": 0
+        }
+    },
+    {
+        "model": "inventory.category",
+        "pk": "4470f0ed-03dd-4019-93be-cd883bd01aae",
+        "fields": {
+            "name": "Parent Category 10",
+            "slug": "parent-category-10",
+            "is_active": true,
+            "parent": null,
+            "lft": 19,
+            "rght": 20,
+            "tree_id": 1,
+            "level": 0
+        }
+    },
+    {
+        "model": "inventory.category",
+        "pk": "b5cdba12-3cac-44b6-8cfd-2ded7126d726",
+        "fields": {
+            "name": "Parent Category 01 - Sub Category 01",
+            "slug": "parent-category-01-sub-category-01",
+            "is_active": true,
+            "parent": "79b6e36d-3850-4b3e-a03b-b9dcef1b154c",
+            "lft": 21,
+            "rght": 22,
+            "tree_id": 1,
+            "level": 1
+        }
+    },
+    {
+        "model": "inventory.category",
+        "pk": "92cca20b-3305-4da2-b8f6-1bdb0b12218c",
+        "fields": {
+            "name": "Parent Category 01 - Sub Category 02",
+            "slug": "parent-category-01-sub-category-02",
+            "is_active": true,
+            "parent": "79b6e36d-3850-4b3e-a03b-b9dcef1b154c",
+            "lft": 23,
+            "rght": 24,
+            "tree_id": 1,
+            "level": 1
+        }
+    },
+    {
+        "model": "inventory.category",
+        "pk": "103def2f-6e1c-4241-8fb9-08bf5c907aa0",
+        "fields": {
+            "name": "Parent Category 01 - Sub Category 03",
+            "slug": "parent-category-01-sub-category-03",
+            "is_active": true,
+            "parent": "79b6e36d-3850-4b3e-a03b-b9dcef1b154c",
+            "lft": 25,
+            "rght": 26,
+            "tree_id": 1,
+            "level": 1
+        }
+    },
+    {
+        "model": "inventory.category",
+        "pk": "e108b222-bb69-45e6-ac2b-283686bcabf4",
+        "fields": {
+            "name": "Parent Category 01 - Sub Category 04",
+            "slug": "parent-category-01-sub-category-04",
+            "is_active": true,
+            "parent": "79b6e36d-3850-4b3e-a03b-b9dcef1b154c",
+            "lft": 27,
+            "rght": 28,
+            "tree_id": 1,
+            "level": 1
+        }
+    },
+    {
+        "model": "inventory.category",
+        "pk": "16ecbcdd-9e76-4927-959d-a7ac9774c72d",
+        "fields": {
+            "name": "Parent Category 01 - Sub Category 05",
+            "slug": "parent-category-01-sub-category-05",
+            "is_active": true,
+            "parent": "79b6e36d-3850-4b3e-a03b-b9dcef1b154c",
+            "lft": 29,
+            "rght": 30,
+            "tree_id": 1,
+            "level": 1
+        }
+    },
+    {
+        "model": "inventory.category",
+        "pk": "0b1e2bed-9186-47cd-83cd-0a7316904ced",
+        "fields": {
+            "name": "Parent Category 02 - Sub Category 01",
+            "slug": "parent-category-02-sub-category-01",
+            "is_active": true,
+            "parent": "e4833529-b024-4a27-94dd-6075e1f11851",
+            "lft": 41,
+            "rght": 42,
+            "tree_id": 1,
+            "level": 1
+        }
+    },
+    {
+        "model": "inventory.category",
+        "pk": "d39ae85c-de42-4d9c-8527-f5e42f26a9cb",
+        "fields": {
+            "name": "Parent Category 02 - Sub Category 02",
+            "slug": "parent-category-02-sub-category-02",
+            "is_active": true,
+            "parent": "e4833529-b024-4a27-94dd-6075e1f11851",
+            "lft": 43,
+            "rght": 44,
+            "tree_id": 1,
+            "level": 1
+        }
+    },
+    {
+        "model": "inventory.category",
+        "pk": "ae1dfb29-1171-4af0-9377-14e7e3cf0303",
+        "fields": {
+            "name": "Parent Category 02 - Sub Category 03",
+            "slug": "parent-category-02-sub-category-03",
+            "is_active": true,
+            "parent": "e4833529-b024-4a27-94dd-6075e1f11851",
+            "lft": 45,
+            "rght": 46,
+            "tree_id": 1,
+            "level": 1
+        }
+    },
+    {
+        "model": "inventory.category",
+        "pk": "da94401c-a3ef-4821-9f5f-409798b985d0",
+        "fields": {
+            "name": "Parent Category 02 - Sub Category 04",
+            "slug": "parent-category-02-sub-category-04",
+            "is_active": true,
+            "parent": "e4833529-b024-4a27-94dd-6075e1f11851",
+            "lft": 47,
+            "rght": 48,
+            "tree_id": 1,
+            "level": 1
+        }
+    },
+    {
+        "model": "inventory.category",
+        "pk": "60d3a920-c124-4f86-984a-89049f320146",
+        "fields": {
+            "name": "Parent Category 02 - Sub Category 05",
+            "slug": "parent-category-02-sub-category-05",
+            "is_active": true,
+            "parent": "e4833529-b024-4a27-94dd-6075e1f11851",
+            "lft": 49,
+            "rght": 50,
+            "tree_id": 1,
+            "level": 1
+        }
+    },
+    {
+        "model": "inventory.category",
+        "pk": "cb0e321d-a740-4332-964f-308d3b29e6aa",
+        "fields": {
+            "name": "Parent Category 03 - Sub Category 01",
+            "slug": "parent-category-03-sub-category-01",
+            "is_active": true,
+            "parent": "0e009c9c-2984-4b73-b815-5fa82b0ded9a",
+            "lft": 61,
+            "rght": 62,
+            "tree_id": 1,
+            "level": 1
+        }
+    },
+    {
+        "model": "inventory.category",
+        "pk": "cb1f2d13-686d-4032-a1dd-9a8f20464fcf",
+        "fields": {
+            "name": "Parent Category 03 - Sub Category 02",
+            "slug": "parent-category-03-sub-category-02",
+            "is_active": true,
+            "parent": "0e009c9c-2984-4b73-b815-5fa82b0ded9a",
+            "lft": 63,
+            "rght": 64,
+            "tree_id": 1,
+            "level": 1
+        }
+    },
+    {
+        "model": "inventory.category",
+        "pk": "7edab8df-6d8c-4b00-beb3-bb451c9ca471",
+        "fields": {
+            "name": "Parent Category 03 - Sub Category 03",
+            "slug": "parent-category-03-sub-category-03",
+            "is_active": true,
+            "parent": "0e009c9c-2984-4b73-b815-5fa82b0ded9a",
+            "lft": 65,
+            "rght": 66,
+            "tree_id": 1,
+            "level": 1
+        }
+    },
+    {
+        "model": "inventory.category",
+        "pk": "73642607-cdc3-4d1c-aead-6c3f984a917c",
+        "fields": {
+            "name": "Parent Category 03 - Sub Category 04",
+            "slug": "parent-category-03-sub-category-04",
+            "is_active": true,
+            "parent": "0e009c9c-2984-4b73-b815-5fa82b0ded9a",
+            "lft": 67,
+            "rght": 68,
+            "tree_id": 1,
+            "level": 1
+        }
+    },
+    {
+        "model": "inventory.category",
+        "pk": "3bb890d1-b989-4bfe-a61b-913187ce8190",
+        "fields": {
+            "name": "Parent Category 03 - Sub Category 05",
+            "slug": "parent-category-03-sub-category-05",
+            "is_active": true,
+            "parent": "0e009c9c-2984-4b73-b815-5fa82b0ded9a",
+            "lft": 69,
+            "rght": 70,
+            "tree_id": 1,
+            "level": 1
+        }
+    },
+    {
+        "model": "inventory.category",
+        "pk": "ee11e7f0-0857-43ff-8e12-ffa91a4f8bf6",
+        "fields": {
+            "name": "Parent Category 04 - Sub Category 01",
+            "slug": "parent-category-04-sub-category-01",
+            "is_active": true,
+            "parent": "7b272556-f92f-4a14-befb-40f4a3fbe92d",
+            "lft": 81,
+            "rght": 82,
+            "tree_id": 1,
+            "level": 1
+        }
+    },
+    {
+        "model": "inventory.category",
+        "pk": "89384efc-4d99-4272-8b4e-27fb91da19bf",
+        "fields": {
+            "name": "Parent Category 04 - Sub Category 02",
+            "slug": "parent-category-04-sub-category-02",
+            "is_active": true,
+            "parent": "7b272556-f92f-4a14-befb-40f4a3fbe92d",
+            "lft": 83,
+            "rght": 84,
+            "tree_id": 1,
+            "level": 1
+        }
+    },
+    {
+        "model": "inventory.category",
+        "pk": "6920e8f1-962b-445d-9da0-abc59dbdf30d",
+        "fields": {
+            "name": "Parent Category 04 - Sub Category 03",
+            "slug": "parent-category-04-sub-category-03",
+            "is_active": true,
+            "parent": "7b272556-f92f-4a14-befb-40f4a3fbe92d",
+            "lft": 85,
+            "rght": 86,
+            "tree_id": 1,
+            "level": 1
+        }
+    },
+    {
+        "model": "inventory.category",
+        "pk": "828b90b6-e04b-4397-817a-d304f5cee097",
+        "fields": {
+            "name": "Parent Category 04 - Sub Category 04",
+            "slug": "parent-category-04-sub-category-04",
+            "is_active": true,
+            "parent": "7b272556-f92f-4a14-befb-40f4a3fbe92d",
+            "lft": 87,
+            "rght": 88,
+            "tree_id": 1,
+            "level": 1
+        }
+    },
+    {
+        "model": "inventory.category",
+        "pk": "cb859bfd-c024-4ff0-9da1-42b3944dad5c",
+        "fields": {
+            "name": "Parent Category 04 - Sub Category 05",
+            "slug": "parent-category-04-sub-category-05",
+            "is_active": true,
+            "parent": "7b272556-f92f-4a14-befb-40f4a3fbe92d",
+            "lft": 89,
+            "rght": 90,
+            "tree_id": 1,
+            "level": 1
+        }
+    },
+    {
+        "model": "inventory.category",
+        "pk": "a19634e3-844f-4309-a02b-5bf251d84610",
+        "fields": {
+            "name": "Parent Category 05 - Sub Category 01",
+            "slug": "parent-category-05-sub-category-01",
+            "is_active": true,
+            "parent": "2866ab3f-68c9-4a2c-9dc2-87bb6017f534",
+            "lft": 101,
+            "rght": 102,
+            "tree_id": 1,
+            "level": 1
+        }
+    },
+    {
+        "model": "inventory.category",
+        "pk": "eee204f0-2d94-461d-a068-a445f14b2aea",
+        "fields": {
+            "name": "Parent Category 05 - Sub Category 02",
+            "slug": "parent-category-05-sub-category-02",
+            "is_active": true,
+            "parent": "2866ab3f-68c9-4a2c-9dc2-87bb6017f534",
+            "lft": 103,
+            "rght": 104,
+            "tree_id": 1,
+            "level": 1
+        }
+    },
+    {
+        "model": "inventory.category",
+        "pk": "9fa83e97-8dbf-49b0-947e-393ed22eb9b8",
+        "fields": {
+            "name": "Parent Category 05 - Sub Category 03",
+            "slug": "parent-category-05-sub-category-03",
+            "is_active": true,
+            "parent": "2866ab3f-68c9-4a2c-9dc2-87bb6017f534",
+            "lft": 105,
+            "rght": 106,
+            "tree_id": 1,
+            "level": 1
+        }
+    },
+    {
+        "model": "inventory.category",
+        "pk": "6ecb78a1-0116-4c6e-ae40-6d68cf3c3eba",
+        "fields": {
+            "name": "Parent Category 05 - Sub Category 04",
+            "slug": "parent-category-05-sub-category-04",
+            "is_active": true,
+            "parent": "2866ab3f-68c9-4a2c-9dc2-87bb6017f534",
+            "lft": 107,
+            "rght": 108,
+            "tree_id": 1,
+            "level": 1
+        }
+    },
+    {
+        "model": "inventory.category",
+        "pk": "d126b53f-0fbb-4810-ab1c-60dd9fa4c35c",
+        "fields": {
+            "name": "Parent Category 05 - Sub Category 05",
+            "slug": "parent-category-05-sub-category-05",
+            "is_active": true,
+            "parent": "2866ab3f-68c9-4a2c-9dc2-87bb6017f534",
+            "lft": 109,
+            "rght": 110,
+            "tree_id": 1,
+            "level": 1
+        }
+    },
+    {
+        "model": "inventory.category",
+        "pk": "686a005c-e67b-45ce-9847-6cd5c3143e3c",
+        "fields": {
+            "name": "Parent Category 06 - Sub Category 01",
+            "slug": "parent-category-06-sub-category-01",
+            "is_active": true,
+            "parent": "17847d24-edb4-4029-b300-760888889afc",
+            "lft": 121,
+            "rght": 122,
+            "tree_id": 1,
+            "level": 1
+        }
+    },
+    {
+        "model": "inventory.category",
+        "pk": "7d11da2e-665c-4e5f-982a-2ac2e938c078",
+        "fields": {
+            "name": "Parent Category 06 - Sub Category 02",
+            "slug": "parent-category-06-sub-category-02",
+            "is_active": true,
+            "parent": "17847d24-edb4-4029-b300-760888889afc",
+            "lft": 123,
+            "rght": 124,
+            "tree_id": 1,
+            "level": 1
+        }
+    },
+    {
+        "model": "inventory.category",
+        "pk": "5e3a9796-8556-4558-9ace-56e373d26ff6",
+        "fields": {
+            "name": "Parent Category 06 - Sub Category 03",
+            "slug": "parent-category-06-sub-category-03",
+            "is_active": true,
+            "parent": "17847d24-edb4-4029-b300-760888889afc",
+            "lft": 125,
+            "rght": 126,
+            "tree_id": 1,
+            "level": 1
+        }
+    },
+    {
+        "model": "inventory.category",
+        "pk": "82d2b19d-22d4-4331-8551-879b5bcd4f57",
+        "fields": {
+            "name": "Parent Category 06 - Sub Category 04",
+            "slug": "parent-category-06-sub-category-04",
+            "is_active": true,
+            "parent": "17847d24-edb4-4029-b300-760888889afc",
+            "lft": 127,
+            "rght": 128,
+            "tree_id": 1,
+            "level": 1
+        }
+    },
+    {
+        "model": "inventory.category",
+        "pk": "6dfb6737-e979-46b6-9226-32c1280fc176",
+        "fields": {
+            "name": "Parent Category 06 - Sub Category 05",
+            "slug": "parent-category-06-sub-category-05",
+            "is_active": true,
+            "parent": "17847d24-edb4-4029-b300-760888889afc",
+            "lft": 129,
+            "rght": 130,
+            "tree_id": 1,
+            "level": 1
+        }
+    },
+    {
+        "model": "inventory.category",
+        "pk": "7c0417e9-0f00-4200-956f-badd3f266fda",
+        "fields": {
+            "name": "Parent Category 07 - Sub Category 01",
+            "slug": "parent-category-07-sub-category-01",
+            "is_active": true,
+            "parent": "00450a09-121b-49d2-a8dd-f8ef5c965f4d",
+            "lft": 141,
+            "rght": 142,
+            "tree_id": 1,
+            "level": 1
+        }
+    },
+    {
+        "model": "inventory.category",
+        "pk": "bf84d75b-3fc2-4cbc-81d2-01bd80306e8e",
+        "fields": {
+            "name": "Parent Category 07 - Sub Category 02",
+            "slug": "parent-category-07-sub-category-02",
+            "is_active": true,
+            "parent": "00450a09-121b-49d2-a8dd-f8ef5c965f4d",
+            "lft": 143,
+            "rght": 144,
+            "tree_id": 1,
+            "level": 1
+        }
+    },
+    {
+        "model": "inventory.category",
+        "pk": "53e75340-e1a8-4eef-b18f-a6e01f80e10a",
+        "fields": {
+            "name": "Parent Category 07 - Sub Category 03",
+            "slug": "parent-category-07-sub-category-03",
+            "is_active": true,
+            "parent": "00450a09-121b-49d2-a8dd-f8ef5c965f4d",
+            "lft": 145,
+            "rght": 146,
+            "tree_id": 1,
+            "level": 1
+        }
+    },
+    {
+        "model": "inventory.category",
+        "pk": "26b14337-2c72-4fc3-bed4-5644dfe32479",
+        "fields": {
+            "name": "Parent Category 07 - Sub Category 04",
+            "slug": "parent-category-07-sub-category-04",
+            "is_active": true,
+            "parent": "00450a09-121b-49d2-a8dd-f8ef5c965f4d",
+            "lft": 147,
+            "rght": 148,
+            "tree_id": 1,
+            "level": 1
+        }
+    },
+    {
+        "model": "inventory.category",
+        "pk": "4fc047c5-d02b-41d5-8ec6-c3f0e7b3d158",
+        "fields": {
+            "name": "Parent Category 07 - Sub Category 05",
+            "slug": "parent-category-07-sub-category-05",
+            "is_active": true,
+            "parent": "00450a09-121b-49d2-a8dd-f8ef5c965f4d",
+            "lft": 149,
+            "rght": 150,
+            "tree_id": 1,
+            "level": 1
+        }
+    },
+    {
+        "model": "inventory.category",
+        "pk": "4bfb30ba-9f4a-475c-bf8d-6aec7fa85ba3",
+        "fields": {
+            "name": "Parent Category 08 - Sub Category 01",
+            "slug": "parent-category-08-sub-category-01",
+            "is_active": true,
+            "parent": "80d64976-9129-4b35-a1a1-afa31ca67c86",
+            "lft": 161,
+            "rght": 162,
+            "tree_id": 1,
+            "level": 1
+        }
+    },
+    {
+        "model": "inventory.category",
+        "pk": "3640bb3f-07f6-464e-ab0e-5abae7c795b3",
+        "fields": {
+            "name": "Parent Category 08 - Sub Category 02",
+            "slug": "parent-category-08-sub-category-02",
+            "is_active": true,
+            "parent": "80d64976-9129-4b35-a1a1-afa31ca67c86",
+            "lft": 163,
+            "rght": 164,
+            "tree_id": 1,
+            "level": 1
+        }
+    },
+    {
+        "model": "inventory.category",
+        "pk": "9bc15d7d-53c3-42f6-a555-99e7ec45b9e3",
+        "fields": {
+            "name": "Parent Category 08 - Sub Category 03",
+            "slug": "parent-category-08-sub-category-03",
+            "is_active": true,
+            "parent": "80d64976-9129-4b35-a1a1-afa31ca67c86",
+            "lft": 165,
+            "rght": 166,
+            "tree_id": 1,
+            "level": 1
+        }
+    },
+    {
+        "model": "inventory.category",
+        "pk": "2958cf69-7a84-4905-a638-8ddb5571d79a",
+        "fields": {
+            "name": "Parent Category 08 - Sub Category 04",
+            "slug": "parent-category-08-sub-category-04",
+            "is_active": true,
+            "parent": "80d64976-9129-4b35-a1a1-afa31ca67c86",
+            "lft": 167,
+            "rght": 168,
+            "tree_id": 1,
+            "level": 1
+        }
+    },
+    {
+        "model": "inventory.category",
+        "pk": "6ff2f8b2-8fd3-4477-957e-549c2e05e3e2",
+        "fields": {
+            "name": "Parent Category 08 - Sub Category 05",
+            "slug": "parent-category-08-sub-category-05",
+            "is_active": true,
+            "parent": "80d64976-9129-4b35-a1a1-afa31ca67c86",
+            "lft": 169,
+            "rght": 170,
+            "tree_id": 1,
+            "level": 1
+        }
+    },
+    {
+        "model": "inventory.category",
+        "pk": "b79b0136-1374-4fd5-99ac-55d587ea91e0",
+        "fields": {
+            "name": "Parent Category 09 - Sub Category 01",
+            "slug": "parent-category-09-sub-category-01",
+            "is_active": true,
+            "parent": "4fed6b25-50d5-4e04-be72-2d7cf30bb006",
+            "lft": 181,
+            "rght": 182,
+            "tree_id": 1,
+            "level": 1
+        }
+    },
+    {
+        "model": "inventory.category",
+        "pk": "ae24bf0b-8ba0-43d7-b107-7f1824039bbf",
+        "fields": {
+            "name": "Parent Category 09 - Sub Category 02",
+            "slug": "parent-category-09-sub-category-02",
+            "is_active": true,
+            "parent": "4fed6b25-50d5-4e04-be72-2d7cf30bb006",
+            "lft": 183,
+            "rght": 184,
+            "tree_id": 1,
+            "level": 1
+        }
+    },
+    {
+        "model": "inventory.category",
+        "pk": "1d7286bd-76de-45cb-a4b6-b3489d8b560c",
+        "fields": {
+            "name": "Parent Category 09 - Sub Category 03",
+            "slug": "parent-category-09-sub-category-03",
+            "is_active": true,
+            "parent": "4fed6b25-50d5-4e04-be72-2d7cf30bb006",
+            "lft": 185,
+            "rght": 186,
+            "tree_id": 1,
+            "level": 1
+        }
+    },
+    {
+        "model": "inventory.category",
+        "pk": "61360344-f305-4fdc-b165-9d00af113d68",
+        "fields": {
+            "name": "Parent Category 09 - Sub Category 04",
+            "slug": "parent-category-09-sub-category-04",
+            "is_active": true,
+            "parent": "4fed6b25-50d5-4e04-be72-2d7cf30bb006",
+            "lft": 187,
+            "rght": 188,
+            "tree_id": 1,
+            "level": 1
+        }
+    },
+    {
+        "model": "inventory.category",
+        "pk": "726a767f-69b5-4bcc-afa7-0b0dc66f8fc0",
+        "fields": {
+            "name": "Parent Category 09 - Sub Category 05",
+            "slug": "parent-category-09-sub-category-05",
+            "is_active": true,
+            "parent": "4fed6b25-50d5-4e04-be72-2d7cf30bb006",
+            "lft": 189,
+            "rght": 190,
+            "tree_id": 1,
+            "level": 1
+        }
+    },
+    {
+        "model": "inventory.category",
+        "pk": "c53e24b3-4e29-415a-93f6-60318d49b941",
+        "fields": {
+            "name": "Parent Category 10 - Sub Category 01",
+            "slug": "parent-category-10-sub-category-01",
+            "is_active": true,
+            "parent": "4470f0ed-03dd-4019-93be-cd883bd01aae",
+            "lft": 201,
+            "rght": 202,
+            "tree_id": 1,
+            "level": 1
+        }
+    },
+    {
+        "model": "inventory.category",
+        "pk": "30af8fb4-60a6-4370-9ad7-ce4f5eb5e79a",
+        "fields": {
+            "name": "Parent Category 10 - Sub Category 02",
+            "slug": "parent-category-10-sub-category-02",
+            "is_active": true,
+            "parent": "4470f0ed-03dd-4019-93be-cd883bd01aae",
+            "lft": 203,
+            "rght": 204,
+            "tree_id": 1,
+            "level": 1
+        }
+    },
+    {
+        "model": "inventory.category",
+        "pk": "2fc4b95d-8999-4a2a-afc0-e9366a9703b3",
+        "fields": {
+            "name": "Parent Category 10 - Sub Category 03",
+            "slug": "parent-category-10-sub-category-03",
+            "is_active": true,
+            "parent": "4470f0ed-03dd-4019-93be-cd883bd01aae",
+            "lft": 205,
+            "rght": 206,
+            "tree_id": 1,
+            "level": 1
+        }
+    },
+    {
+        "model": "inventory.category",
+        "pk": "915f8533-3397-4d40-9233-51a849c4127c",
+        "fields": {
+            "name": "Parent Category 10 - Sub Category 04",
+            "slug": "parent-category-10-sub-category-04",
+            "is_active": true,
+            "parent": "4470f0ed-03dd-4019-93be-cd883bd01aae",
+            "lft": 207,
+            "rght": 208,
+            "tree_id": 1,
+            "level": 1
+        }
+    },
+    {
+        "model": "inventory.category",
+        "pk": "5b209ccd-c02a-4297-9b7b-9eb08eb67582",
+        "fields": {
+            "name": "Parent Category 10 - Sub Category 05",
+            "slug": "parent-category-10-sub-category-05",
+            "is_active": true,
+            "parent": "4470f0ed-03dd-4019-93be-cd883bd01aae",
+            "lft": 209,
+            "rght": 210,
+            "tree_id": 1,
+            "level": 1
+        }
+    }
+]

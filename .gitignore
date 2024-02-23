@@ -155,4 +155,3 @@ cython_debug/
 # Django stuff
 migrations/
 staticfiles/
-fixtures/
