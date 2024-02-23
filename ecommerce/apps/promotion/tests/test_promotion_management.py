@@ -1,9 +1,10 @@
 from decimal import Decimal
 from math import ceil
+from datetime import date, timedelta
 
 import pytest
-from ecommerce.apps.promotion.models import ProductsOnPromotion
-from ecommerce.apps.promotion.tasks import promotion_prices
+from ecommerce.apps.promotion.models import ProductsOnPromotion, Promotion
+from ecommerce.apps.promotion.tasks import promotion_prices, promotion_management
 
 
 @pytest.mark.parametrize(
@@ -55,3 +56,34 @@ def test_celery_promotion_prices(
                     * Decimal((100 - promo.promotion_reduction) / 100)
                 )
             )
+
+
+@pytest.mark.parametrize(
+    "start, end, expected",
+    [
+        (date.today(), date.today() + timedelta(days=5), True),
+        (date.today(), date.today() + timedelta(days=10), True),
+        (date.today() - timedelta(days=10), date.today() - timedelta(days=5), False),
+        (date.today() + timedelta(days=5), date.today() + timedelta(days=10), False),
+    ],
+)
+def test_celery_promotion_management(db, promotion_factory, start, end, expected):
+    """
+    Test to verify the promotion management is working using the Celery task.
+    """
+
+    # Create new promotion
+    new_promotion = promotion_factory(
+        promotion_start=start,
+        promotion_end=end,
+        is_schedule=True,
+    )
+
+    # Run the Celery task
+    promotion_management()
+
+    # Get the promotion
+    promo = Promotion.objects.get(id=new_promotion.id)
+
+    # Check if the promotion is active
+    assert promo.is_active == expected

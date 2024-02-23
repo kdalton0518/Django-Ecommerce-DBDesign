@@ -3,6 +3,7 @@ import dotenv
 import os
 from pathlib import Path
 import datetime
+from celery.schedules import crontab
 
 
 # Load environment variables
@@ -182,3 +183,16 @@ SIMPLE_JWT = {
 CELERY_BROKER_URL = "redis://redis:6379/0"
 CELERY_RESULT_BACKEND = "redis://redis:6379/0"
 CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP = True
+
+
+# Set a CELERY BEAT task scheduler
+CELERY_BEAT_SCHEDULE = {
+    "update_promotions": {
+        "task": "ecommerce.apps.promotion.tasks.promotion_management",
+        "schedule": crontab(minute="0", hour="1"),
+    },
+    "update_promotion_prices": {
+        "task": "ecommerce.apps.promotion.tasks.promotion_prices_all",
+        "schedule": crontab(minute="0", hour="1"),
+    },
+}
